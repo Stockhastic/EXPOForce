@@ -1,0 +1,1 @@
+{"version":3,"sourceRoot":"","sources":["..\\components\\header.scss"],"names":[],"mappings":"AAAA;EACI;EACA","sourcesContent":[".header{\n    background-color: #fff;\n    color: #000;\n}"]}

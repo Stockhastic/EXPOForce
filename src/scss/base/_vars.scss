@@ -1,0 +1,74 @@
+// Colors
+$black: #000;
+$white: #fff;
+
+$text-color: #111;
+$text-color-muted: rgba($black, 0.72);
+$text-color-secondary: rgba($black, 0.64);
+$bg-color: $white;
+$surface-color: #f5f5f5;
+$border-color: #555;
+$accent-color: #2f6fed;
+$success-color: #12b76a;
+$danger-color: #d92d20;
+
+// Typography
+$font-main: Arial, sans-serif;
+$font-accent: Arial, sans-serif;
+
+$fz-base: 16px;
+$lh-base: 1.5;
+
+$fw-regular: 400;
+$fw-medium: 500;
+$fw-semibold: 600;
+$fw-bold: 700;
+
+// Layout
+$container: 1200px;
+$container-wide: 1440px;
+
+// Spacing scale
+$space-xxs: 4px;
+$space-xs: 8px;
+$space-sm: 12px;
+$space-md: 16px;
+$space-lg: 24px;
+$space-xl: 32px;
+$space-xxl: 40px;
+
+// Layout spacing
+$page-padding: $space-lg;
+$section-padding: $space-xl;
+$content-padding: $space-md;
+$card-padding: $space-md;
+$form-field-padding: $space-sm;
+$stack-gap: $space-lg;
+$section-offset: 80px;
+
+// Radius
+$radius-sm: 4px;
+$radius-md: 8px;
+
+// Motion
+$transition-base: 0.2s ease;
+
+// Layers
+$z-header: 100;
+$z-dropdown: 200;
+$z-modal: 1000;
+
+// Breakpoints
+$mobile: 375px;
+$tablet: 768px;
+$desktop: 1024px;
+$desktop-lg: 1280px;
+
+$breakpoints: (
+    mobile: $mobile,
+    tablet: $tablet,
+    desktop: $desktop,
+    desktop-lg: $desktop-lg
+);
+
+// Text Sizes

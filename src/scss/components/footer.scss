@@ -1,0 +1,32 @@
+.footer {
+    background-color: $surface-color;
+    color: $text-color-secondary;
+    padding: $section-padding 0;
+    border-top: 1px solid rgba($black, 0.08);
+}
+
+.footer__inner {
+    width: 100%;
+    max-width: $container;
+    margin: 0 auto;
+    padding: 0 $page-padding;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: $space-lg;
+}
+
+.footer__copy {
+    margin: 0;
+    font-size: 0.9375rem;
+    color: $text-color-secondary;
+}
+
+@media (max-width: $tablet) {
+    .footer__inner {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: $space-md;
+        text-align: left;
+    }
+}
