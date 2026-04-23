@@ -1,25 +1,79 @@
 .footer {
-    background-color: $surface-color;
+    background-color: $surface-color-dark;
     color: $text-color-secondary;
-    padding: $section-padding 0;
-    border-top: 1px solid rgba($black, 0.08);
+    padding: $space-4xl 0;
+    border-top: 1px solid rgba($white, 0.08);
 }
 
 .footer__inner {
-    width: 100%;
-    max-width: $container;
-    margin: 0 auto;
-    padding: 0 $page-padding;
+    @include container();
     display: flex;
-    align-items: center;
+    align-items: flex-start;
     justify-content: space-between;
     gap: $space-lg;
+}
+
+.footer__brand {
+    max-width: 360px;
+}
+
+.footer__logo-link {
+    display: inline-flex;
+    align-items: center;
+    margin-bottom: $space-md;
+}
+
+.footer__logo {
+    width: 186px;
+    height: auto;
+    display: block;
+}
+
+.footer__text {
+    font-size: 1rem;
+    line-height: 1.6;
+    color: rgba($white, 0.8);
+}
+
+.footer__nav {
+    display: flex;
+    flex-direction: column;
+    gap: $space-sm;
+}
+
+.footer__link,
+.footer__contact-link {
+    color: $white;
+    transition: opacity $transition-base, color $transition-base;
+}
+
+.footer__link:hover,
+.footer__link:focus,
+.footer__contact-link:hover,
+.footer__contact-link:focus {
+    color: rgba($white, 0.72);
+}
+
+.footer__contact {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: $space-sm;
+    max-width: 280px;
+}
+
+.footer__contact-label {
+    font-size: 0.875rem;
+    font-weight: $fw-semibold;
+    color: rgba($white, 0.64);
+    text-transform: uppercase;
 }
 
 .footer__copy {
     margin: 0;
     font-size: 0.9375rem;
-    color: $text-color-secondary;
+    color: rgba($white, 0.64);
+    line-height: 1.5;
 }
 
 @media (max-width: $tablet) {

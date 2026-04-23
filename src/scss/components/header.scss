@@ -1,17 +1,16 @@
 .header {
-    position: relative;
+    position: sticky;
+    top: 0;
     z-index: $z-header;
-    background-color: $white;
+    background-color: rgba($white, 0.94);
+    backdrop-filter: blur(14px);
     color: $text-color;
-    border-bottom: 1px solid rgba($black, 0.08);
-    padding: $page-padding 0;
+    border-bottom: 1px solid $border-color;
+    padding: $space-md 0;
 }
 
 .header__inner {
-    width: 100%;
-    max-width: $container;
-    margin: 0 auto;
-    padding: 0 $page-padding;
+    @include container();
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -19,12 +18,15 @@
 }
 
 .header__brand {
-    font-family: $font-accent;
-    font-size: 1.125rem;
-    font-weight: $fw-bold;
-    letter-spacing: 0.02em;
-    color: $accent-color;
-    text-transform: uppercase;
+    display: inline-flex;
+    align-items: center;
+    flex-shrink: 0;
+}
+
+.header__logo {
+    width: 186px;
+    height: auto;
+    display: block;
 }
 
 .header__nav {
@@ -34,11 +36,17 @@
     align-items: center;
 }
 
-.header__nav a {
+.header__nav-link {
     color: $text-color;
     text-decoration: none;
     font-weight: $fw-medium;
     transition: color $transition-base, opacity $transition-base;
+}
+
+.header__controls {
+    display: flex;
+    align-items: center;
+    gap: $space-md;
 }
 
 .header__lang {
@@ -48,9 +56,9 @@
 }
 
 .header__lang-button {
-    border: 1px solid rgba($black, 0.15);
+    border: 1px solid $border-color;
     border-radius: $radius-sm;
-    background-color: transparent;
+    background-color: $white;
     color: $text-color;
     padding: 0.5rem 0.75rem;
     font-size: 0.875rem;
@@ -71,15 +79,15 @@
     color: $white;
 }
 
-.header__nav a:hover,
-.header__nav a:focus {
+.header__nav-link:hover,
+.header__nav-link:focus {
     color: $accent-color;
 }
 
 @media (max-width: $tablet) {
     .header__inner {
         flex-direction: column;
-        align-items: flex-start;
+        align-items: stretch;
         gap: $space-md;
     }
 
@@ -87,5 +95,31 @@
         width: 100%;
         justify-content: flex-start;
         gap: $space-md;
+        order: 2;
+    }
+
+    .header__controls {
+        width: 100%;
+        justify-content: space-between;
+        order: 3;
+    }
+}
+
+@media (max-width: $mobile) {
+    .header__logo {
+        width: 160px;
+    }
+
+    .header__controls {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .header__cta {
+        width: 100%;
+    }
+
+    .header__lang {
+        justify-content: flex-start;
     }
 }

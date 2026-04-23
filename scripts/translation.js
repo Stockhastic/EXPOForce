@@ -13,13 +13,11 @@
     function getTranslationScope(root = document) {
         const scope =
         root && typeof root.querySelectorAll === 'function' ? root : document;
-
     const elements = [];
 
     if (scope instanceof Element && scope.matches('[data-i18n]')) {
         elements.push(scope);
     }
-
     elements.push(...scope.querySelectorAll('[data-i18n]'));
     return elements;
     }
@@ -27,54 +25,41 @@
     function applyI18nToElement(element, lang) {
         const specRaw = element.getAttribute('data-i18n');
         const dict = state.translations[lang];
-
-    if (!specRaw || !dict) return;
-
-    const specs = specRaw
-        .split(';')
-        .map((item) => item.trim())
-        .filter(Boolean);
-
-    specs.forEach((spec) => {
-        const attrMatch = spec.match(/^\[([^\]]+)\](.+)$/);
-
-        if (attrMatch) {
-            const attr = attrMatch[1].trim();
-            const key = attrMatch[2].trim();
+        if (!specRaw || !dict) return;
+        const specs = specRaw
+            .split(';')
+            .map((item) => item.trim())
+            .filter(Boolean);
+        specs.forEach((spec) => {
+            const attrMatch = spec.match(/^\[([^\]]+)\](.+)$/);
+            if (attrMatch) {
+                const attr = attrMatch[1].trim();
+                const key = attrMatch[2].trim();
+                const value = dict[key];
+                if (value == null) return;
+                if (attr.toLowerCase() === 'html') {
+                    element.innerHTML = value;
+                    return;
+                }
+                if (attr.toLowerCase() === 'text') {
+                    element.textContent = value;
+                    return;
+                }
+                element.setAttribute(attr, value);
+                return;
+            }
+            const key = spec;
             const value = dict[key];
-
             if (value == null) return;
-
-            if (attr.toLowerCase() === 'html') {
-                element.innerHTML = value;
-                return;
-            }
-
-            if (attr.toLowerCase() === 'text') {
-                element.textContent = value;
-                return;
-            }
-
-            element.setAttribute(attr, value);
-            return;
-        }
-
-        const key = spec;
-        const value = dict[key];
-
-        if (value == null) return;
-
-        element.innerHTML = value;
-    });
+            element.innerHTML = value;
+        });
     }
 
     function applyTranslations(root = document) {
         if (!state.isReady || !state.translations[state.currentLang]) return false;
-
         getTranslationScope(root).forEach((element) => {
             applyI18nToElement(element, state.currentLang);
         });
-
         syncLanguageUi();
         return true;
     }
@@ -83,7 +68,6 @@
         document.querySelectorAll('[data-set-lang]').forEach((button) => {
             const lang = button.getAttribute('data-set-lang');
             const isActive = lang === state.currentLang;
-
             button.classList.toggle('is-active', isActive);
             button.setAttribute('aria-pressed', isActive ? 'true' : 'false');
         });
@@ -92,13 +76,10 @@
 
     function setLang(lang) {
         if (!state.translations[lang]) return false;
-
         const previousLang = state.currentLang;
         state.currentLang = lang;
-
         localStorage.setItem(LANG_STORAGE_KEY, lang);
         applyTranslations();
-
         if (previousLang !== lang) {
         document.dispatchEvent(
             new CustomEvent('i18n:updated', {
@@ -106,7 +87,6 @@
             })
         );
         }
-
         return true;
     }
 
@@ -182,8 +162,8 @@
 
     if (document.readyState === 'loading') {
         document.addEventListener('DOMContentLoaded', () => {
-    void init();
-    });
+            void init();
+        });
     } else {
         void init();
     }

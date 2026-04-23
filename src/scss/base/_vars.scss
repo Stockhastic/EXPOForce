@@ -2,19 +2,24 @@
 $black: #000;
 $white: #fff;
 
-$text-color: #111;
-$text-color-muted: rgba($black, 0.72);
-$text-color-secondary: rgba($black, 0.64);
-$bg-color: $white;
-$surface-color: #f5f5f5;
-$border-color: #555;
-$accent-color: #2f6fed;
+$text-color: #10231d;
+$text-color-muted: rgba(#10231d, 0.76);
+$text-color-secondary: rgba(#10231d, 0.64);
+$bg-color: #f6f8f4;
+$surface-color: #eef3ee;
+$surface-color-strong: #dce8df;
+$surface-color-dark: #113625;
+$border-color: rgba(#10231d, 0.12);
+$accent-color: #197437;
+$accent-color-strong: #0d4f2f;
+$accent-color-soft: #e5f2e8;
 $success-color: #12b76a;
 $danger-color: #d92d20;
+$shadow-soft: 0 18px 40px rgba(#10231d, 0.08);
 
 // Typography
-$font-main: Arial, sans-serif;
-$font-accent: Arial, sans-serif;
+$font-main: "Segoe UI", Arial, sans-serif;
+$font-accent: "Segoe UI", Arial, sans-serif;
 
 $fz-base: 16px;
 $lh-base: 1.5;
@@ -36,15 +41,18 @@ $space-md: 16px;
 $space-lg: 24px;
 $space-xl: 32px;
 $space-xxl: 40px;
+$space-3xl: 48px;
+$space-4xl: 64px;
+$space-5xl: 80px;
 
 // Layout spacing
 $page-padding: $space-lg;
-$section-padding: $space-xl;
+$section-padding: $space-xxl;
 $content-padding: $space-md;
 $card-padding: $space-md;
 $form-field-padding: $space-sm;
 $stack-gap: $space-lg;
-$section-offset: 80px;
+$section-offset: $space-5xl;
 
 // Radius
 $radius-sm: 4px;
@@ -70,5 +78,3 @@ $breakpoints: (
     desktop: $desktop,
     desktop-lg: $desktop-lg
 );
-
-// Text Sizes

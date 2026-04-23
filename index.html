@@ -1,57 +1,477 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ru">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title data-i18n="[text]meta-title">EXPAFORCE | Fulfillment for marketplace brands</title>
+    <meta
+        name="description"
+        content="EXPAFORCE provides fulfillment for marketplace and D2C brands: inbound, storage, pick and pack, marketplace prep, shipping, and returns."
+        data-i18n="[content]meta-description"
+    >
     <link rel="stylesheet" href="src/css/styles.css">
 
-    <!-- FAVICON -->
-    <!-- Favicon Standart -->
     <link rel="icon" type="image/x-icon" href="src/graphics/favicon.ico">
-
-    <!-- Different devices favicons -->
     <link rel="icon" type="image/png" sizes="16x16" href="src/graphics/png/favicon-16x16.png">
     <link rel="icon" type="image/png" sizes="32x32" href="src/graphics/png/favicon-32x32.png">
-
-    <!-- Chrome-Android -->
     <link rel="icon" type="image/png" sizes="192x192" href="src/graphics/png/android-chrome-192x192.png">
     <link rel="icon" type="image/png" sizes="512x512" href="src/graphics/png/android-chrome-512x512.png">
-
-    <!-- IOS -->
     <link rel="apple-touch-icon" sizes="180x180" href="src/graphics/png/apple-touch-icon.png">
-
-    <!-- Android -->
     <link rel="manifest" href="src/graphics/site.webmanifest">
-
-    <!-- <title>PAGENAME | Main Page</title> -->
-    
-    <!-- OpenGraphics for Thumbnails -->
-    <!-- <meta property="og:title" content="TITLE_PAGE" />
-    <meta property="og:site_name" content="SITE_NAME" />
-    <meta property="og:description" content="DESCRIPTION_OF_PAGE" />
-    <meta property="og:url" content="URL_ADRESS" />
-    <meta property="og:type" content="website" />
-    <meta property="og:image" content="PATH_TO_IMAGE" />
-    <meta property="og:image:width" content="1200" />
-    <meta property="og:image:height" content="630" />
-    <meta property="og:image:alt" content="IMAGE_DESCRIPTION" />
-    <meta property="og:locale" content="ru_RU, en_EN" /> -->
-
-    <!-- Twitter Cards  -->
-    <!-- <meta name="twitter:title" content="Заголовок страницы или статьи" />
-    <meta name="twitter:description" content="Краткое описание страницы, до 200 символов" />
-    <meta name="twitter:image" content="https://yourwebsite.com/path-to-image.jpg" />
-    <meta name="twitter:image:alt" content="Описание изображения" /> -->
 </head>
 
-<body>
+<body class="page page--home">
     <header id="header"></header>
 
     <main class="page-content">
-        
-        <h1 data-i18n="blank-slate">Blank Slate</h1>
-        <p>Start building the page structure from here.</p>
+        <section class="hero" id="hero" aria-labelledby="hero-title">
+            <div class="hero__inner">
+                <div class="hero__content">
+                    <p class="hero__eyebrow" data-i18n="[text]hero-eyebrow">Fulfillment warehouse for brands, marketplace sellers, and online stores</p>
+                    <h1 class="hero__title" id="hero-title" data-i18n="hero-title">Sell more while we run the warehouse operation.</h1>
+                    <p class="hero__text" data-i18n="[text]hero-text">EXPAFORCE takes over receiving, storage, labeling, pick and pack, outbound shipping, and returns so growth does not stall on warehouse chaos.</p>
+                    <div class="hero__actions">
+                        <a class="button button--primary" href="/index.html#cta" data-i18n="[text]hero-primary">Request pricing</a>
+                        <a class="button button--secondary" href="/index.html#models" data-i18n="[text]hero-secondary">See operating models</a>
+                    </div>
+                    <ul class="hero__metrics" aria-label="Operational highlights">
+                        <li class="hero__metric">
+                            <span class="hero__metric-value" data-i18n="[text]hero-metric-1-value">FBO / FBS / DBS</span>
+                            <span class="hero__metric-label" data-i18n="[text]hero-metric-1-label">Marketplace-ready fulfillment formats for different sales channels.</span>
+                        </li>
+                        <li class="hero__metric">
+                            <span class="hero__metric-value" data-i18n="[text]hero-metric-2-value">B2C and B2B</span>
+                            <span class="hero__metric-label" data-i18n="[text]hero-metric-2-label">One warehouse layer for direct orders, wholesale, and channel-specific prep.</span>
+                        </li>
+                        <li class="hero__metric">
+                            <span class="hero__metric-value" data-i18n="[text]hero-metric-3-value">Returns included</span>
+                            <span class="hero__metric-label" data-i18n="[text]hero-metric-3-label">Receiving, stock control, dispatch, and reverse flow in one operating contour.</span>
+                        </li>
+                    </ul>
+                </div>
 
+                <div class="hero__visual">
+                    <img class="hero__image" src="src/graphics/png/image1.png" alt="EXPAFORCE warehouse concept with shelves, boxes, and brand bear" data-i18n="[alt]hero-image-alt">
+                    <div class="hero__signal">
+                        <p class="hero__signal-label" data-i18n="[text]hero-panel-label">Core operating scope</p>
+                        <h2 class="hero__signal-title" data-i18n="[text]hero-panel-title">One controlled layer from inbound to dispatch.</h2>
+                        <ul class="hero__signal-list">
+                            <li data-i18n="[text]hero-panel-item-1">Receiving, verification, and structured stock placement</li>
+                            <li data-i18n="[text]hero-panel-item-2">Marketplace prep, packaging, kitting, and SLA-based assembly</li>
+                            <li data-i18n="[text]hero-panel-item-3">B2C and B2B shipping, returns handling, and operational reporting</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="audience" id="standards" aria-labelledby="audience-title">
+            <div class="audience__inner">
+                <div class="section-heading section-heading--wide">
+                    <p class="section-heading__eyebrow" data-i18n="[text]trust-label">Who this is for</p>
+                    <h2 class="section-heading__title" id="audience-title" data-i18n="[text]trust-title">Built for teams whose sales outgrow manual warehouse control.</h2>
+                    <p class="section-heading__text" data-i18n="[text]trust-note">We adapt the operating model around marketplaces, direct sales, and wholesale so stock, prep, packing, dispatch, and returns stop living in separate manual loops.</p>
+                </div>
+
+                <div class="audience__grid">
+                    <article class="audience-card">
+                        <h3 class="audience-card__title" data-i18n="[text]trust-card-1-title">Brands scaling through marketplaces</h3>
+                        <p class="audience-card__text" data-i18n="[text]trust-card-1-text">For teams that need consistent prep, labeling, and on-time handoff without constant owner intervention.</p>
+                    </article>
+                    <article class="audience-card">
+                        <h3 class="audience-card__title" data-i18n="[text]trust-card-2-title">Marketplace sellers</h3>
+                        <p class="audience-card__text" data-i18n="[text]trust-card-2-text">For operators moving between FBO, FBS, and hybrid flows while keeping stock visibility under control.</p>
+                    </article>
+                    <article class="audience-card">
+                        <h3 class="audience-card__title" data-i18n="[text]trust-card-3-title">Online stores and D2C teams</h3>
+                        <p class="audience-card__text" data-i18n="[text]trust-card-3-text">For businesses that need fast pick and pack, cleaner order status handling, and fewer packing mistakes.</p>
+                    </article>
+                    <article class="audience-card">
+                        <h3 class="audience-card__title" data-i18n="[text]trust-card-4-title">B2B and wholesale shipments</h3>
+                        <p class="audience-card__text" data-i18n="[text]trust-card-4-text">For palletized dispatch, documents, schedules, and execution control across recurring corporate orders.</p>
+                    </article>
+                    <article class="audience-card">
+                        <h3 class="audience-card__title" data-i18n="[text]trust-card-5-title">Teams preparing for seasonal growth</h3>
+                        <p class="audience-card__text" data-i18n="[text]trust-card-5-text">For operations that cannot afford stock confusion, repacking loops, and emergency fixes when demand spikes.</p>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <section class="problem" id="problem" aria-labelledby="problem-title">
+            <div class="problem__inner">
+                <div class="section-heading section-heading--wide">
+                    <p class="section-heading__eyebrow" data-i18n="[text]problem-label">The bottleneck</p>
+                    <h2 class="section-heading__title" id="problem-title" data-i18n="[text]problem-title">Growth usually slows down where warehouse operations stay manual.</h2>
+                </div>
+
+                <div class="problem__grid">
+                    <article class="problem-card">
+                        <h3 class="problem-card__title" data-i18n="[text]problem-1-title">Growth hits the warehouse first</h3>
+                        <p class="problem-card__text" data-i18n="[text]problem-1-text">At first, a few deliveries, manual stock tracking, and self-managed packing look manageable. Then order volume, SKUs, returns, and marketplace rules expand faster than the process behind them.</p>
+                    </article>
+                    <article class="problem-card">
+                        <h3 class="problem-card__title" data-i18n="[text]problem-2-title">The owner gets dragged into operations</h3>
+                        <p class="problem-card__text" data-i18n="[text]problem-2-text">Every day starts with the same questions: what arrived, what went missing, what shipped wrong, and whether today's dispatch will hold. The team puts out fires instead of building a repeatable system.</p>
+                    </article>
+                    <article class="problem-card">
+                        <h3 class="problem-card__title" data-i18n="[text]problem-3-title">The root cause repeats</h3>
+                        <p class="problem-card__text" data-i18n="[text]problem-3-text">There is no single point of responsibility, no transparent stock control, no clear SLA for assembly and returns, and no reliable link between sales channels and real inventory movement.</p>
+                    </article>
+                    <article class="problem-card">
+                        <h3 class="problem-card__title" data-i18n="[text]problem-4-title">Chaos is expensive</h3>
+                        <p class="problem-card__text" data-i18n="[text]problem-4-text">A labeling error, a mixed SKU, or one missed shipment can wipe out the margin of an entire batch. The warehouse stops supporting sales and starts taxing them.</p>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <section class="models" id="models" aria-labelledby="models-title">
+            <div class="models__inner">
+                <div class="section-heading section-heading--wide">
+                    <p class="section-heading__eyebrow" data-i18n="[text]models-label">Operating models</p>
+                    <h2 class="section-heading__title" id="models-title" data-i18n="[text]models-title">We adapt the warehouse model to the way you actually sell.</h2>
+                    <p class="section-heading__text" data-i18n="[text]models-text">The flow can be built around marketplaces, direct orders, wholesale shipments, or a hybrid mix across them. The point is one controllable process instead of parallel manual work.</p>
+                </div>
+
+                <div class="models__layout">
+                    <figure class="models__visual">
+                        <img class="models__image" src="src/graphics/png/image3%20-%20isometri%20shelfs.png" alt="Structured warehouse racking with boxed inventory" data-i18n="[alt]models-image-alt">
+                    </figure>
+
+                    <div class="models__grid">
+                        <article class="model-card model-card--wide">
+                            <div class="model-card__head">
+                                <h3 class="model-card__title" data-i18n="[text]model-1-title">FBO</h3>
+                                <p class="model-card__subtitle" data-i18n="[text]model-1-subtitle">Fulfillment by Operator</p>
+                            </div>
+                            <p class="model-card__text" data-i18n="[text]model-1-text">You bring goods into the warehouse, and we take over prep, control, and channel-ready handoff so the stock enters an organized flow instead of a manual queue.</p>
+                            <ul class="model-card__list">
+                                <li data-i18n="[text]model-1-item-1">Receiving goods from the seller or supplier side</li>
+                                <li data-i18n="[text]model-1-item-2">Checking appearance, completeness, labeling, and marketplace requirements</li>
+                                <li data-i18n="[text]model-1-item-3">Preparing shipments for the required downstream channel</li>
+                            </ul>
+                        </article>
+
+                        <article class="model-card">
+                            <div class="model-card__head">
+                                <h3 class="model-card__title" data-i18n="[text]model-2-title">FBS</h3>
+                                <p class="model-card__subtitle" data-i18n="[text]model-2-subtitle">Fulfillment by Seller</p>
+                            </div>
+                            <p class="model-card__text" data-i18n="[text]model-2-text">Goods stay in the warehouse, we receive order data, assemble against SLA, label, pack, and dispatch on behalf of the seller without lag between order intake and fulfillment.</p>
+                            <ul class="model-card__list">
+                                <li data-i18n="[text]model-2-item-1">Storage and live stock control</li>
+                                <li data-i18n="[text]model-2-item-2">Fast assembly and prep by order rules</li>
+                                <li data-i18n="[text]model-2-item-3">Dispatch without handoff delays</li>
+                            </ul>
+                        </article>
+
+                        <article class="model-card">
+                            <div class="model-card__head">
+                                <h3 class="model-card__title" data-i18n="[text]model-3-title">DBS</h3>
+                                <p class="model-card__subtitle" data-i18n="[text]model-3-subtitle">Delivery by Seller</p>
+                            </div>
+                            <p class="model-card__text" data-i18n="[text]model-3-text">Goods can stay on our side or in a combined scheme. After the order is placed, we prepare and route delivery directly to the buyer without adding extra operational friction.</p>
+                        </article>
+
+                        <article class="model-card">
+                            <div class="model-card__head">
+                                <h3 class="model-card__title" data-i18n="[text]model-4-title">B2B</h3>
+                                <p class="model-card__subtitle" data-i18n="[text]model-4-subtitle">Business to Business</p>
+                            </div>
+                            <p class="model-card__text" data-i18n="[text]model-4-text">We handle wholesale and network shipments with pallet dispatch, documentation, schedules, labeling, and execution control across recurring corporate orders.</p>
+                        </article>
+
+                        <article class="model-card">
+                            <div class="model-card__head">
+                                <h3 class="model-card__title" data-i18n="[text]model-5-title">B2C</h3>
+                                <p class="model-card__subtitle" data-i18n="[text]model-5-subtitle">Business to Consumer</p>
+                            </div>
+                            <p class="model-card__text" data-i18n="[text]model-5-text">We support direct sales through online stores, social channels, and marketplaces: order intake, assembly, packing, delivery handoff, returns, and channel-level reporting.</p>
+                        </article>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="operations" id="services" aria-labelledby="services-title">
+            <div class="operations__inner">
+                <div class="section-heading section-heading--wide">
+                    <p class="section-heading__eyebrow" data-i18n="[text]services-label">What is included</p>
+                    <h2 class="section-heading__title" id="services-title" data-i18n="[text]services-title">The operating stack covers the warehouse work that usually drains the team and margin.</h2>
+                    <p class="section-heading__text" data-i18n="[text]services-text">Receiving, storage, marketplace prep, assembly, shipping, stock control, and returns are handled inside one accountable operating layer.</p>
+                </div>
+
+                <div class="operations__layout">
+                    <div class="operations__grid">
+                        <article class="operation-card">
+                            <h3 class="operation-card__title" data-i18n="[text]service-1-title">Receiving and item verification</h3>
+                            <p class="operation-card__text" data-i18n="[text]service-1-text">Every inbound shipment is checked against documents and product state so sales do not start with hidden loss or confusion.</p>
+                        </article>
+                        <article class="operation-card">
+                            <h3 class="operation-card__title" data-i18n="[text]service-2-title">Structured storage and stock control</h3>
+                            <p class="operation-card__text" data-i18n="[text]service-2-text">Goods live in a defined system instead of wherever space exists, which keeps search, assembly, and counts from slowing the operation.</p>
+                        </article>
+                        <article class="operation-card">
+                            <h3 class="operation-card__title" data-i18n="[text]service-3-title">Labeling and marketplace prep</h3>
+                            <p class="operation-card__text" data-i18n="[text]service-3-text">Labeling, sticker application, and shipment prep reduce rejection risk, returns, and marketplace penalties.</p>
+                        </article>
+                        <article class="operation-card">
+                            <h3 class="operation-card__title" data-i18n="[text]service-4-title">Pick, pack, and kitting</h3>
+                            <p class="operation-card__text" data-i18n="[text]service-4-text">Single orders, bundles, promo kits, and custom packing rules are assembled without rework loops on the client side.</p>
+                        </article>
+                        <article class="operation-card">
+                            <h3 class="operation-card__title" data-i18n="[text]service-5-title">Returns handling and recovery</h3>
+                            <p class="operation-card__text" data-i18n="[text]service-5-text">Returns move back into circulation faster, and problematic units do not sit for weeks in an undefined status.</p>
+                        </article>
+                        <article class="operation-card">
+                            <h3 class="operation-card__title" data-i18n="[text]service-6-title">B2C and B2B outbound with reporting</h3>
+                            <p class="operation-card__text" data-i18n="[text]service-6-text">One warehouse layer supports both retail and wholesale while keeping reporting and escalation visible to the operating team.</p>
+                        </article>
+                    </div>
+
+                    <aside class="operations__panel">
+                        <img class="operations__panel-image" src="src/graphics/png/image2%20-%20team.png" alt="EXPAFORCE operating team visual" data-i18n="[alt]services-panel-image-alt">
+                        <div class="operations__panel-body">
+                            <p class="operations__panel-label" data-i18n="[text]services-panel-label">After launch</p>
+                            <h3 class="operations__panel-title" data-i18n="[text]services-panel-title">The warehouse becomes a managed business layer, not a chain of chats and emergency fixes.</h3>
+                            <ul class="operations__panel-list">
+                                <li data-i18n="[text]services-panel-item-1">One point of responsibility across receiving, storage, assembly, and dispatch</li>
+                                <li data-i18n="[text]services-panel-item-2">Clear stock and order statuses without manual reconstruction from spreadsheets</li>
+                                <li data-i18n="[text]services-panel-item-3">Fewer packing mistakes, returns caused by warehouse errors, and constant rechecks</li>
+                                <li data-i18n="[text]services-panel-item-4">More room for sales, marketing, and channel expansion instead of daily warehouse firefighting</li>
+                            </ul>
+                        </div>
+                    </aside>
+                </div>
+            </div>
+        </section>
+
+        <section class="proof" aria-labelledby="proof-title">
+            <div class="proof__inner">
+                <div class="proof__content">
+                    <p class="proof__eyebrow" data-i18n="[text]proof-label">Operational effect</p>
+                    <h2 class="proof__title" id="proof-title" data-i18n="[text]proof-title">What changes after launch is not just speed, but control.</h2>
+                    <p class="proof__text" data-i18n="[text]proof-text">The warehouse stops being a separate manual zone and becomes a controllable part of the business with clearer handoffs, better visibility, and less operational waste.</p>
+
+                    <div class="proof__grid">
+                        <article class="proof-card">
+                            <h3 class="proof-card__title" data-i18n="[text]proof-stat-1-value">One control point</h3>
+                            <p class="proof-card__text" data-i18n="[text]proof-stat-1-label">Receiving, storage, assembly, and dispatch work inside one contour instead of across scattered contractors and chats.</p>
+                        </article>
+                        <article class="proof-card">
+                            <h3 class="proof-card__title" data-i18n="[text]proof-stat-2-value">Transparent stock and statuses</h3>
+                            <p class="proof-card__text" data-i18n="[text]proof-stat-2-label">You can see what is in stock, what is assembled, what is waiting to ship, and where overload starts to form.</p>
+                        </article>
+                        <article class="proof-card">
+                            <h3 class="proof-card__title" data-i18n="[text]proof-stat-3-value">Lower operating loss</h3>
+                            <p class="proof-card__text" data-i18n="[text]proof-stat-3-label">Manual control, packing mistakes, warehouse-driven returns, and repetitive rechecks all start to fall.</p>
+                        </article>
+                        <article class="proof-card">
+                            <h3 class="proof-card__title" data-i18n="[text]proof-stat-4-value">Growth without internal chaos</h3>
+                            <p class="proof-card__text" data-i18n="[text]proof-stat-4-label">When order count rises, the business can focus on demand and channels instead of being trapped in warehouse routine.</p>
+                        </article>
+                    </div>
+                </div>
+
+                <aside class="proof__note" aria-labelledby="proof-note-title">
+                    <h3 class="proof__note-title" id="proof-note-title" data-i18n="[text]proof-note-title">What this means in practice</h3>
+                    <p class="proof__note-text" data-i18n="[text]proof-note-text">EXPAFORCE handles receiving, placement, labeling, assembly, packing, returns, and dispatch handoff as one operating system so brands and online stores can plan purchasing, open new channels, pass seasonal peaks, and grow without daily owner involvement in warehouse detail.</p>
+                </aside>
+            </div>
+        </section>
+
+        <section class="cases" id="cases" aria-labelledby="cases-title">
+            <div class="cases__inner">
+                <div class="section-heading section-heading--wide">
+                    <p class="section-heading__eyebrow" data-i18n="[text]cases-label">Case snapshots</p>
+                    <h2 class="section-heading__title" id="cases-title" data-i18n="[text]cases-title">Proof points adapted from the reference fulfillment workflow.</h2>
+                    <p class="section-heading__text" data-i18n="[text]cases-text">The source site frames impact through operating outcomes: lower storage waste, faster launch, higher same-day dispatch, better assembly accuracy, and faster returns processing.</p>
+                </div>
+
+                <div class="cases__grid">
+                    <article class="case-card">
+                        <div class="case-card__head">
+                            <span class="case-card__tag" data-i18n="[text]case-1-tag">Home goods</span>
+                            <h3 class="case-card__title" data-i18n="[text]case-1-title">Marketplace seller</h3>
+                        </div>
+                        <div class="case-card__metrics">
+                            <div class="case-card__metric">
+                                <span class="case-card__metric-value" data-i18n="[text]case-1-metric-1-value">-27%</span>
+                                <span class="case-card__metric-label" data-i18n="[text]case-1-metric-1-label">storage cost</span>
+                            </div>
+                            <div class="case-card__metric">
+                                <span class="case-card__metric-value" data-i18n="[text]case-1-metric-2-value">240/day</span>
+                                <span class="case-card__metric-label" data-i18n="[text]case-1-metric-2-label">orders after stabilization</span>
+                            </div>
+                            <div class="case-card__metric">
+                                <span class="case-card__metric-value" data-i18n="[text]case-1-metric-3-value">1.4%</span>
+                                <span class="case-card__metric-label" data-i18n="[text]case-1-metric-3-label">assembly error rate</span>
+                            </div>
+                        </div>
+                        <p class="case-card__text" data-i18n="[text]case-1-before">Before: two small warehouses, manual stock tracking, and constant order reassembly.</p>
+                        <p class="case-card__result" data-i18n="[text]case-1-after">After: storage cost dropped, daily assembly capacity more than doubled, and picking errors fell sharply.</p>
+                    </article>
+
+                    <article class="case-card case-card--accent">
+                        <div class="case-card__head">
+                            <span class="case-card__tag" data-i18n="[text]case-2-tag">Fashion</span>
+                            <h3 class="case-card__title" data-i18n="[text]case-2-title">Operating team launch</h3>
+                        </div>
+                        <div class="case-card__metrics">
+                            <div class="case-card__metric">
+                                <span class="case-card__metric-value" data-i18n="[text]case-2-metric-1-value">21 days</span>
+                                <span class="case-card__metric-label" data-i18n="[text]case-2-metric-1-label">to launch the warehouse contour</span>
+                            </div>
+                            <div class="case-card__metric">
+                                <span class="case-card__metric-value" data-i18n="[text]case-2-metric-2-value">1,500</span>
+                                <span class="case-card__metric-label" data-i18n="[text]case-2-metric-2-label">SKU onboarded</span>
+                            </div>
+                            <div class="case-card__metric">
+                                <span class="case-card__metric-value" data-i18n="[text]case-2-metric-3-value">94%</span>
+                                <span class="case-card__metric-label" data-i18n="[text]case-2-metric-3-label">same-day dispatch</span>
+                            </div>
+                        </div>
+                        <p class="case-card__text" data-i18n="[text]case-2-before">Before: launch stalled for weeks because labeling, stock, and packing stayed manual.</p>
+                        <p class="case-card__result" data-i18n="[text]case-2-after">After: the operating contour was launched in three weeks with SKU onboarding and same-day shipment discipline in place.</p>
+                    </article>
+
+                    <article class="case-card">
+                        <div class="case-card__head">
+                            <span class="case-card__tag" data-i18n="[text]case-3-tag">Electronics</span>
+                            <h3 class="case-card__title" data-i18n="[text]case-3-title">Brand with returns pressure</h3>
+                        </div>
+                        <div class="case-card__metrics">
+                            <div class="case-card__metric">
+                                <span class="case-card__metric-value" data-i18n="[text]case-3-metric-1-value">420/day</span>
+                                <span class="case-card__metric-label" data-i18n="[text]case-3-metric-1-label">orders after scale-up</span>
+                            </div>
+                            <div class="case-card__metric">
+                                <span class="case-card__metric-value" data-i18n="[text]case-3-metric-2-value">98.9%</span>
+                                <span class="case-card__metric-label" data-i18n="[text]case-3-metric-2-label">assembly accuracy</span>
+                            </div>
+                            <div class="case-card__metric">
+                                <span class="case-card__metric-value" data-i18n="[text]case-3-metric-3-value">48h</span>
+                                <span class="case-card__metric-label" data-i18n="[text]case-3-metric-3-label">returns processing</span>
+                            </div>
+                        </div>
+                        <p class="case-card__text" data-i18n="[text]case-3-before">Before: lower capacity, higher error rates, and returns stuck in unresolved queues for weeks.</p>
+                        <p class="case-card__result" data-i18n="[text]case-3-after">After: capacity scaled, assembly accuracy reached a controlled level, and returns moved into a defined turnaround window.</p>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <section class="process" id="process" aria-labelledby="process-title">
+            <div class="process__inner">
+                <div class="section-heading section-heading--wide">
+                    <p class="section-heading__eyebrow" data-i18n="[text]process-label">How the launch works</p>
+                    <h2 class="section-heading__title" id="process-title" data-i18n="[text]process-title">Three steps from a manual warehouse to a managed operating system.</h2>
+                    <p class="section-heading__text" data-i18n="[text]process-text">First we understand the current flow and sales channels, then define the warehouse rules, then move the day-to-day operation into SLA-based execution.</p>
+                </div>
+
+                <div class="process__layout">
+                    <ol class="process__steps">
+                        <li class="process__step">
+                            <span class="process__step-number">01</span>
+                            <h3 class="process__step-title" data-i18n="[text]process-step-1-title">Map the current flow and volume</h3>
+                            <p class="process__step-text" data-i18n="[text]process-step-1-text">We review inbound sources, SKU count, channel mix, shipment rhythm, and returns so the first month has a concrete operational target.</p>
+                        </li>
+                        <li class="process__step">
+                            <span class="process__step-number">02</span>
+                            <h3 class="process__step-title" data-i18n="[text]process-step-2-title">Set the warehouse rules around your business</h3>
+                            <p class="process__step-text" data-i18n="[text]process-step-2-text">We agree receiving checks, storage logic, labeling, packing, dispatch rules, and returns handling so stock and order statuses become readable.</p>
+                        </li>
+                        <li class="process__step">
+                            <span class="process__step-number">03</span>
+                            <h3 class="process__step-title" data-i18n="[text]process-step-3-title">Move into SLA-based execution</h3>
+                            <p class="process__step-text" data-i18n="[text]process-step-3-text">Assembly, packaging, dispatch handoff, returns, and reporting move into a predictable operating rhythm that can scale without breaking.</p>
+                        </li>
+                    </ol>
+
+                    <aside class="process__card">
+                        <p class="process__card-label" data-i18n="[text]process-card-title">What is usually enough for an estimate</p>
+                        <ul class="process__card-list">
+                            <li data-i18n="[text]process-card-item-1">Approximate SKU count</li>
+                            <li data-i18n="[text]process-card-item-2">Average daily order volume</li>
+                            <li data-i18n="[text]process-card-item-3">Product category and prep rules</li>
+                            <li data-i18n="[text]process-card-item-4">Sales channels and return scenarios</li>
+                        </ul>
+                    </aside>
+                </div>
+            </div>
+        </section>
+
+        <section class="cta" id="cta" aria-labelledby="cta-title">
+            <div class="cta__inner">
+                <div class="cta__content">
+                    <p class="cta__eyebrow" data-i18n="[text]cta-label">Final step</p>
+                    <h2 class="cta__title" id="cta-title" data-i18n="[text]cta-title">If you want growth without warehouse chaos, start with a quote built around your real operating volume.</h2>
+                    <p class="cta__text" data-i18n="[text]cta-text">Before launch, we align the service scope, economics, and working rules so you understand what is included, what it costs, and what the operating outcome should be.</p>
+                    <ul class="cta__points">
+                        <li data-i18n="[text]cta-point-1">SKU count and current storage profile</li>
+                        <li data-i18n="[text]cta-point-2">Average daily orders and seasonal peaks</li>
+                        <li data-i18n="[text]cta-point-3">Channels, prep rules, and returns requirements</li>
+                    </ul>
+                </div>
+
+                <aside class="cta__panel">
+                    <p class="cta__panel-label" data-i18n="[text]cta-panel-label">Start with a short brief</p>
+                    <p class="cta__panel-text" data-i18n="[text]cta-panel-text">The fastest start is to send the essentials by email so the next conversation can focus on the warehouse model, service scope, and pricing logic.</p>
+                    <a
+                        class="button button--primary button--full"
+                        href="mailto:sales@expaforce.com?subject=Request%20pricing%20for%20fulfillment"
+                        data-i18n="[text]cta-primary"
+                    >
+                        Send your request
+                    </a>
+                    <a class="button button--secondary button--full" href="/index.html#services" data-i18n="[text]cta-secondary">Review included operations</a>
+
+                    <dl class="cta__details">
+                        <div class="cta__detail">
+                            <dt data-i18n="[text]cta-detail-1-label">Primary contact</dt>
+                            <dd><a href="mailto:sales@expaforce.com">sales@expaforce.com</a></dd>
+                        </div>
+                        <div class="cta__detail">
+                            <dt data-i18n="[text]cta-detail-2-label">Typical client profile</dt>
+                            <dd data-i18n="[text]cta-detail-2-value">Brands, sellers, and online stores that need receiving, stock control, prep, shipping, and returns inside one accountable warehouse process.</dd>
+                        </div>
+                    </dl>
+                </aside>
+            </div>
+        </section>
+
+        <section class="faq" id="faq" aria-labelledby="faq-title">
+            <div class="faq__inner">
+                <div class="section-heading section-heading--wide">
+                    <p class="section-heading__eyebrow" data-i18n="[text]faq-label">FAQ</p>
+                    <h2 class="section-heading__title" id="faq-title" data-i18n="[text]faq-title">Questions teams ask before handing off warehouse operations.</h2>
+                </div>
+
+                <div class="faq__list">
+                    <details class="faq__item">
+                        <summary class="faq__question" data-i18n="[text]faq-1-question">At what volume does fulfillment start to make sense?</summary>
+                        <p class="faq__answer" data-i18n="[text]faq-1-answer">Not only at very high volume. If you already have regular inbound, several sales channels, and a team getting stuck in assembly and dispatch, an external warehouse layer is often cheaper than manual chaos.</p>
+                    </details>
+                    <details class="faq__item">
+                        <summary class="faq__question" data-i18n="[text]faq-2-question">How long does launch usually take?</summary>
+                        <p class="faq__answer" data-i18n="[text]faq-2-answer">It depends on SKU count, labeling rules, and process complexity. Simple projects move faster, while more complex ones need audit, test receiving, and operating setup before a realistic launch date is fixed.</p>
+                    </details>
+                    <details class="faq__item">
+                        <summary class="faq__question" data-i18n="[text]faq-3-question">Can we use only part of the service package?</summary>
+                        <p class="faq__answer" data-i18n="[text]faq-3-answer">Yes, but the best outcome usually comes from linking receiving, stock control, labeling, assembly, and dispatch. Warehouse problems rarely live in only one step, so we look at the economics as a full process.</p>
+                    </details>
+                    <details class="faq__item">
+                        <summary class="faq__question" data-i18n="[text]faq-4-question">How is pricing calculated?</summary>
+                        <p class="faq__answer" data-i18n="[text]faq-4-answer">Usually through several blocks: receiving, storage, product operations, assembly, packaging, dispatch, and returns. A transparent estimate before launch is more useful than a low first-line rate with hidden operating cost later.</p>
+                    </details>
+                    <details class="faq__item">
+                        <summary class="faq__question" data-i18n="[text]faq-5-question">Can you support special delivery routes or extra marketplace requirements?</summary>
+                        <p class="faq__answer" data-i18n="[text]faq-5-answer">That depends on product category, route, documents, and platform rules. Those cases are best calculated separately once the operational requirements are clear.</p>
+                    </details>
+                </div>
+            </div>
+        </section>
     </main>
 
     <footer id="footer"></footer>
