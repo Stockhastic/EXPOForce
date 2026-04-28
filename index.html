@@ -31,7 +31,7 @@
                     <h1 class="home-hero__title" id="home-hero-title" data-i18n="[text]home-hero-title">Приемка, маркировка и отгрузка товара без ручной складской операционки.</h1>
                     <p class="home-hero__text" data-i18n="[text]home-hero-text">EXPAFORCE ведет приемку, хранение, комплектацию, подготовку под площадки и возвраты, чтобы команда не держала склад на ежедневном ручном контроле.</p>
                     <div class="home-hero__actions">
-                        <a class="button button--primary" href="/index.html#cta" data-i18n="[text]hero-primary">Запросить расчет</a>
+                        <a class="button button--primary" href="/index.html#cta" data-i18n="[text]hero-primary">Обсудить задачу</a>
                         <a class="button button--secondary" href="/index.html#services" data-i18n="[text]home-hero-secondary">Смотреть услуги</a>
                     </div>
                     <ul class="home-hero__stats" aria-label="Операционные преимущества" data-i18n="[aria-label]home-hero-stats-aria">
@@ -146,43 +146,110 @@
 
         <section class="home-services" id="services" aria-labelledby="home-services-title">
             <div class="home-services__inner">
-                <div class="section-heading section-heading--wide">
-                    <p class="section-heading__eyebrow" data-i18n="[text]home-services-eyebrow">Наши услуги</p>
-                    <h2 class="section-heading__title" id="home-services-title" data-i18n="[text]home-services-title">Закрываем не один участок, а весь складской цикл.</h2>
-                    <p class="section-heading__text" data-i18n="[text]home-services-text">Собираем сервис вокруг того, как у вас реально движется товар: маркетплейсы, D2C, B2B и возвраты.</p>
+                <div class="home-services__head">
+                    <div class="section-heading section-heading--wide">
+                        <p class="section-heading__eyebrow" data-i18n="[text]home-services-eyebrow">Наши услуги</p>
+                        <h2 class="section-heading__title" id="home-services-title" data-i18n="[text]home-services-title">Закрываем не один участок, а весь складской цикл.</h2>
+                        <p class="section-heading__text" data-i18n="[text]home-services-text">Собираем сервис вокруг того, как у вас реально движется товар: маркетплейсы, D2C, B2B и возвраты.</p>
+                    </div>
                 </div>
 
                 <div class="home-services__grid">
                     <article class="home-service-card home-service-card--accent">
-                        <p class="home-service-card__label" data-i18n="[text]home-service-1-label">Фулфилмент</p>
-                        <h3 class="home-service-card__title" data-i18n="[text]home-service-1-title">Приемка, хранение и обработка товара</h3>
-                        <p class="home-service-card__text" data-i18n="[text]home-service-1-text">Берем на себя входящий поток, размещение по ячейкам и контроль движения SKU.</p>
+                        <span class="home-service-card__number" aria-hidden="true">01</span>
+                        <div class="home-service-card__content">
+                            <p class="home-service-card__label" data-i18n="[text]home-service-1-label">Фулфилмент</p>
+                            <h3 class="home-service-card__title" data-i18n="[text]home-service-1-title">Приемка, хранение и обработка товара</h3>
+                            <p class="home-service-card__text" data-i18n="[text]home-service-1-text">Берем на себя входящий поток, размещение по ячейкам и контроль движения SKU.</p>
+                        </div>
+                        <ul class="home-service-card__list">
+                            <li data-i18n="[text]home-service-1-point-1">Проверка партии, количества и состояния товара при входе</li>
+                            <li data-i18n="[text]home-service-1-point-2">Размещение по зонам хранения с понятной логикой движения</li>
+                        </ul>
+                        <div class="home-service-card__meta">
+                            <span data-i18n="[text]home-service-1-meta-1">SKU</span>
+                            <span data-i18n="[text]home-service-1-meta-2">Партии</span>
+                            <span data-i18n="[text]home-service-1-meta-3">Остатки</span>
+                        </div>
                     </article>
+
                     <article class="home-service-card">
-                        <p class="home-service-card__label" data-i18n="[text]home-service-2-label">Маркетплейсы</p>
-                        <h3 class="home-service-card__title" data-i18n="[text]home-service-2-title">Маркировка и подготовка под требования площадок</h3>
-                        <p class="home-service-card__text" data-i18n="[text]home-service-2-text">Стикеры, комплекты, этикетки, проверка упаковки и готовность к приемке.</p>
+                        <span class="home-service-card__number" aria-hidden="true">02</span>
+                        <div class="home-service-card__content">
+                            <p class="home-service-card__label" data-i18n="[text]home-service-2-label">Маркетплейсы</p>
+                            <h3 class="home-service-card__title" data-i18n="[text]home-service-2-title">Маркировка и подготовка под требования площадок</h3>
+                            <p class="home-service-card__text" data-i18n="[text]home-service-2-text">Стикеры, комплекты, этикетки, проверка упаковки и готовность к приемке.</p>
+                        </div>
+                        <ul class="home-service-card__list">
+                            <li data-i18n="[text]home-service-2-point-1">Стикеровка, маркировка и упаковочные правила каналов</li>
+                            <li data-i18n="[text]home-service-2-point-2">Подготовка наборов, комплектов и промо-партий</li>
+                        </ul>
                     </article>
+
                     <article class="home-service-card">
-                        <p class="home-service-card__label" data-i18n="[text]home-service-3-label">Отгрузка</p>
-                        <h3 class="home-service-card__title" data-i18n="[text]home-service-3-title">Комплектация и отгрузка заказов</h3>
-                        <p class="home-service-card__text" data-i18n="[text]home-service-3-text">Сборка единичных заказов, наборов, промо-комплектов и паллетных поставок.</p>
+                        <span class="home-service-card__number" aria-hidden="true">03</span>
+                        <div class="home-service-card__content">
+                            <p class="home-service-card__label" data-i18n="[text]home-service-3-label">Отгрузка</p>
+                            <h3 class="home-service-card__title" data-i18n="[text]home-service-3-title">Комплектация и отгрузка заказов</h3>
+                            <p class="home-service-card__text" data-i18n="[text]home-service-3-text">Сборка единичных заказов, наборов, промо-комплектов и паллетных поставок.</p>
+                        </div>
+                        <ul class="home-service-card__list">
+                            <li data-i18n="[text]home-service-3-point-1">Pick & pack по согласованным правилам упаковки</li>
+                            <li data-i18n="[text]home-service-3-point-2">Передача в доставку и фиксация статусов отгрузки</li>
+                        </ul>
                     </article>
+
                     <article class="home-service-card">
-                        <p class="home-service-card__label" data-i18n="[text]home-service-4-label">B2B</p>
-                        <h3 class="home-service-card__title" data-i18n="[text]home-service-4-title">Поставки в сети и корпоративным клиентам</h3>
-                        <p class="home-service-card__text" data-i18n="[text]home-service-4-text">Документы, паллеты, расписания и контроль исполнения оптовых отгрузок.</p>
+                        <span class="home-service-card__number" aria-hidden="true">04</span>
+                        <div class="home-service-card__content">
+                            <p class="home-service-card__label" data-i18n="[text]home-service-4-label">B2B</p>
+                            <h3 class="home-service-card__title" data-i18n="[text]home-service-4-title">Поставки в сети и корпоративным клиентам</h3>
+                            <p class="home-service-card__text" data-i18n="[text]home-service-4-text">Документы, паллеты, расписания и контроль исполнения оптовых отгрузок.</p>
+                        </div>
+                        <ul class="home-service-card__list">
+                            <li data-i18n="[text]home-service-4-point-1">Паллетизация, документы и подготовка по правилам получателя</li>
+                            <li data-i18n="[text]home-service-4-point-2">Планирование регулярных отгрузок без ручного контроля</li>
+                        </ul>
                     </article>
+
                     <article class="home-service-card">
-                        <p class="home-service-card__label" data-i18n="[text]home-service-5-label">Возвраты</p>
-                        <h3 class="home-service-card__title" data-i18n="[text]home-service-5-title">Обработка возвратов и возврат в сток</h3>
-                        <p class="home-service-card__text" data-i18n="[text]home-service-5-text">Проверяем состояние, возвращаем годный товар в оборот и фиксируем отклонения.</p>
+                        <span class="home-service-card__number" aria-hidden="true">05</span>
+                        <div class="home-service-card__content">
+                            <p class="home-service-card__label" data-i18n="[text]home-service-5-label">Возвраты</p>
+                            <h3 class="home-service-card__title" data-i18n="[text]home-service-5-title">Обработка возвратов и возврат в сток</h3>
+                            <p class="home-service-card__text" data-i18n="[text]home-service-5-text">Проверяем состояние, возвращаем годный товар в оборот и фиксируем отклонения.</p>
+                        </div>
+                        <ul class="home-service-card__list">
+                            <li data-i18n="[text]home-service-5-point-1">Осмотр, сортировка и решение по дальнейшему движению товара</li>
+                            <li data-i18n="[text]home-service-5-point-2">Возврат годных единиц в сток и учет проблемных случаев</li>
+                        </ul>
                     </article>
-                    <article class="home-service-card">
-                        <p class="home-service-card__label" data-i18n="[text]home-service-6-label">Контроль</p>
-                        <h3 class="home-service-card__title" data-i18n="[text]home-service-6-title">Интеграции и отчетность</h3>
-                        <p class="home-service-card__text" data-i18n="[text]home-service-6-text">Статусы, обмен данными, рабочая аналитика и понятная точка контакта по проекту.</p>
+
+                    <article class="home-service-card home-service-card--wide">
+                        <span class="home-service-card__number" aria-hidden="true">06</span>
+                        <div class="home-service-card__content">
+                            <p class="home-service-card__label" data-i18n="[text]home-service-6-label">Контроль</p>
+                            <h3 class="home-service-card__title" data-i18n="[text]home-service-6-title">Интеграции, статусы и отчетность</h3>
+                            <p class="home-service-card__text" data-i18n="[text]home-service-6-text">Статусы, обмен данными, рабочая аналитика и понятная точка контакта по проекту.</p>
+                        </div>
+                        <ul class="home-service-card__list">
+                            <li data-i18n="[text]home-service-6-point-1">Операционные статусы по приемке, сборке, отгрузке и возвратам</li>
+                            <li data-i18n="[text]home-service-6-point-2">Регулярная отчетность и единый контакт по рабочим вопросам</li>
+                        </ul>
+                        <div class="home-service-card__meta">
+                            <span data-i18n="[text]home-service-6-meta-1">Статусы</span>
+                            <span data-i18n="[text]home-service-6-meta-2">Отчеты</span>
+                            <span data-i18n="[text]home-service-6-meta-3">SLA</span>
+                        </div>
                     </article>
+                </div>
+
+                <div class="home-services__result">
+                    <div class="home-services__result-content">
+                        <p class="home-services__result-label" data-i18n="[text]home-services-result-label">На выходе</p>
+                        <p class="home-services__result-text" data-i18n="[text]home-services-result-text">Вместо разрозненных задач бизнес получает один управляемый складской контур: товар принят, подготовлен, отгружен, возвращен в сток и отражен в отчетности.</p>
+                    </div>
+                    <a class="button button--secondary" href="/pages/services/index.html" data-i18n="[text]home-services-result-link">Посмотреть полный контур</a>
                 </div>
             </div>
         </section>
@@ -227,7 +294,7 @@
                     <li class="home-journey__step">
                         <span class="home-journey__step-number">06</span>
                         <h3 class="home-journey__step-title" data-i18n="[text]home-journey-step-6-title">Отчетность и ежемесячный биллинг</h3>
-                        <p class="home-journey__step-text" data-i18n="[text]home-journey-step-6-text">Команда получает понятные статусы, отчеты по операциям и прозрачную логику расчета.</p>
+                        <p class="home-journey__step-text" data-i18n="[text]home-journey-step-6-text">Команда получает понятные статусы, отчеты по операциям и прозрачную логику стоимости.</p>
                     </li>
                 </ol>
             </div>
@@ -282,7 +349,7 @@
                 </div>
 
                 <div class="home-clients__grid">
-                    <article class="home-client-card">
+                    <article class="home-client-card home-client-card--major home-client-card--beauty">
                         <h3 class="home-client-card__title">
                             <span class="home-client-card__icon" aria-hidden="true">
                                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" focusable="false">
@@ -297,7 +364,7 @@
                         </h3>
                         <p class="home-client-card__text" data-i18n="[text]home-client-1-text">Маркировка, наборы, промо и аккуратная упаковка под площадки и прямые заказы.</p>
                     </article>
-                    <article class="home-client-card">
+                    <article class="home-client-card home-client-card--compact home-client-card--fashion">
                         <h3 class="home-client-card__title">
                             <span class="home-client-card__icon" aria-hidden="true">
                                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" focusable="false">
@@ -309,7 +376,7 @@
                         </h3>
                         <p class="home-client-card__text" data-i18n="[text]home-client-2-text">Размерные ряды, комплекты и сезонные пики без провалов по сборке.</p>
                     </article>
-                    <article class="home-client-card">
+                    <article class="home-client-card home-client-card--compact home-client-card--home">
                         <h3 class="home-client-card__title">
                             <span class="home-client-card__icon" aria-hidden="true">
                                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" focusable="false">
@@ -322,7 +389,7 @@
                         </h3>
                         <p class="home-client-card__text" data-i18n="[text]home-client-3-text">Объемные SKU, хранение и стабильная ежедневная комплектация.</p>
                     </article>
-                    <article class="home-client-card">
+                    <article class="home-client-card home-client-card--compact home-client-card--electronics">
                         <h3 class="home-client-card__title">
                             <span class="home-client-card__icon" aria-hidden="true">
                                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" focusable="false">
@@ -342,7 +409,7 @@
                         </h3>
                         <p class="home-client-card__text" data-i18n="[text]home-client-4-text">Точность по SKU, аккуратная упаковка и контролируемая обработка возвратов.</p>
                     </article>
-                    <article class="home-client-card">
+                    <article class="home-client-card home-client-card--wide home-client-card--daily">
                         <h3 class="home-client-card__title">
                             <span class="home-client-card__icon" aria-hidden="true">
                                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" focusable="false">
@@ -355,7 +422,7 @@
                         </h3>
                         <p class="home-client-card__text" data-i18n="[text]home-client-5-text">Высокая частота заказов и строгая дисциплина ежедневных отгрузок.</p>
                     </article>
-                    <article class="home-client-card">
+                    <article class="home-client-card home-client-card--major home-client-card--b2b">
                         <h3 class="home-client-card__title">
                             <span class="home-client-card__icon" aria-hidden="true">
                                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" focusable="false">
@@ -381,15 +448,15 @@
                 <div class="home-cta__content">
                     <p class="section-heading__eyebrow" data-i18n="[text]home-cta-eyebrow">Обратная связь</p>
                     <h2 class="home-cta__title" id="home-cta-title" data-i18n="[text]cta-title">Оставьте вводные по вашему процессу, и мы соберем рабочий складской контур под реальный объем.</h2>
-                    <p class="home-cta__text" data-i18n="[text]cta-text">Полного тендера не нужно. Короткой заявки достаточно, чтобы понять каналы продаж, нагрузку, требования к обработке и подготовить предметный следующий шаг.</p>
-                    <div class="home-cta__support" aria-label="Что помогает подготовить расчет" data-i18n="[aria-label]home-cta-support-aria">
+                    <p class="home-cta__text" data-i18n="[text]cta-text">Полного тендера не нужно. Короткой заявки достаточно, чтобы понять каналы продаж, нагрузку и требования к обработке.</p>
+                    <div class="home-cta__support" aria-label="Что помогает обсудить процесс" data-i18n="[aria-label]home-cta-support-aria">
                         <article class="home-cta__support-card">
                             <p class="home-cta__support-label" data-i18n="[text]home-cta-support-1-label">Что достаточно указать</p>
                             <p class="home-cta__support-text" data-i18n="[text]home-cta-support-1-text">Категорию товара, каналы продаж, примерный объем заказов и требования к упаковке или маркировке.</p>
                         </article>
                         <article class="home-cta__support-card">
                             <p class="home-cta__support-label" data-i18n="[text]home-cta-support-2-label">Что вернем в ответ</p>
-                            <p class="home-cta__support-text" data-i18n="[text]home-cta-support-2-text">Рабочий состав услуг, вопросы по узким местам и следующий шаг для расчета стоимости.</p>
+                            <p class="home-cta__support-text" data-i18n="[text]home-cta-support-2-text">Рабочий состав услуг, вопросы по узким местам и понятная логика стоимости.</p>
                         </article>
                     </div>
                 </div>
@@ -397,8 +464,8 @@
                 <aside class="home-cta__card">
                     <div class="home-cta__panel-head">
                         <p class="home-cta__card-label" data-i18n="[text]cta-panel-label">Форма заявки</p>
-                        <h3 class="home-cta__card-title" data-i18n="[text]home-cta-card-title">Получите расчет и состав услуг под ваш поток.</h3>
-                        <p class="home-cta__card-text" data-i18n="[text]cta-panel-text">Заполните только рабочий минимум. Этого достаточно, чтобы обсудить состав сервиса, логику стоимости и следующий шаг без лишней переписки.</p>
+                        <h3 class="home-cta__card-title" data-i18n="[text]home-cta-card-title">Опишите поток, и мы обсудим подходящий состав услуг.</h3>
+                        <p class="home-cta__card-text" data-i18n="[text]cta-panel-text">Заполните только рабочий минимум. Этого достаточно, чтобы обсудить состав сервиса, логику стоимости и рабочий формат без лишней переписки.</p>
                         <p class="home-cta__required-note" data-i18n="[text]cta-form-required-note">* Обязательные поля</p>
                     </div>
 

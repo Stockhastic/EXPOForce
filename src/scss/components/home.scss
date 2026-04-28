@@ -1637,7 +1637,7 @@ img {
 
     .home-journey__grid {
         grid-template-columns: 1fr;
-        gap: 0;
+        gap: $space-lg;
         margin: 0;
         padding: 0;
         list-style: none;
@@ -1655,16 +1655,11 @@ img {
         grid-template-columns: 76px minmax(180px, 0.62fr) minmax(0, 1fr);
         gap: $space-md;
         align-items: start;
-        padding: $space-lg 0;
-        border: 0;
-        border-top: 1px solid rgba($white, 0.14);
-        border-radius: 0;
-        background: transparent;
+        padding: $space-lg;
+        border: 1px solid rgba($white, 0.14);
+        border-radius: $radius-md;
+        background-color: rgba($white, 0.06);
         box-shadow: none;
-    }
-
-    .home-journey__step:last-child {
-        border-bottom: 1px solid rgba($white, 0.14);
     }
 
     .home-journey__step-number {
@@ -1693,14 +1688,6 @@ img {
     .home-journey__grid--wide .home-journey__step {
         grid-template-columns: 44px minmax(0, 1fr);
         gap: $space-md;
-        padding: $space-lg;
-        border: 1px solid rgba($white, 0.14);
-        border-radius: $radius-md;
-        background-color: rgba($white, 0.06);
-    }
-
-    .home-journey__grid--wide .home-journey__step:last-child {
-        border-bottom: 1px solid rgba($white, 0.14);
     }
 
     .home-journey__grid--wide .home-journey__step-text {
@@ -1714,27 +1701,89 @@ img {
 
     .home-benefits__layout {
         display: grid;
-        grid-template-columns: minmax(0, 1fr) minmax(320px, 0.78fr);
-        gap: $space-xxl;
+        gap: $space-md;
         align-items: stretch;
+        padding: $space-md;
+        border: 1px solid rgba($white, 0.18);
+        border-radius: 24px;
+        background-color: rgba($surface-color-dark, 0.22);
+        backdrop-filter: blur(12px);
     }
 
     .home-benefits__grid {
-        grid-template-columns: 1fr;
-        gap: $space-sm;
+        grid-template-columns: minmax(0, 1.05fr) minmax(0, 0.95fr);
+        grid-template-areas:
+            "main main"
+            "side-a side-b"
+            "bottom-a bottom-b";
+        gap: $space-md;
+        counter-reset: benefit-card;
     }
 
     .home-benefit-card {
+        position: relative;
+        counter-increment: benefit-card;
         display: grid;
-        grid-template-columns: minmax(160px, 0.36fr) minmax(0, 1fr);
-        gap: $space-lg;
+        grid-template-columns: 1fr;
+        gap: $space-sm;
+        align-content: start;
         align-items: start;
-        border-radius: 16px;
-        background-color: rgba($white, 0.78);
+        min-height: 0;
+        border-color: rgba($white, 0.16);
+        border-radius: $radius-md;
+        background-color: rgba($white, 0.94);
         box-shadow: none;
     }
 
+    .home-benefit-card::before {
+        content: "0" counter(benefit-card);
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        width: 40px;
+        height: 40px;
+        border-radius: $radius-md;
+        background-color: rgba($accent-color, 0.1);
+        color: $accent-color-strong;
+        font-size: 0.875rem;
+        font-weight: $fw-bold;
+    }
+
+    .home-benefit-card:nth-child(1) {
+        grid-area: main;
+        grid-template-columns: 40px minmax(180px, 0.42fr) minmax(0, 1fr);
+        gap: $space-md;
+        align-items: start;
+        background:
+            linear-gradient(180deg, rgba($white, 0.98), rgba($accent-color-soft, 0.96));
+    }
+
+    .home-benefit-card:nth-child(1) .home-benefit-card__title,
+    .home-benefit-card:nth-child(1) .home-benefit-card__text {
+        margin-top: 0;
+    }
+
+    .home-benefit-card:nth-child(2) {
+        grid-area: side-a;
+    }
+
+    .home-benefit-card:nth-child(3) {
+        grid-area: side-b;
+    }
+
+    .home-benefit-card:nth-child(4) {
+        grid-area: bottom-a;
+    }
+
+    .home-benefit-card:nth-child(5) {
+        grid-area: bottom-b;
+    }
+
     .home-benefit-card__title {
+        margin-top: 0;
+    }
+
+    .home-benefit-card__text {
         margin-top: 0;
     }
 
@@ -2116,13 +2165,9 @@ img {
         gap: $space-4xl;
     }
 
-    .home-journey__grid--primary {
-        border-top: 1px solid rgba($white, 0.14);
-    }
-
     .home-journey__step {
         grid-template-columns: 64px minmax(180px, 0.5fr) minmax(0, 1fr);
-        padding: $space-xl 0;
+        padding: $space-lg;
     }
 
     .home-journey__grid--wide {
@@ -2134,10 +2179,6 @@ img {
     .home-journey__grid--wide .home-journey__step {
         grid-template-columns: 44px minmax(0, 1fr);
         align-content: start;
-        padding: $space-lg;
-        border: 1px solid rgba($white, 0.14);
-        border-radius: $radius-md;
-        background-color: rgba($white, 0.06);
     }
 
     .home-journey__grid--wide .home-journey__step-text {
@@ -2157,18 +2198,19 @@ img {
 
     .home-benefits__layout {
         grid-template-columns: 1fr;
-        gap: $space-md;
     }
 
     .home-benefits__grid {
-        gap: $space-md;
+        grid-template-columns: minmax(0, 1.08fr) minmax(0, 0.92fr);
+        grid-template-areas:
+            "main main"
+            "side-a side-b"
+            "bottom-a bottom-b";
     }
 
     .home-benefit-card {
-        grid-template-columns: minmax(140px, 0.38fr) minmax(0, 1fr);
         border-color: rgba($white, 0.18);
         background-color: rgba($white, 0.94);
-        box-shadow: none;
     }
 
     .home-benefit-card__title {
@@ -2535,9 +2577,20 @@ img {
             grid-area: auto;
         }
 
-        .home-services__grid,
-        .home-benefits__layout {
+        .home-services__grid {
             grid-template-columns: repeat(2, minmax(0, 1fr));
+        }
+
+        .home-benefits__layout {
+            grid-template-columns: 1fr;
+        }
+
+        .home-benefits__grid {
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            grid-template-areas:
+                "main main"
+                "side-a side-b"
+                "bottom-a bottom-b";
         }
 
         .home-service-card--accent {
@@ -2583,7 +2636,24 @@ img {
         .home-operations__grid,
         .home-services__grid,
         .home-benefits__layout,
+        .home-benefits__grid,
         .home-clients__grid {
+            grid-template-columns: 1fr;
+        }
+
+        .home-benefits__grid {
+            grid-template-areas: none;
+        }
+
+        .home-benefit-card:nth-child(1),
+        .home-benefit-card:nth-child(2),
+        .home-benefit-card:nth-child(3),
+        .home-benefit-card:nth-child(4),
+        .home-benefit-card:nth-child(5) {
+            grid-area: auto;
+        }
+
+        .home-benefit-card:nth-child(1) {
             grid-template-columns: 1fr;
         }
 
@@ -2631,5 +2701,631 @@ img {
     .model-card--wide {
         grid-column: auto;
         grid-row: auto;
+    }
+}
+
+.page--home {
+    .home-clients__inner {
+        grid-template-columns: minmax(280px, 0.5fr) minmax(0, 1.5fr);
+        align-items: center;
+        gap: $space-4xl;
+    }
+
+    .home-clients__grid {
+        grid-template-columns: repeat(4, minmax(0, 1fr));
+        grid-template-areas:
+            "beauty fashion home electronics"
+            "daily daily b2b b2b";
+        gap: $space-md;
+        align-items: stretch;
+    }
+
+    .home-client-card {
+        display: grid;
+        gap: $space-md;
+        align-content: start;
+        min-height: 0;
+        padding: $space-lg;
+        overflow: hidden;
+        border-radius: $radius-md;
+        box-shadow: none;
+        transition: border-color $transition-base, background-color $transition-base, box-shadow $transition-base;
+    }
+
+    .home-client-card:hover,
+    .home-client-card:focus-within {
+        border-color: rgba($accent-color, 0.28);
+        box-shadow: $shadow-soft;
+    }
+
+    .home-client-card.home-client-card--beauty {
+        grid-area: beauty;
+        border-color: rgba($accent-color, 0.18);
+        background:
+            linear-gradient(180deg, rgba($accent-color-soft, 0.98), rgba($white, 0.98));
+    }
+
+    .home-client-card.home-client-card--fashion {
+        grid-area: fashion;
+    }
+
+    .home-client-card.home-client-card--home {
+        grid-area: home;
+        background-color: $surface-color;
+    }
+
+    .home-client-card.home-client-card--electronics {
+        grid-area: electronics;
+    }
+
+    .home-client-card.home-client-card--daily {
+        grid-area: daily;
+        border-color: rgba($accent-color, 0.16);
+        background-color: rgba($accent-color-soft, 0.64);
+    }
+
+    .home-client-card.home-client-card--b2b {
+        grid-area: b2b;
+        align-content: end;
+        border-color: rgba($surface-color-dark, 0.22);
+        background: $surface-color-dark;
+        color: $white;
+    }
+
+    .home-client-card.home-client-card--major {
+        padding: $space-xl;
+    }
+
+    .home-client-card__title {
+        grid-template-columns: 44px minmax(0, 1fr);
+        gap: $space-sm;
+        align-items: center;
+        margin-top: 0;
+    }
+
+    .home-client-card.home-client-card--major .home-client-card__title {
+        grid-template-columns: 56px minmax(0, 1fr);
+        gap: $space-md;
+    }
+
+    .home-client-card.home-client-card--beauty .home-client-card__title,
+    .home-client-card.home-client-card--compact .home-client-card__title {
+        grid-template-columns: 1fr;
+    }
+
+    .home-client-card.home-client-card--wide .home-client-card__title {
+        grid-template-columns: 48px minmax(0, 1fr);
+    }
+
+    .home-client-card__icon {
+        width: 44px;
+        height: 44px;
+        border-radius: $radius-md;
+        background: rgba($white, 0.92);
+        box-shadow: inset 0 1px 0 rgba($white, 0.72);
+    }
+
+    .home-client-card.home-client-card--major .home-client-card__icon {
+        width: 56px;
+        height: 56px;
+    }
+
+    .home-client-card.home-client-card--wide .home-client-card__icon {
+        width: 48px;
+        height: 48px;
+    }
+
+    .home-client-card.home-client-card--b2b .home-client-card__icon {
+        border-color: rgba($white, 0.18);
+        background-color: rgba($white, 0.1);
+        color: $white;
+    }
+
+    .home-client-card.home-client-card--b2b .home-client-card__title,
+    .home-client-card.home-client-card--b2b .home-client-card__text {
+        color: $white;
+    }
+
+    .home-client-card.home-client-card--b2b .home-client-card__text {
+        color: rgba($white, 0.76);
+    }
+
+    .home-client-card.home-client-card--major .home-client-card__title-text {
+        font-size: 1.4rem;
+        line-height: 1.2;
+    }
+
+    .home-client-card__text {
+        margin-top: 0;
+    }
+
+}
+
+@media (max-width: $desktop) {
+    .page--home {
+        .home-clients__inner {
+            grid-template-columns: 1fr;
+            align-items: start;
+        }
+
+        .home-clients__grid {
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            grid-template-areas:
+                "beauty fashion"
+                "home electronics"
+                "daily b2b";
+        }
+    }
+}
+
+@media (max-width: $tablet) {
+    .page--home {
+        .home-clients__grid {
+            grid-template-columns: 1fr;
+            grid-template-areas: none;
+        }
+
+        .home-client-card.home-client-card--beauty,
+        .home-client-card.home-client-card--fashion,
+        .home-client-card.home-client-card--home,
+        .home-client-card.home-client-card--electronics,
+        .home-client-card.home-client-card--daily,
+        .home-client-card.home-client-card--b2b {
+            grid-area: auto;
+        }
+
+        .home-client-card.home-client-card--major,
+        .home-client-card {
+            padding: $space-lg;
+        }
+
+        .home-client-card.home-client-card--major .home-client-card__title {
+            grid-template-columns: 48px minmax(0, 1fr);
+        }
+
+        .home-client-card.home-client-card--major .home-client-card__icon {
+            width: 48px;
+            height: 48px;
+        }
+
+        .home-client-card.home-client-card--major .home-client-card__title-text {
+            font-size: 1.25rem;
+        }
+    }
+}
+
+/* Homepage services: more informative service-section pattern with a featured card and scan-friendly detail. */
+.page--home {
+    .home-services {
+        padding: $space-5xl 0;
+        background:
+            linear-gradient(135deg, rgba($white, 0.72), rgba($white, 0.18) 36%, rgba($accent-color-soft, 0.34) 68%, rgba($white, 0.42)),
+            repeating-linear-gradient(90deg, rgba($surface-color-dark, 0.065) 0 1px, transparent 1px $space-5xl),
+            repeating-linear-gradient(0deg, rgba($surface-color-dark, 0.045) 0 1px, transparent 1px $space-5xl),
+            linear-gradient(180deg, rgba($white, 0.98) 0%, rgba($accent-color-soft, 0.82) 48%, rgba($surface-color-strong, 0.9) 100%);
+        border-block: 1px solid rgba($accent-color-strong, 0.08);
+    }
+
+    .home-services__inner {
+        display: grid;
+        gap: $space-3xl;
+    }
+
+    .home-services__head {
+        display: grid;
+        gap: $space-lg;
+        align-items: start;
+    }
+
+    .home-services__head .section-heading {
+        max-width: 860px;
+    }
+
+    .home-services__result-label {
+        color: $accent-color-strong;
+        font-size: 0.875rem;
+        line-height: 1.35;
+        font-weight: $fw-bold;
+        text-transform: uppercase;
+    }
+
+    .home-services__result-text {
+        color: $text-color-muted;
+        line-height: 1.65;
+    }
+
+    .home-service-card__meta span {
+        display: inline-flex;
+        align-items: center;
+        min-height: 32px;
+        padding: 0 $space-sm;
+        border: 1px solid rgba($accent-color, 0.16);
+        border-radius: $radius-md;
+        background-color: rgba($accent-color-soft, 0.76);
+        color: $accent-color-strong;
+        font-size: 0.875rem;
+        font-weight: $fw-semibold;
+    }
+
+    .home-services__grid {
+        display: grid;
+        grid-template-columns: repeat(12, minmax(0, 1fr));
+        gap: $space-xl;
+        align-items: stretch;
+    }
+
+    .home-service-card {
+        position: relative;
+        display: grid;
+        grid-column: span 6;
+        grid-template-columns: 48px minmax(0, 1fr);
+        gap: $space-lg;
+        align-content: start;
+        min-height: 0;
+        padding: $space-xl;
+        border-color: rgba($white, 0.52);
+        border-radius: $radius-md;
+        background:
+            linear-gradient(180deg, rgba($white, 0.72), rgba($white, 0.42));
+        box-shadow:
+            inset 0 1px 0 rgba($white, 0.72),
+            inset 0 -1px 0 rgba($accent-color-strong, 0.04),
+            $shadow-soft;
+        backdrop-filter: blur($space-md) saturate(132%);
+        -webkit-backdrop-filter: blur($space-md) saturate(132%);
+        overflow: hidden;
+        transition: border-color $transition-base, background-color $transition-base, box-shadow $transition-base;
+    }
+
+    .home-service-card::after {
+        content: "";
+        position: absolute;
+        inset: 0 0 auto;
+        height: $space-xxs;
+        background-color: rgba($accent-color, 0.58);
+    }
+
+    .home-service-card:hover,
+    .home-service-card:focus-within {
+        border-color: rgba($white, 0.72);
+        box-shadow:
+            inset 0 1px 0 rgba($white, 0.82),
+            inset 0 -1px 0 rgba($accent-color-strong, 0.06),
+            0 22px 52px rgba($surface-color-dark, 0.12);
+    }
+
+    .home-service-card:nth-child(2) {
+        grid-area: auto;
+        grid-column: span 5;
+    }
+
+    .home-service-card:nth-child(3) {
+        grid-area: auto;
+        grid-column: span 6;
+        background:
+            linear-gradient(180deg, rgba($white, 0.7), rgba($accent-color-soft, 0.48));
+    }
+
+    .home-service-card:nth-child(4) {
+        grid-area: auto;
+        grid-column: span 6;
+        border-color: rgba($white, 0.48);
+        background:
+            linear-gradient(180deg, rgba($surface-color-strong, 0.5), rgba($white, 0.38));
+    }
+
+    .home-service-card:nth-child(5) {
+        grid-area: auto;
+        grid-column: span 5;
+    }
+
+    .home-service-card:nth-child(5)::after {
+        background-color: rgba($success-color, 0.72);
+    }
+
+    .home-service-card--accent {
+        grid-area: auto;
+        grid-column: span 7;
+        grid-template-columns: 48px minmax(0, 1fr);
+        padding: $space-xxl;
+        border-color: rgba($white, 0.18);
+        background:
+            linear-gradient(180deg, rgba($surface-color-dark, 0.88), rgba($accent-color-strong, 0.74));
+        color: $white;
+    }
+
+    .home-service-card--accent::after {
+        background-color: rgba($success-color, 0.78);
+    }
+
+    .home-service-card--wide {
+        grid-area: auto;
+        grid-column: span 7;
+        grid-template-columns: 48px minmax(0, 1fr);
+        background:
+            linear-gradient(135deg, rgba($accent-color-soft, 0.68), rgba($white, 0.44));
+    }
+
+    .home-service-card--wide::after {
+        background:
+            linear-gradient(90deg, rgba($accent-color, 0.72), rgba($success-color, 0.72));
+    }
+
+    .home-service-card__number {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        width: 48px;
+        height: 48px;
+        border-radius: $radius-md;
+        border: 1px solid rgba($white, 0.5);
+        background:
+            linear-gradient(180deg, rgba($white, 0.54), rgba($accent-color-soft, 0.42));
+        color: $accent-color-strong;
+        font-size: 0.875rem;
+        font-weight: $fw-bold;
+        box-shadow: inset 0 1px 0 rgba($white, 0.62);
+    }
+
+    .home-service-card__content {
+        display: grid;
+        gap: $space-sm;
+        min-width: 0;
+    }
+
+    .home-service-card__label,
+    .home-service-card__title,
+    .home-service-card__text {
+        margin-top: 0;
+    }
+
+    .home-service-card__title {
+        font-size: 1.22rem;
+        line-height: 1.32;
+    }
+
+    .home-service-card__text {
+        color: $text-color-muted;
+        line-height: 1.7;
+    }
+
+    .home-service-card__list {
+        grid-column: 2;
+        display: grid;
+        gap: $space-sm;
+        margin: 0;
+        padding: 0;
+        list-style: none;
+    }
+
+    .home-service-card__list li {
+        display: grid;
+        grid-template-columns: 18px minmax(0, 1fr);
+        gap: $space-sm;
+        align-items: start;
+        color: $text-color-muted;
+        font-size: 0.9375rem;
+        line-height: 1.65;
+    }
+
+    .home-service-card__list li::before {
+        content: "";
+        width: 18px;
+        height: 18px;
+        margin-top: $space-xxs;
+        border-radius: 50%;
+        border: 1px solid rgba($accent-color, 0.24);
+        background:
+            radial-gradient(circle at center, $accent-color 0 3px, transparent 4px),
+            rgba($white, 0.52);
+        box-shadow: inset 0 1px 0 rgba($white, 0.62);
+    }
+
+    .home-service-card__meta {
+        grid-column: 2;
+        display: flex;
+        flex-wrap: wrap;
+        gap: $space-sm;
+    }
+
+    .home-service-card--wide .home-service-card__list {
+        grid-column: 2;
+        grid-row: auto;
+    }
+
+    .home-service-card--wide .home-service-card__meta {
+        grid-column: 2;
+    }
+
+    .home-service-card--accent .home-service-card__list {
+        grid-column: 2;
+        grid-row: auto;
+    }
+
+    .home-service-card--accent .home-service-card__meta {
+        grid-column: 2;
+    }
+
+    .home-service-card--accent .home-service-card__number {
+        border-color: rgba($white, 0.18);
+        background:
+            linear-gradient(180deg, rgba($white, 0.18), rgba($white, 0.08));
+        color: $white;
+    }
+
+    .home-service-card--accent .home-service-card__label,
+    .home-service-card--accent .home-service-card__title {
+        color: $white;
+    }
+
+    .home-service-card--accent .home-service-card__text,
+    .home-service-card--accent .home-service-card__list li {
+        color: rgba($white, 0.78);
+    }
+
+    .home-service-card--accent .home-service-card__list li::before {
+        border-color: rgba($white, 0.18);
+        background:
+            radial-gradient(circle at center, $success-color 0 3px, transparent 4px),
+            rgba($white, 0.12);
+    }
+
+    .home-service-card--accent .home-service-card__meta span {
+        border-color: rgba($white, 0.2);
+        background-color: rgba($white, 0.12);
+        color: $white;
+    }
+
+    .home-services__result {
+        display: grid;
+        grid-template-columns: minmax(0, 1fr) auto;
+        gap: $space-xl;
+        align-items: center;
+        padding: $space-xl;
+        border-radius: $radius-md;
+        border: 1px solid rgba($white, 0.18);
+        background:
+            linear-gradient(135deg, rgba($surface-color-dark, 0.9), rgba($accent-color-strong, 0.72));
+        color: $white;
+        box-shadow:
+            inset 0 1px 0 rgba($white, 0.16),
+            $shadow-soft;
+        backdrop-filter: blur($space-md) saturate(128%);
+        -webkit-backdrop-filter: blur($space-md) saturate(128%);
+    }
+
+    .home-services__result-content {
+        display: grid;
+        gap: $space-xs;
+    }
+
+    .home-services__result-label,
+    .home-services__result-text {
+        color: $white;
+    }
+
+    .home-services__result-text {
+        max-width: 860px;
+        color: rgba($white, 0.78);
+    }
+
+    .home-services__result .button--secondary {
+        border-color: rgba($white, 0.24);
+        color: $white;
+    }
+
+    .home-services__result .button--secondary:hover,
+    .home-services__result .button--secondary:focus {
+        border-color: rgba($white, 0.4);
+        background-color: rgba($white, 0.1);
+        color: $white;
+    }
+}
+
+@media (max-width: $desktop) {
+    .page--home {
+        .home-services__head {
+            grid-template-columns: 1fr;
+            align-items: start;
+        }
+
+        .home-services__grid {
+            grid-template-columns: 1fr;
+            grid-template-areas: none;
+        }
+
+        .home-service-card,
+        .home-service-card--accent,
+        .home-service-card--wide {
+            grid-area: auto;
+            grid-column: auto;
+        }
+
+        .home-service-card:nth-child(1),
+        .home-service-card:nth-child(2),
+        .home-service-card:nth-child(3),
+        .home-service-card:nth-child(4),
+        .home-service-card:nth-child(5),
+        .home-service-card:nth-child(6) {
+            grid-column: auto;
+        }
+
+        .home-service-card--accent,
+        .home-service-card--wide {
+            grid-template-columns: 48px minmax(0, 1fr);
+        }
+
+        .home-service-card--accent .home-service-card__list,
+        .home-service-card--accent .home-service-card__meta,
+        .home-service-card--wide .home-service-card__list,
+        .home-service-card--wide .home-service-card__meta {
+            grid-column: 2;
+            grid-row: auto;
+        }
+
+        .home-services__result {
+            grid-template-columns: 1fr;
+            align-items: start;
+        }
+    }
+}
+
+@media (max-width: $tablet) {
+    .page--home {
+        .home-services {
+            padding: $space-4xl 0;
+        }
+
+        .home-services__grid {
+            grid-template-columns: 1fr;
+        }
+
+        .home-services__result {
+            padding: $space-md;
+        }
+
+        .home-service-card,
+        .home-service-card--accent,
+        .home-service-card--wide {
+            grid-template-columns: 1fr;
+            gap: $space-sm;
+            padding: $space-lg;
+        }
+
+        .home-service-card__number {
+            width: 40px;
+            height: 40px;
+        }
+
+        .home-service-card__list,
+        .home-service-card__meta,
+        .home-service-card--accent .home-service-card__list,
+        .home-service-card--accent .home-service-card__meta,
+        .home-service-card--wide .home-service-card__list,
+        .home-service-card--wide .home-service-card__meta {
+            grid-column: auto;
+        }
+    }
+}
+
+@media (max-width: $mobile) {
+    .page--home {
+        .home-service-card,
+        .home-service-card--accent,
+        .home-service-card--wide {
+            grid-template-columns: 1fr;
+            gap: $space-sm;
+            padding: $space-md;
+        }
+
+        .home-service-card__list,
+        .home-service-card__meta,
+        .home-service-card--accent .home-service-card__list,
+        .home-service-card--accent .home-service-card__meta,
+        .home-service-card--wide .home-service-card__list,
+        .home-service-card--wide .home-service-card__meta {
+            grid-column: auto;
+        }
+
     }
 }
