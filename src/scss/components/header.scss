@@ -84,6 +84,60 @@
     color: $accent-color;
 }
 
+.page--home {
+    .header {
+        position: absolute;
+        left: 0;
+        width: 100%;
+        background-color: transparent;
+        backdrop-filter: none;
+        color: $white;
+        border-bottom: 0;
+    }
+
+    .header__logo {
+        box-shadow: 0 0 20 #fff;
+    }
+    .header__nav-link {
+        color: rgba($white, 0.82);
+    }
+
+    .header__nav-link:hover,
+    .header__nav-link:focus {
+        color: $white;
+    }
+
+    .header__cta.button--primary {
+        background-color: $white;
+        color: $accent-color-strong;
+    }
+
+    .header__cta.button--primary:hover,
+    .header__cta.button--primary:focus {
+        background-color: rgba($white, 0.92);
+        color: $accent-color-strong;
+    }
+
+    .header__lang-button {
+        border-color: rgba($white, 0.18);
+        background-color: rgba($white, 0.08);
+        color: $white;
+    }
+
+    .header__lang-button:hover,
+    .header__lang-button:focus {
+        border-color: rgba($white, 0.3);
+        background-color: rgba($white, 0.14);
+        color: $white;
+    }
+
+    .header__lang-button.is-active {
+        background-color: $white;
+        border-color: $white;
+        color: $accent-color-strong;
+    }
+}
+
 @media (max-width: $tablet) {
     .header__inner {
         flex-direction: column;

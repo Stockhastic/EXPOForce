@@ -53,6 +53,13 @@ Avoid:
 - Prefer 2-column and 3-column layouts
 - Use cards only when they improve scanning
 - Keep section spacing generous and consistent
+- Every section must be based on a clear layout system, not on manual visual guessing
+- Use CSS Grid or Flexbox for composition
+- Use parent `gap` for spacing between layout children
+- Avoid child margins as the main way to create layout spacing
+- Do not create visual balance with random `margin-top`, `margin-left`, `transform`, empty spacer divs, or hardcoded heights
+- Do not leave unexplained empty areas inside or around sections
+- All major elements in a section must align to a visible composition logic: shared grid, shared axis, shared baseline, or shared container
 
 Preferred section order:
 1. Hero
@@ -62,6 +69,234 @@ Preferred section order:
 5. Process / platform / integrations
 6. CTA
 7. FAQ or final reassurance
+
+---
+
+## Section structure rules
+Every page section must follow this structure unless the existing project architecture requires a different established pattern:
+
+```html
+<section class="section section--name">
+  <div class="container">
+    <div class="section__inner">
+      ...
+    </div>
+  </div>
+</section>
+```
+
+Rules:
+- `.section` controls vertical section padding
+- `.container` controls max-width and horizontal page padding
+- `.section__inner` or a named layout wrapper controls internal section composition
+- Individual child elements must not create outer page spacing manually
+- Do not use random margins to push blocks into place
+- Do not use absolute positioning for normal content layout
+- Do not use negative margins for normal section alignment
+- Do not use `transform: translate(...)` to fix layout problems
+- Do not use empty divs as spacers
+
+Good:
+
+```scss
+.section__layout {
+  display: grid;
+  grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.4fr);
+  gap: var(--space-8);
+  align-items: center;
+}
+```
+
+Bad:
+
+```scss
+.card {
+  margin-top: 87px;
+  margin-left: 43px;
+}
+```
+
+---
+
+## Spacing discipline
+Use spacing tokens only.
+
+Spacing must come from:
+- section padding
+- container padding
+- grid/flex `gap`
+- reusable spacing tokens
+
+Do not use arbitrary spacing values unless they already exist in the design system or are explicitly required.
+
+Avoid values like:
+- `37px`
+- `83px`
+- `112px`
+- `14rem`
+- `calc(...)` used only to visually force alignment
+
+Use tokenized values like:
+
+```scss
+padding-block: var(--section-padding);
+gap: var(--space-5);
+margin-bottom: var(--space-4);
+```
+
+If spacing tokens are missing, add or reuse a small, consistent scale instead of inventing one-off values.
+
+Recommended spacing scale:
+
+```scss
+--space-1: 4px;
+--space-2: 8px;
+--space-3: 12px;
+--space-4: 16px;
+--space-5: 24px;
+--space-6: 32px;
+--space-7: 48px;
+--space-8: 64px;
+--space-9: 96px;
+```
+
+Rules:
+- Use `gap` for spacing between cards, columns, rows, and repeated elements
+- Use margins only for simple text rhythm or when already established by the project
+- Do not mix many unrelated spacing values inside one section
+- Top and bottom padding of a section must feel intentionally balanced
+- If a section has asymmetry, it must be created by grid composition, not random offsets
+
+---
+
+## Grid-first composition
+For complex sections with text, cards, images, metrics, or mixed content, use CSS Grid first.
+
+Rules:
+- The main section layout should be controlled by one parent grid
+- Nested card groups should use their own grid or flex layout
+- Cards should not be placed manually with individual offsets
+- Large and small cards must relate to the same grid system
+- Asymmetric layouts must use explicit grid columns, rows, or grid areas
+- Do not let a card “float” without a clear relationship to nearby elements
+
+Example for a section with text on the left and cards on the right:
+
+```scss
+.section__layout {
+  display: grid;
+  grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.4fr);
+  gap: var(--space-8);
+  align-items: center;
+}
+
+.section__content {
+  max-width: 520px;
+}
+
+.section__cards {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: var(--space-5);
+}
+```
+
+For asymmetric card layouts, use named grid areas:
+
+```scss
+.metrics-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  grid-template-areas:
+    "main side-top"
+    "main side-bottom"
+    "bottom side-bottom";
+  gap: var(--space-5);
+  align-items: stretch;
+}
+
+.metrics-card--main {
+  grid-area: main;
+}
+
+.metrics-card--side-top {
+  grid-area: side-top;
+}
+
+.metrics-card--bottom {
+  grid-area: bottom;
+}
+
+.metrics-card--side-bottom {
+  grid-area: side-bottom;
+}
+```
+
+---
+
+## Card layout rules
+Cards must be placed inside a parent grid or flex wrapper.
+
+Do not position individual cards manually.
+
+Avoid:
+- each card having its own unrelated `margin-top`
+- one card being pushed down manually
+- cards having unrelated widths
+- cards being aligned by visual guessing
+- large empty areas inside cards unless intentionally part of the composition
+- hardcoded card heights used only to create fake balance
+
+Good:
+- cards are placed in a named grid
+- all gaps come from the parent grid
+- card widths are controlled by grid columns
+- card height differences are intentional
+- visual hierarchy is clear
+- the largest card anchors the composition
+- smaller cards align to shared grid rows or columns
+
+Card content rules:
+- Card padding must use spacing tokens
+- Card text should align consistently
+- Card title, body, and optional icon/visual must follow the same internal rhythm
+- If a card has a large internal empty area, it must serve a clear visual purpose
+- Do not use blank space as decoration unless the section composition clearly supports it
+
+---
+
+## Visual balance check
+Before considering any section complete, check and fix:
+
+- excessive empty space above content
+- excessive empty space below content
+- excessive empty space between columns
+- cards that do not align with nearby cards
+- cards floating without grid logic
+- text blocks that feel disconnected from visuals
+- inconsistent gaps between similar elements
+- large internal empty areas inside cards
+- manual margins used to force alignment
+- visual weight concentrated too heavily on one side
+- unclear section rhythm on desktop, tablet, or mobile
+
+A section is not acceptable if it looks manually arranged rather than designed on a layout system.
+
+---
+
+## Operational supports section pattern
+For sections like “key operational supports”, use this layout pattern:
+
+- left column: label, heading, short paragraph
+- right column: card composition
+- parent layout: two-column grid
+- vertical alignment: center or clearly intentional start alignment
+- no large unexplained empty space above or below the text block
+- card composition must be controlled by CSS Grid
+- the largest card should anchor the composition
+- smaller cards should align to the same grid rows or columns
+- all spacing must come from tokens and `gap`
+- the section must not contain decorative empty space unless it is clearly part of the design
 
 ---
 
@@ -186,6 +421,18 @@ On mobile:
 - keep cards easy to scan
 - reduce decorative visuals before reducing clarity
 - make CTA and proof blocks immediately readable
+- remove complex desktop asymmetry when it hurts clarity
+- keep spacing tighter but still consistent
+- avoid leaving orphaned cards or isolated text blocks
+- ensure all grids collapse predictably
+
+Responsive layout rules:
+- Desktop: use the full grid composition
+- Tablet: simplify columns if the layout starts feeling compressed
+- Mobile: stack content in a logical reading order
+- Do not preserve desktop offsets on mobile
+- Do not use fixed heights that break content flow
+- Cards should become one column when two columns hurt readability
 
 ---
 
@@ -196,6 +443,11 @@ On mobile:
 - Keep the page warmer and more practical than ShipMonk
 - Avoid generic SaaS visuals
 - Design for trust and conversion, not visual spectacle
+- Do not use arbitrary margins, padding, transforms, or absolute positioning to fix normal layout problems
+- Do not create section layouts by visual guessing
+- Do not leave unexplained empty areas in sections
+- Use parent grid/flex layout and `gap` as the main spacing system
+- Every section must look intentional, balanced, and based on a reusable composition system
 
 ---
 
@@ -206,6 +458,15 @@ Use the `design-identity` skill for:
 - CTA/form styling details
 - mobile block behavior
 - final design validation against reference screenshots
+
+Use the `design-identity` skill especially when:
+- creating a new section from scratch
+- adapting a reference layout
+- creating an asymmetric card composition
+- checking whether spacing, hierarchy, and visual weight feel balanced
+- validating desktop/tablet/mobile behavior
+
+The skill should guide section-level design thinking, but permanent project rules from this file must always take priority.
 
 ---
 
@@ -218,6 +479,77 @@ Use the `design-identity` skill for:
 - Reuse existing utilities and components
 - Keep SCSS modular and split by purpose
 - Avoid deeply nested selectors
+- Prefer parent-controlled layout using grid/flex and `gap`
+- Avoid layout hacks such as negative margins, absolute positioning, empty spacers, and transform-based alignment
+- Keep class names meaningful and tied to the section/component purpose
+- Use modifiers for visual variations, not one-off layout fixes
+
+Recommended BEM structure:
+
+```html
+<section class="section section--metrics">
+  <div class="container">
+    <div class="metrics-section__layout">
+      <div class="metrics-section__content">
+        ...
+      </div>
+
+      <div class="metrics-section__grid">
+        <article class="metrics-card metrics-card--main">
+          ...
+        </article>
+      </div>
+    </div>
+  </div>
+</section>
+```
+
+Recommended SCSS structure:
+
+```scss
+.metrics-section {
+  &__layout {
+    display: grid;
+    grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.4fr);
+    gap: var(--space-8);
+    align-items: center;
+  }
+
+  &__content {
+    max-width: 520px;
+  }
+
+  &__grid {
+    display: grid;
+    gap: var(--space-5);
+  }
+}
+
+.metrics-card {
+  padding: var(--space-6);
+  border-radius: var(--radius-lg);
+
+  &--main {
+    // modifier styles only
+  }
+}
+```
+
+Avoid:
+
+```scss
+.metrics-card:nth-child(2) {
+  margin-top: 73px;
+}
+
+.metrics-card:nth-child(3) {
+  transform: translateX(40px);
+}
+
+.metrics-section__content {
+  padding-top: 118px;
+}
+```
 
 ---
 
@@ -228,6 +560,7 @@ Keep translation keys consistent across all supported languages.
 Use the `translation-system` skill when creating or updating multilingual UI.
 
 ---
+
 ## Done when
 A page is successful only if it:
 - feels premium but grounded
@@ -237,3 +570,18 @@ A page is successful only if it:
 - presents services clearly
 - has one obvious conversion path
 - looks structured, modern, and credible
+- uses consistent spacing tokens
+- uses parent grid/flex layout instead of random child margins
+- has no unexplained empty areas
+- has no cards floating outside a clear layout system
+- has balanced top/bottom section padding
+- has predictable responsive behavior
+- looks intentionally composed on desktop, tablet, and mobile
+
+A section is not done if:
+- it relies on random margins to look correct
+- it has large accidental blank zones
+- cards are positioned manually
+- visual balance depends on hardcoded heights
+- desktop layout breaks or feels awkward on tablet/mobile
+- the composition feels like separate blocks placed near each other instead of one designed section
