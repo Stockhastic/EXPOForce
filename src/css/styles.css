@@ -320,7 +320,7 @@ h2 {
 }
 
 h3 {
-  font-size: 25px;
+  font-size: 20px;
 }
 
 p {
@@ -873,7 +873,7 @@ html {
 }
 
 .home-hero {
-  min-height: clamp(520px, 68vh, 680px);
+  min-height: 850px;
   display: grid;
   align-items: center;
   padding-block-start: calc(var(--space-9) + var(--space-8));
@@ -902,7 +902,7 @@ html {
 
 .home-hero__title {
   max-width: none;
-  font-size: clamp(2.25rem, 4.8vw, 4.25rem);
+  font-size: 55px;
   line-height: 1.04;
   font-weight: 700;
 }
@@ -941,7 +941,6 @@ html {
 .home-benefits__summary,
 .home-benefit-card,
 .home-client-card,
-.home-cta__support-card,
 .home-cta__card,
 .about-intro__media,
 .about-intro__aside,
@@ -1015,6 +1014,14 @@ html {
   background: linear-gradient(180deg, rgba(247, 250, 243, 0.3), rgba(247, 250, 243, 0.14)), url("../graphics/marketplace-trust-background.webp") center/cover no-repeat;
 }
 
+.section--home-offer {
+  background: linear-gradient(90deg, rgba(247, 250, 243, 0.72), rgba(247, 250, 243, 0.5)), url("../graphics/business-benefits-clean-background.webp") center/cover no-repeat;
+}
+
+.section--home-operations {
+  background: linear-gradient(180deg, rgba(247, 250, 243, 0.3), rgba(247, 250, 243, 0.14)), url("../graphics/operations-metrics-minimal-background.webp") center/cover no-repeat;
+}
+
 .home-marketplaces__list {
   display: grid;
   grid-template-columns: repeat(6, minmax(0, 1fr));
@@ -1051,14 +1058,14 @@ html {
 .home-benefits__summary-label,
 .home-service-card__label,
 .home-offer__aside-label,
+.cta-support__label,
 .services-intro__summary-label,
 .faq-intro__card-label,
 .model-card__subtitle,
 .operations__panel-label,
 .process__card-label,
 .cta__panel-label,
-.home-cta__card-label,
-.home-cta__support-label {
+.home-cta__card-label {
   color: #197437;
   font-size: 0.875rem;
   font-weight: 700;
@@ -1072,8 +1079,8 @@ html {
 .home-benefits__summary-text,
 .home-benefit-card__text,
 .home-client-card__text,
+.cta-support__list,
 .home-cta__card-text,
-.home-cta__support-text,
 .about-intro__aside-text,
 .about-intro__principle-text,
 .services-intro__summary-text,
@@ -1089,7 +1096,6 @@ html {
 .process__step-text,
 .process__card-list,
 .cta__panel-text,
-.cta__contact,
 .cta-form__note,
 .faq__answer {
   color: rgba(6, 41, 28, 0.76);
@@ -1112,11 +1118,13 @@ html {
 .home-cta__content,
 .home-cta__title,
 .home-cta__text,
-.home-cta__support-card,
-.home-cta__support-label,
-.home-cta__support-text,
+.cta-support,
+.cta-support__label,
+.cta-support__list,
 .home-cta__card-title,
-.home-cta__card-text {
+.home-cta__card-text,
+.cta__panel-title,
+.cta__panel-text {
   min-width: 0;
   overflow-wrap: break-word;
   hyphens: manual;
@@ -1129,8 +1137,9 @@ html {
   line-height: 1.1;
 }
 
-.home-cta__title {
-  font-size: 2.75rem;
+.home-cta__title,
+.cta__title {
+  font-size: 2.5rem;
   line-height: 1.12;
 }
 
@@ -1229,6 +1238,7 @@ html {
 
 .home-offer__aside-title,
 .home-cta__card-title,
+.cta__panel-title,
 .about-intro__aside-title,
 .about-intro__principle-title,
 .services-intro__card-title,
@@ -1439,6 +1449,7 @@ html {
   grid-template-columns: minmax(0, 1fr);
   gap: var(--space-3);
   width: 100%;
+  padding-inline-start: 0;
 }
 
 .home-journey__step,
@@ -1619,7 +1630,7 @@ html {
 .home-cta,
 .cta {
   border-block: 1px solid rgba(1, 63, 40, 0.08);
-  background: url("../graphics/feedback-form-background.webp") center/cover no-repeat;
+  background: linear-gradient(90deg, rgba(247, 250, 243, 0.94), rgba(247, 250, 243, 0.82) 54%, rgba(247, 250, 243, 0.72)), radial-gradient(circle at 82% 18%, rgba(255, 255, 255, 0.84), rgba(255, 255, 255, 0) 38%), url("../graphics/feedback-form-background.webp") center/cover no-repeat;
   background-color: #eef6ea;
 }
 
@@ -1635,7 +1646,8 @@ html {
 
 .home-cta__content,
 .cta__content {
-  align-content: start;
+  align-content: center;
+  gap: var(--space-5);
   padding-block: var(--space-4);
 }
 
@@ -1643,19 +1655,45 @@ html {
   padding: 0;
 }
 
-.home-cta__support {
+.cta-support {
   display: grid;
-  grid-template-columns: 1fr;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 200px), 1fr));
   gap: var(--space-4);
+  padding: var(--space-5);
+  border: 1px solid rgba(1, 63, 40, 0.1);
+  border-radius: 14px;
+  background-color: rgba(255, 255, 255, 0.62);
+  backdrop-filter: blur(4px);
 }
 
-.home-cta__support-card {
+.cta-support__group,
+.cta-support__list {
   display: grid;
-  grid-template-columns: minmax(0, 1fr);
+}
+
+.cta-support__group {
   gap: var(--space-3);
+}
+
+.cta-support__list {
+  gap: var(--space-2);
+  font-size: 0.9375rem;
+}
+
+.cta-support__list li {
+  display: grid;
+  grid-template-columns: var(--space-4) minmax(0, 1fr);
+  gap: var(--space-2);
   align-items: start;
-  padding: var(--space-5);
-  box-shadow: none;
+}
+
+.cta-support__list li::before {
+  content: "";
+  width: var(--space-2);
+  height: var(--space-2);
+  margin-block-start: var(--space-2);
+  border-radius: 50%;
+  background-color: #197437;
 }
 
 .cta__inner,
@@ -1671,20 +1709,18 @@ html {
 .cta__panel,
 .home-cta__card {
   gap: var(--space-5);
-  border-color: rgba(1, 63, 40, 0.14);
-  background-color: #fff;
+  border-color: rgba(1, 63, 40, 0.12);
+  border-top: var(--space-1) solid rgba(25, 116, 55, 0.78);
+  border-radius: 14px;
+  background-color: rgba(255, 255, 255, 0.96);
   box-shadow: 0 18px 40px rgba(1, 63, 40, 0.09);
+  backdrop-filter: blur(6px);
 }
 
 .home-cta__panel-head,
 .cta__panel-head {
   padding-block-end: var(--space-4);
-  border-bottom: 1px solid rgba(1, 63, 40, 0.14);
-}
-
-.home-cta__support-card {
-  border-color: rgba(1, 63, 40, 0.14);
-  background-color: #fff;
+  border-bottom: 1px solid rgba(1, 63, 40, 0.1);
 }
 
 .home-cta__required-note,
@@ -1694,7 +1730,6 @@ html {
   line-height: 1.4;
 }
 
-.cta__contact a,
 .cta-form__note a {
   color: #013f28;
   font-weight: 600;
@@ -1706,7 +1741,11 @@ html {
 }
 
 .cta-form__grid--primary {
-  grid-template-columns: minmax(0, 1fr);
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.cta-form__grid--primary .cta-form__field:last-child {
+  grid-column: 1/-1;
 }
 
 .cta-form__field,
@@ -1722,7 +1761,7 @@ html {
 
 .cta-form__label {
   font-size: 0.9375rem;
-  font-weight: 600;
+  font-weight: 500;
   line-height: 1.4;
 }
 
@@ -1735,13 +1774,24 @@ html {
 .cta-form__textarea {
   width: 100%;
   border: 1px solid rgba(1, 63, 40, 0.14);
-  border-radius: 4px;
-  background-color: #fff;
+  border-radius: 8px;
+  background-color: rgba(247, 250, 243, 0.58);
   color: #06291c;
   padding: var(--space-3);
   font: inherit;
   line-height: 1.5;
   transition: border-color 0.2s ease, background-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.cta-form__input::placeholder,
+.cta-form__textarea::placeholder {
+  color: rgba(6, 41, 28, 0.46);
+}
+
+.cta-form__input:hover,
+.cta-form__textarea:hover {
+  border-color: rgba(25, 116, 55, 0.34);
+  background-color: #fff;
 }
 
 .cta-form__input {
@@ -1766,8 +1816,8 @@ html {
   grid-template-columns: auto minmax(0, 1fr);
   gap: var(--space-2);
   color: rgba(6, 41, 28, 0.76);
-  font-size: 0.9375rem;
-  line-height: 1.6;
+  font-size: 0.875rem;
+  line-height: 1.5;
 }
 
 .cta-form__consent input {
@@ -1776,7 +1826,19 @@ html {
 }
 
 .cta-form__note {
+  color: rgba(6, 41, 28, 0.64);
+  font-size: 0.875rem;
+  line-height: 1.5;
   text-align: center;
+}
+
+.cta-form__actions .button:focus-visible {
+  outline: 3px solid rgba(25, 116, 55, 0.18);
+  outline-offset: var(--space-1);
+}
+
+.cta-form__actions .button:active {
+  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.32);
 }
 
 .about-intro__head,
@@ -2040,7 +2102,6 @@ html {
   .home-services__result,
   .home-benefits__grid,
   .home-clients__grid,
-  .home-cta__support,
   .about-intro__principles,
   .services-intro__grid,
   .models__grid,
@@ -2085,14 +2146,12 @@ html {
   .home-journey__step-text {
     grid-column: 2;
   }
-  .home-cta__support-card {
-    grid-template-columns: 1fr;
-  }
   .home-offer .section-heading__title,
   .home-benefits .section-heading__title,
   .home-clients .section-heading__title,
+  .cta__title,
   .home-cta__title {
-    font-size: 2.35rem;
+    font-size: 2.25rem;
   }
   .about-intro__actions,
   .services-intro__actions,
@@ -2120,7 +2179,7 @@ html {
   .home-benefits__summary,
   .home-benefit-card,
   .home-client-card,
-  .home-cta__support-card,
+  .cta-support,
   .home-cta__card,
   .about-intro__aside,
   .about-intro__principle,
@@ -2148,9 +2207,8 @@ html {
   .home-offer .section-heading__title,
   .home-benefits .section-heading__title,
   .home-clients .section-heading__title,
+  .cta__title,
   .home-cta__title {
     font-size: 2rem;
   }
-}
-
-/*# sourceMappingURL=styles.css.map */
+}/*# sourceMappingURL=styles.css.map */

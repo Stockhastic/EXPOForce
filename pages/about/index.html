@@ -238,15 +238,34 @@
                 <div class="section__inner cta__inner">
                 <div class="cta__content">
                     <p class="cta__eyebrow" data-i18n="[text]cta-label">Обратная связь</p>
-                    <h2 class="cta__title" id="cta-title" data-i18n="[text]cta-title">Оставьте вводные по вашему процессу, и мы соберем рабочий складской контур под реальный объем.</h2>
-                    <p class="cta__text" data-i18n="[text]cta-text">Полного тендера не нужно. Короткой заявки достаточно, чтобы понять каналы продаж, нагрузку и требования к обработке.</p>
-                    <p class="card__text cta__contact" data-i18n="[html]cta-contact-text">Если удобнее, напишите напрямую на <a href="mailto:sales@expaforce.com">sales@expaforce.com</a>.</p>
+                    <h2 class="cta__title" id="cta-title" data-i18n="[text]cta-title">Оставьте вводные — мы соберём складской процесс под ваш объём.</h2>
+                    <p class="cta__text" data-i18n="[text]cta-text">Короткой заявки достаточно, чтобы понять товар, каналы продаж, нагрузку и требования к обработке.</p>
+                    <div class="cta__support cta-support" aria-label="Что помогает подготовить предварительный расчёт" data-i18n="[aria-label]cta-support-aria">
+                        <div class="cta-support__group">
+                            <p class="cta-support__label" data-i18n="[text]cta-support-include-label">Что указать</p>
+                            <ul class="cta-support__list">
+                                <li data-i18n="[text]cta-support-include-1">Категория товара</li>
+                                <li data-i18n="[text]cta-support-include-2">Примерный объём заказов</li>
+                                <li data-i18n="[text]cta-support-include-3">Каналы продаж</li>
+                                <li data-i18n="[text]cta-support-include-4">Упаковка, маркировка и возвраты</li>
+                            </ul>
+                        </div>
+                        <div class="cta-support__group">
+                            <p class="cta-support__label" data-i18n="[text]cta-support-result-label">Что получите</p>
+                            <ul class="cta-support__list">
+                                <li data-i18n="[text]cta-support-result-1">Подходящий состав услуг</li>
+                                <li data-i18n="[text]cta-support-result-2">Возможные узкие места</li>
+                                <li data-i18n="[text]cta-support-result-3">Понятную логику стоимости</li>
+                            </ul>
+                        </div>
+                    </div>
                 </div>
 
                 <aside class="card cta__panel">
                     <div class="cta__panel-head">
                         <p class="cta__panel-label" data-i18n="[text]cta-panel-label">Форма заявки</p>
-                        <p class="card__text cta__panel-text" data-i18n="[text]cta-panel-text">Заполните только рабочий минимум. Этого достаточно, чтобы обсудить состав сервиса, логику стоимости и рабочий формат без лишней переписки.</p>
+                        <h3 class="card__title cta__panel-title" data-i18n="[text]cta-panel-title">Получить предварительный расчёт</h3>
+                        <p class="card__text cta__panel-text" data-i18n="[text]cta-panel-text">Опишите товар, объём заказов и требования к обработке. Мы вернёмся с рабочей логикой fulfillment-процесса.</p>
                         <p class="cta__required-note" data-i18n="[text]cta-form-required-note">* Обязательные поля</p>
                     </div>
 
@@ -274,29 +293,29 @@
                             </label>
                             <label class="form-field cta-form__field">
                                 <span class="cta-form__label-line">
-                                    <span class="form-label cta-form__label" data-i18n="[text]cta-form-phone-label">Телефон</span>
+                                    <span class="form-label cta-form__label" data-i18n="[text]cta-form-phone-label">Телефон или email</span>
                                     <span class="cta-form__required" aria-hidden="true">*</span>
                                 </span>
-                                <input class="form-input cta-form__input" type="tel" name="phone" autocomplete="tel" required placeholder="Введите телефон" data-i18n="[placeholder]cta-form-phone-placeholder">
+                                <input class="form-input cta-form__input" type="text" name="phone" autocomplete="tel" required placeholder="+374 ... или email@example.com" data-i18n="[placeholder]cta-form-phone-placeholder">
                             </label>
                         </div>
 
                         <label class="form-field cta-form__field cta-form__field--full">
                             <span class="cta-form__label-line">
-                                <span class="form-label cta-form__label" data-i18n="[text]cta-form-product-label">Категория товара и правила обработки</span>
+                                <span class="form-label cta-form__label" data-i18n="[text]cta-form-product-label">Что нужно обрабатывать?</span>
                                 <span class="cta-form__required" aria-hidden="true">*</span>
                             </span>
-                            <textarea class="form-textarea cta-form__textarea" name="product_context" rows="3" required placeholder="Кратко опишите товар, упаковку, маркировку, особенности хранения и логику возвратов" data-i18n="[placeholder]cta-form-product-placeholder"></textarea>
+                            <textarea class="form-textarea cta-form__textarea" name="product_context" rows="3" required placeholder="Например: косметика, 300 заказов в месяц, нужна упаковка, маркировка и обработка возвратов." data-i18n="[placeholder]cta-form-product-placeholder"></textarea>
                         </label>
 
                         <label class="cta-form__consent">
                             <input type="checkbox" name="consent" required>
-                            <span data-i18n="[text]cta-form-consent">Согласен(-на) на обработку персональных данных для обратной связи по заявке.</span>
+                            <span data-i18n="[text]cta-form-consent">Согласен(-на) на обработку персональных данных.</span>
                         </label>
 
                         <div class="form-actions cta-form__actions">
-                            <button class="button button--primary button--full" type="submit" data-i18n="[text]cta-primary">Отправить заявку</button>
-                            <p class="card__text cta-form__note" data-i18n="[html]cta-form-note">Заявку также можно отправить на <a href="mailto:sales@expaforce.com">sales@expaforce.com</a>.</p>
+                            <button class="button button--primary button--full" type="submit" data-i18n="[text]cta-primary">Получить предварительный расчёт</button>
+                            <p class="card__text cta-form__note" data-i18n="[html]cta-form-note">Также можно написать на <a href="mailto:sales@expaforce.com">sales@expaforce.com</a>.</p>
                         </div>
                     </form>
                 </aside>
