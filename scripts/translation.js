@@ -1,6 +1,10 @@
 (() => {
     const LANG_STORAGE_KEY = "siteLang";
-    const LANG_FILE_PATH = "/scripts/lang.json";
+    const currentScriptUrl = document.currentScript
+        ? new URL(document.currentScript.getAttribute("src"), window.location.href)
+        : new URL("scripts/translation.js", window.location.href);
+    const siteRootUrl = new URL("../", currentScriptUrl);
+    const LANG_FILE_PATH = new URL("scripts/lang.json", siteRootUrl).toString();
     const DEFAULT_LANG = "ru";
 
     const state = {
