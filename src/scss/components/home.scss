@@ -49,6 +49,7 @@ html {
     gap: var(--space-5);
     align-self: center;
     max-width: none;
+    min-width: 0;
 }
 
 .home-hero .section-heading__eyebrow {
@@ -85,6 +86,7 @@ html {
     gap: var(--space-4);
     align-self: stretch;
     height: 100%;
+    min-width: 0;
 }
 
 .home-hero__stat,
@@ -262,6 +264,7 @@ html {
 .section-heading,
 .section-heading__title,
 .section-heading__text,
+.home-hero__title,
 .home-offer__content,
 .home-offer__aside-title,
 .home-offer__aside-list,
@@ -1275,6 +1278,11 @@ html {
         @include section-background-image($image-overlay-hero-mobile, "../graphics/png/image9-hero-illustration.png");
     }
 
+    .home-hero__title {
+        font-size: 2.75rem;
+        line-height: 1.08;
+    }
+
     .home-hero__stats,
     .home-marketplaces__list,
     .home-marketplaces__note,
@@ -1362,6 +1370,30 @@ html {
         padding-inline: var(--space-4);
     }
 
+    .header__inner {
+        gap: var(--space-3);
+    }
+
+    .header__logo {
+        width: 108px;
+    }
+
+    .header__controls {
+        flex-direction: row;
+        align-items: center;
+        gap: var(--space-3);
+    }
+
+    .header__cta {
+        width: auto;
+        flex: 1 1 auto;
+    }
+
+    .header__lang {
+        flex-shrink: 0;
+        justify-content: flex-end;
+    }
+
     .home-hero__stat,
     .home-marketplaces__note,
     .home-offer__aside,
@@ -1406,5 +1438,9 @@ html {
     .cta__title,
     .home-cta__title {
         font-size: 2rem;
+    }
+
+    .home-hero__title {
+        font-size: 2.25rem;
     }
 }
