@@ -1,0 +1,56 @@
+// Buttons Component
+// Reusable button styles for the design system
+
+.button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 48px;
+    padding-inline: var(--space-5);
+    border: 1px solid transparent;
+    border-radius: $radius-md;
+    font-size: 1rem;
+    font-weight: $fw-semibold;
+    line-height: 1.2;
+    text-align: center;
+    transition: background-color $transition-base, border-color $transition-base, color $transition-base, box-shadow $transition-base;
+    cursor: pointer;
+    text-decoration: none;
+}
+
+.button:hover,
+.button:focus {
+    box-shadow: $shadow-soft;
+}
+
+.button--primary {
+    background-color: $accent-color;
+    color: $white;
+}
+
+.button--primary:hover,
+.button--primary:focus {
+    background-color: $accent-color-strong;
+}
+
+.button--secondary {
+    border-color: $border-color;
+    background-color: $white;
+    color: $text-color;
+}
+
+.button--secondary:hover,
+.button--secondary:focus {
+    border-color: rgba($accent-color, 0.48);
+    color: $accent-color-strong;
+}
+
+.button--small {
+    min-height: 42px;
+    padding-inline: var(--space-4);
+    font-size: 0.9375rem;
+}
+
+.button--full {
+    width: 100%;
+}

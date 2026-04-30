@@ -122,6 +122,15 @@ Use:
 ### Do not hardcode translatable UI
 If an element already uses `data-i18n`, update `lang.json` instead of hardcoding content into the HTML.
 
+## Related skills
+
+Use this skill together with other project skills when content is multilingual or page-level consistency matters:
+
+- `seo-optimization` — for language-aware metadata, hreflang support, and multilingual page indexing.
+- `design-consistency` — to keep translated UI text consistent with existing layout and section flows.
+- `design-identity` — for preserving the brand tone and messaging style across languages.
+- `image-prompt-generator` — when prompts need localized tone or if image assets may differ by language.
+
 ## `lang.json` structure
 
 Use this structure:

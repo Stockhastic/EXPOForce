@@ -1,0 +1,96 @@
+// Typography Component
+// Reusable typography styles for the design system
+
+// Base typography
+body {
+    font-family: $font-main;
+    font-size: $fz-base;
+    line-height: $lh-base;
+    color: $text-color;
+    background-color: $bg-color;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    font-weight: $fw-bold;
+    line-height: 1.2;
+    margin: 0;
+}
+
+h1{
+    font-size: $h1Size;
+}
+h2{
+    font-size: $h2Size;
+}
+h3{
+    font-size: $h3Size;
+}
+
+p {
+    margin: 0;
+}
+
+a {
+    color: $accent-color;
+    text-decoration: underline;
+    transition: color $transition-base;
+    font-weight: $fw-bold;
+}
+
+a:hover,
+a:focus {
+    color: $accent-color-strong;
+}
+
+ul,
+ol {
+    margin: 0;
+    padding-inline-start: 1.5rem;
+}
+
+li {
+    margin-bottom: 0.75rem;
+}
+
+img,
+svg {
+    display: block;
+}
+
+img {
+    max-width: 100%;
+    height: auto;
+}
+
+strong{
+    font-weight: $fw-bold;
+}
+
+// Utility classes
+.text-muted {
+    color: $text-color-muted;
+}
+
+.text-secondary {
+    color: $text-color-secondary;
+}
+
+.text-accent {
+    color: $accent-color;
+}
+
+.text-white {
+    color: $white;
+}
+
+.text-center {
+    text-align: center;
+}
+
+.text-left {
+    text-align: left;
+}
+
+.text-right {
+    text-align: right;
+}

@@ -118,6 +118,17 @@ Use this skill when the task involves:
 - building a new landing page
 - redesigning logistics or fulfillment pages
 - improving hero, trust, proof, services, CTA, or form sections
+
+## Related skills
+
+Use this skill with:
+
+- `design-consistency` — to keep the new layout and section composition coherent with the rest of the site.
+- `seo-optimization` — to ensure designs support the page purpose, headings, and metadata structure.
+- `translation-system` — when UI copy is multilingual or data-i18n needs to remain consistent with the visual layout.
+- `image-prompt-generator` — when visual asset direction should match the page identity and the prompt style should support the design.
+
+These skills should be used together whenever a page requires both visual quality and functional site consistency.
 - making the UI feel more premium, more practical, or more credible
 - removing generic SaaS styling
 - improving mobile presentation of business sections

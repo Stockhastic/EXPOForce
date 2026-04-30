@@ -48,13 +48,192 @@
     <div id="header"></div>
 
     <main class="page-content">
-        <h1>Blank Slate</h1>
-        <p>Start building the page structure from here.</p>
+        <section class="section">
+            <div class="container">
+                <div class="section__inner">
+                    <div class="section-heading">
+                        <p class="section-heading__eyebrow">UI Kit</p>
+                        <h1 class="section-heading__title">Дизайн-система EXPAFORCE</h1>
+                        <p class="section-heading__text">Используйте этот набор компонентов и шаблонных паттернов как эталон при создании страниц, секций и блоков.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
 
-        <article class="infocard">
+        <section class="section">
+            <div class="container">
+                <div class="section__inner">
+                    <div class="section-heading">
+                        <p class="section-heading__eyebrow">Компоненты</p>
+                        <h2 class="section-heading__title">Кнопки и карточки</h2>
+                    </div>
 
-        </article>
+                    <div style="display: grid; gap: var(--space-6);">
+                        <div style="display: flex; flex-wrap: wrap; gap: var(--space-4);">
+                            <button class="button button--primary">Primary</button>
+                            <button class="button button--secondary">Secondary</button>
+                            <button class="button button--small">Small</button>
+                            <a href="#" class="button button--primary">Link</a>
+                        </div>
 
+                        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: var(--space-5);">
+                            <article class="card">
+                                <h3 class="card__title">Базовая карточка</h3>
+                                <p class="card__text">Стандартная карточка с базовой высотой и контентом.</p>
+                            </article>
+                            <article class="card card--surface">
+                                <h3 class="card__title">Карточка surface</h3>
+                                <p class="card__text">Фон поверхности для легкой группировки информации.</p>
+                            </article>
+                            <article class="card card--accent">
+                                <h3 class="card__title">Карточка accent</h3>
+                                <p class="card__text">Акцентная карточка для важных блоков.</p>
+                            </article>
+                            <article class="card card--transparent">
+                                <h3 class="card__title">Карточка transparent</h3>
+                                <p class="card__text">Прозрачный вариант с эффектом размытия, как в блоке hero.</p>
+                            </article>
+                            <article class="card card--special card--special-accent">
+                                <h3 class="card__title">Карточка special accent</h3>
+                                <p class="card__text">Расширенный карточный формат с акцентным стилем, как home-service-card--accent.</p>
+                                <ul class="card__list">
+                                    <li>Особый модуль для выделенных сервисов</li>
+                                    <li>С градиентным фоном</li>
+                                </ul>
+                                <div class="card__meta">
+                                    <span>Premium</span>
+                                    <span>24/7</span>
+                                </div>
+                            </article>
+                            <article class="card card--special card--special-light">
+                                <h3 class="card__title">Карточка special light</h3>
+                                <p class="card__text">Светлый особый формат, как home-service-card.</p>
+                                <ul class="card__list">
+                                    <li>Расширенный вариант для важных блоков</li>
+                                    <li>С чистым дизайном</li>
+                                </ul>
+                                <div class="card__meta">
+                                    <span>Basic</span>
+                                    <span>Support</span>
+                                </div>
+                            </article>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="section">
+            <div class="container">
+                <div class="section__inner">
+                    <div class="section-heading">
+                        <p class="section-heading__eyebrow">Типографика</p>
+                        <h2 class="section-heading__title">Заголовки и текст</h2>
+                    </div>
+
+                    <div style="display: grid; gap: var(--space-4);">
+                        <h1>Заголовок H1</h1>
+                        <h2>Заголовок H2</h2>
+                        <h3>Заголовок H3</h3>
+                        <p>Обычный текст абзаца. Простое и читаемое оформление текста платформы.</p>
+                        <p class="text-muted">Приглушенный текст для второстепенной информации.</p>
+                        <p class="text-accent">Акцентный текст для важных сообщений.</p>
+                        <p>Ссылка: <a href="#">Перейти на пример</a></p>
+                        <p><strong>Жирный</strong> и <em>курсив</em> текст, а также <span class="text-secondary">второстепенный текст</span>.</p>
+                        <h4>Маркированный список</h4>
+                        <ul>
+                            <li>Первый пункт</li>
+                            <li>Второй пункт</li>
+                            <li>Третий пункт</li>
+                        </ul>
+                        <h4>Нумерованный список</h4>
+                        <ol>
+                            <li>Первый элемент</li>
+                            <li>Второй элемент</li>
+                            <li>Третий элемент</li>
+                        </ol>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="section">
+            <div class="container">
+                <div class="section__inner">
+                    <div class="section-heading">
+                        <p class="section-heading__eyebrow">Форма</p>
+                        <h2 class="section-heading__title">Рабочая форма</h2>
+                    </div>
+
+                    <form class="form-group">
+                        <div class="form-field">
+                            <label class="form-label" for="uikit-name">Имя</label>
+                            <input class="form-input" id="uikit-name" type="text" placeholder="Введите ваше имя">
+                        </div>
+                        <div class="form-field">
+                            <label class="form-label" for="uikit-email">Email</label>
+                            <input class="form-input" id="uikit-email" type="email" placeholder="email@example.com">
+                        </div>
+                        <div class="form-field">
+                            <label class="form-label" for="uikit-message">Сообщение</label>
+                            <textarea class="form-textarea" id="uikit-message" placeholder="Ваше сообщение"></textarea>
+                        </div>
+                        <div class="form-actions">
+                            <button class="button button--primary" type="submit">Отправить</button>
+                            <button class="button button--secondary" type="reset">Очистить</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </section>
+
+        <section class="section section--home-hero home-hero">
+            <div class="container">
+                <div class="section__inner home-hero__inner">
+                    <div class="home-hero__content">
+                        <p class="section-heading__eyebrow">Шаблон hero</p>
+                        <h2 class="home-hero__title">Пример блока hero из главной страницы</h2>
+                        <p class="home-hero__text">Используйте эти классы и структуру, чтобы строить новые секции по одному паттерну.</p>
+                        <div class="home-hero__actions">
+                            <a class="button button--primary" href="#">Обсудить задачу</a>
+                            <a class="button button--secondary" href="#">Смотреть услуги</a>
+                        </div>
+                    </div>
+                    <ul class="home-hero__stats" aria-label="Операционные преимущества">
+                        <li class="home-hero__stat">
+                            <span class="home-hero__stat-value">FBO / FBS / DBS</span>
+                            <span class="home-hero__stat-label">Схемы отгрузки под ваши каналы.</span>
+                        </li>
+                        <li class="home-hero__stat">
+                            <span class="home-hero__stat-value">Маркетплейсы + D2C</span>
+                            <span class="home-hero__stat-label">Один складской контур для площадок и прямых заказов.</span>
+                        </li>
+                        <li class="home-hero__stat">
+                            <span class="home-hero__stat-value">Возвраты и B2B</span>
+                            <span class="home-hero__stat-label">Возвраты и B2B-поставки внутри SLA.</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <section class="section">
+            <div class="container">
+                <div class="section__inner">
+                    <div class="section-heading">
+                        <p class="section-heading__eyebrow">Логотипы</p>
+                        <h2 class="section-heading__title">Список маркетплейсов</h2>
+                    </div>
+
+                    <ul class="home-marketplaces__list" aria-label="Пример логотипов">
+                        <li class="home-marketplaces__item"><span>Маркетплейс</span></li>
+                        <li class="home-marketplaces__item"><span>Маркетплейс</span></li>
+                        <li class="home-marketplaces__item"><span>Маркетплейс</span></li>
+                        <li class="home-marketplaces__item"><span>Маркетплейс</span></li>
+                    </ul>
+                </div>
+            </div>
+        </section>
     </main>
 
     <div id="footer"></div>

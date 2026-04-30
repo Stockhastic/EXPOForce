@@ -1,0 +1,57 @@
+// Sections Component
+// Reusable section styles for the design system
+
+.section {
+    padding-block: var(--section-padding);
+}
+
+.container {
+    max-width: $container;
+    margin-inline: auto;
+    padding-inline: var(--space-4);
+}
+
+.section__inner {
+    display: grid;
+    gap: var(--space-7);
+}
+
+.section-heading {
+    display: grid;
+    gap: var(--space-4);
+    max-width: 760px;
+}
+
+.section-heading--wide {
+    max-width: 920px;
+}
+
+.section-heading__eyebrow,
+.proof__eyebrow,
+.cta__eyebrow {
+    color: $accent-color;
+    font-size: 0.875rem;
+    font-weight: $fw-bold;
+    letter-spacing: 0;
+    line-height: 1.35;
+    text-transform: uppercase;
+}
+
+.section-heading__title,
+.proof__title,
+.cta__title,
+.home-cta__title {
+    font-size: clamp(2rem, 4vw, 3.5rem);
+    line-height: 1.08;
+    font-weight: $fw-bold;
+}
+
+.section-heading__text,
+.proof__text,
+.cta__text,
+.home-cta__text,
+.home-hero__text {
+    color: $text-color-muted;
+    font-size: 1.0625rem;
+    line-height: 1.7;
+}

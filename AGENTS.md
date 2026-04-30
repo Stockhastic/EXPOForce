@@ -30,6 +30,19 @@ When in doubt, choose:
 
 ---
 
+## Cross-skill workflow
+Use the project skills together whenever a page needs both visual quality and functional site consistency.
+
+- Start with `design-identity` for visual tone, composition, and brand-aligned page hierarchy.
+- Use `design-consistency` to keep new or edited sections aligned with existing layout patterns, spacing tokens, and site rhythm.
+- Apply `seo-optimization` to verify page intent, semantic structure, heading hierarchy, metadata, internal links, images, and share preview readiness.
+- Use `translation-system` when any UI text is multilingual, to keep translation keys consistent and data-i18n markup correct.
+- Use `image-prompt-generator` when visual assets or imagery prompts are required, ensuring images match the page identity and SEO preview needs.
+
+This workflow is not linear; use the relevant skill at each stage and revisit others as the page evolves.
+
+---
+
 ## Visual direction
 - Use clean enterprise-style layouts
 - Keep strong hierarchy and generous spacing
@@ -451,6 +464,72 @@ Responsive layout rules:
 
 ---
 
+## Design System Components
+
+The design system is organized into reusable components to ensure consistency across the site. All components use design tokens from `_vars.scss` and follow BEM naming conventions.
+
+### Core Components
+
+#### Buttons (`_buttons.scss`)
+- `.button` - Base button styles
+- `.button--primary` - Primary CTA button
+- `.button--secondary` - Secondary button
+- `.button--small` - Smaller button variant
+- `.button--full` - Full-width button
+
+#### Cards (`_cards.scss`)
+- `.card` - Base card component
+- `.card--surface` - Card with surface background
+- `.card--accent` - Card with accent background
+- `.card--transparent` - Transparent card with blur effect
+- `.card--special` - Extended service card with icon and content grid
+- `.card--special-light` - Light variant of special card
+- `.card--special-accent` - Accent variant with gradient background
+- `.card__title` - Card title
+- `.card__text` - Card text content
+- `.card__value` - Card value/metric
+- `.card__list` - List element for special cards
+- `.card__meta` - Meta tags wrapper for special cards
+
+#### Sections (`_sections.scss`)
+- `.section` - Section wrapper with padding
+- `.container` - Max-width container
+- `.section__inner` - Section inner layout
+- `.section-heading` - Section heading block
+- `.section-heading--wide` - Wider heading variant
+
+#### Typography (`_typography.scss`)
+- Base typography styles for body, headings, links
+- Utility classes: `.text-muted`, `.text-accent`, `.text-center`, etc.
+
+#### Forms (`_forms.scss`)
+- `.form-field` - Form field wrapper
+- `.form-label` - Form label
+- `.form-input`, `.form-textarea`, `.form-select` - Form inputs
+- `.form-group` - Form wrapper
+- `.form-actions` - Form action buttons
+
+### Usage Guidelines
+
+- Always use components from the design system instead of creating new styles
+- Extend components with modifiers (e.g., `.card--variant`) rather than overriding
+- Use CSS variables for spacing, colors, and other tokens
+- Components are responsive by default using the established breakpoints
+- Test components in `uikit.html` before using in production pages
+
+### Adding New Components
+
+When adding new components:
+1. Create a new SCSS file in `src/scss/components/`
+2. Add import to `components/index.scss`
+3. Document in this section
+4. Add examples to `uikit.html`
+5. Ensure responsive behavior follows project rules
+
+Use `uikit.html` as the canonical reference for component classes and layout patterns when editing pages or creating new sections.
+
+---
+
 ## Skill usage
 Use the `design-identity` skill for:
 - asset-based visual references
@@ -558,6 +637,16 @@ This project uses `scripts-js-php/lang.json` and `scripts-js-php/translation.js`
 Use `data-i18n` for translatable UI.
 Keep translation keys consistent across all supported languages.
 Use the `translation-system` skill when creating or updating multilingual UI.
+
+---
+
+## SEO
+
+When creating or editing website pages, use the `seo-optimization` skill.
+
+Every page must have a clear SEO structure: unique title, meta description, one H1, logical heading hierarchy, semantic HTML, optimized images, canonical URL where needed, Open Graph tags, and relevant structured data.
+
+Do not keyword-stuff, generate fake reviews, add misleading schema markup, or use SEO hacks that reduce content quality.
 
 ---
 

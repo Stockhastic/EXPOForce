@@ -1,0 +1,55 @@
+// Forms Component
+// Reusable form styles for the design system
+
+.form-field {
+    display: grid;
+    gap: var(--space-2);
+}
+
+.form-label {
+    font-size: 0.9375rem;
+    font-weight: $fw-medium;
+    color: $text-color;
+}
+
+.form-input,
+.form-textarea,
+.form-select {
+    padding: var(--space-3);
+    border: 1px solid $border-color;
+    border-radius: $radius-sm;
+    font-family: inherit;
+    font-size: 1rem;
+    line-height: 1.5;
+    background-color: $white;
+    transition: border-color $transition-base, box-shadow $transition-base;
+}
+
+.form-input:focus,
+.form-textarea:focus,
+.form-select:focus {
+    outline: none;
+    border-color: $accent-color;
+    box-shadow: 0 0 0 3px rgba($accent-color, 0.1);
+}
+
+.form-textarea {
+    resize: vertical;
+    min-height: 120px;
+}
+
+.form-select {
+    cursor: pointer;
+}
+
+.form-group {
+    padding: $card-padding;
+    display: grid;
+    gap: var(--space-4);
+}
+
+.form-actions {
+    display: flex;
+    gap: var(--space-3);
+    flex-wrap: wrap;
+}

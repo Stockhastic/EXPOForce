@@ -11,6 +11,8 @@
 
 .header__inner {
     @include container();
+    position: relative;
+    z-index: 1;
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -27,6 +29,10 @@
     width: 100px;
     height: auto;
     display: block;
+}
+
+.header__logo--light {
+    display: none;
 }
 
 .header__nav {
@@ -60,7 +66,7 @@
     border-radius: $radius-sm;
     background-color: $white;
     color: $text-color;
-    padding: 0.5rem 0.75rem;
+    padding: $space-xs $space-sm;
     font-size: 0.875rem;
     font-weight: $fw-semibold;
     cursor: pointer;
@@ -87,17 +93,30 @@
 .page--home {
     .header {
         position: absolute;
-        left: 0;
-        width: 100%;
+        inset-block-start: 0;
+        inset-inline: 0;
         background-color: transparent;
         backdrop-filter: none;
-        color: $white;
         border-bottom: 0;
+        color: $white;
     }
 
-    .header__logo {
-        box-shadow: 0 0 20 #fff;
+    .header::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        pointer-events: none;
+        background: linear-gradient(180deg, rgba($surface-color-dark, 0.46), rgba($surface-color-dark, 0));
     }
+
+    .header__logo--default {
+        display: none;
+    }
+
+    .header__logo--light {
+        display: block;
+    }
+
     .header__nav-link {
         color: rgba($white, 0.82);
     }
@@ -119,21 +138,21 @@
     }
 
     .header__lang-button {
-        border-color: rgba($white, 0.18);
-        background-color: rgba($white, 0.08);
+        border-color: rgba($white, 0.2);
+        background-color: rgba($white, 0.1);
         color: $white;
     }
 
     .header__lang-button:hover,
     .header__lang-button:focus {
-        border-color: rgba($white, 0.3);
-        background-color: rgba($white, 0.14);
+        border-color: rgba($white, 0.36);
+        background-color: rgba($white, 0.16);
         color: $white;
     }
 
     .header__lang-button.is-active {
-        background-color: $white;
         border-color: $white;
+        background-color: $white;
         color: $accent-color-strong;
     }
 }
@@ -157,11 +176,72 @@
         justify-content: space-between;
         order: 3;
     }
+
+    .page--home {
+        .header {
+            position: sticky;
+            background-color: rgba($white, 0.94);
+            backdrop-filter: blur(14px);
+            border-bottom: 1px solid $border-color;
+            color: $text-color;
+        }
+
+        .header::before {
+            content: none;
+        }
+
+        .header__logo--default {
+            display: block;
+        }
+
+        .header__logo--light {
+            display: none;
+        }
+
+        .header__nav-link {
+            color: $text-color;
+        }
+
+        .header__nav-link:hover,
+        .header__nav-link:focus {
+            color: $accent-color;
+        }
+
+        .header__cta.button--primary {
+            background-color: $accent-color;
+            color: $white;
+        }
+
+        .header__cta.button--primary:hover,
+        .header__cta.button--primary:focus {
+            background-color: $accent-color-strong;
+            color: $white;
+        }
+
+        .header__lang-button {
+            border-color: $border-color;
+            background-color: $white;
+            color: $text-color;
+        }
+
+        .header__lang-button:hover,
+        .header__lang-button:focus {
+            border-color: rgba($accent-color, 0.55);
+            background-color: $white;
+            color: $accent-color;
+        }
+
+        .header__lang-button.is-active {
+            border-color: $accent-color;
+            background-color: $accent-color;
+            color: $white;
+        }
+    }
 }
 
 @media (max-width: $mobile) {
     .header__logo {
-        width: 160px;
+        width: 120px;
     }
 
     .header__controls {

@@ -1,11 +1,17 @@
 <header class="header">
     <div class="header__inner">
-        <a class="header__brand" href="/index.html" aria-label="EXPAFORCE главная">
+        <a class="header__brand" href="/index.html" aria-label="EXPAFORCE главная" data-i18n="[aria-label]header-brand-aria">
             <img
-                class="header__logo"
+                class="header__logo header__logo--default"
                 src="/src/graphics/svg/logo.svg"
                 alt="Логотип EXPAFORCE"
                 data-i18n="[alt]header-logo-alt"
+            >
+            <img
+                class="header__logo header__logo--light"
+                src="/src/graphics/svg/logo-white.svg"
+                alt=""
+                aria-hidden="true"
             >
         </a>
         <nav class="header__nav" aria-label="Основная навигация" data-i18n="[aria-label]header-nav-aria">

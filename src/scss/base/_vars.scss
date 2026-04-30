@@ -5,14 +5,20 @@ $white: #fff;
 $text-color: #06291c;
 $text-color-muted: rgba(#06291c, 0.76);
 $text-color-secondary: rgba(#06291c, 0.64);
+
 $bg-color: #f7faf3;
+
 $surface-color: #eef6ea;
 $surface-color-strong: #dbeed2;
 $surface-color-dark: #013f28;
+
 $border-color: rgba(#013f28, 0.14);
+$border-color-light: #fff;
+
 $accent-color: #197437;
 $accent-color-strong: #013f28;
 $accent-color-soft: #e7f4df;
+
 $success-color: #68b648;
 $danger-color: #d92d20;
 $shadow-soft: 0 18px 40px rgba(#013f28, 0.09);
@@ -23,6 +29,10 @@ $font-accent: "Segoe UI", Arial, sans-serif;
 
 $fz-base: 16px;
 $lh-base: 1.5;
+
+$h1Size: 50px;
+$h2Size: 30px;
+$h3Size: 25px;
 
 $fw-regular: 400;
 $fw-medium: 500;
@@ -57,6 +67,7 @@ $section-offset: $space-5xl;
 // Radius
 $radius-sm: 4px;
 $radius-md: 8px;
+$radius-bg: 14px;
 
 // Motion
 $transition-base: 0.2s ease;
