@@ -107,6 +107,12 @@
     padding-inline-start: $space-xs;
 }
 
+@media (max-width: $tablet) {
+    .card__list {
+        padding-inline-start: 0;
+    }
+}
+
 .card__list li {
     display: grid;
     grid-template-columns: var(--space-4) minmax(0, 1fr);

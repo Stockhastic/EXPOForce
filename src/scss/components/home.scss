@@ -94,7 +94,6 @@ html {
 .home-offer__aside,
 .home-operations__card,
 .home-service-card,
-.home-services__result,
 .home-journey__step,
 .home-benefits__summary,
 .home-benefit-card,
@@ -203,8 +202,7 @@ html {
     max-height: 46px;
 }
 
-.home-marketplaces__note,
-.home-services__result {
+.home-marketplaces__note {
     display: grid;
     grid-template-columns: minmax(0, 0.82fr) minmax(0, 1.18fr);
     gap: var(--space-5);
@@ -213,9 +211,7 @@ html {
 }
 
 .home-marketplaces__note-title,
-.home-services__result-label,
 .home-benefits__summary-label,
-.home-service-card__label,
 .home-offer__aside-label,
 .cta-support__label,
 .services-intro__summary-label,
@@ -234,7 +230,6 @@ html {
 
 .home-marketplaces__note-text,
 .home-offer__aside-list,
-.home-services__result-text,
 .home-benefits__summary-text,
 .home-benefit-card__text,
 .home-client-card__text,
@@ -333,8 +328,7 @@ html {
 .model-card__list,
 .operations__panel-list,
 .process__card-list,
-.faq-intro__list,
-.home-service-card__list {
+.faq-intro__list {
     display: grid;
     gap: var(--space-3);
 }
@@ -344,8 +338,7 @@ html {
 .model-card__list li,
 .operations__panel-list li,
 .process__card-list li,
-.faq-intro__list li,
-.home-service-card__list li {
+.faq-intro__list li {
     display: grid;
     grid-template-columns: var(--space-4) minmax(0, 1fr);
     gap: var(--space-3);
@@ -357,8 +350,7 @@ html {
 .model-card__list li::before,
 .operations__panel-list li::before,
 .process__card-list li::before,
-.faq-intro__list li::before,
-.home-service-card__list li::before {
+.faq-intro__list li::before {
     content: "";
     width: var(--space-2);
     height: var(--space-2);
@@ -448,39 +440,39 @@ html {
 }
 
 .home-services {
-    border-block: 1px solid rgba($accent-color-strong, 0.08);
-    background:
-        linear-gradient(135deg, rgba($white, 0.72), rgba($white, 0.18) 36%, rgba($accent-color-soft, 0.34) 68%, rgba($white, 0.42)),
-        repeating-linear-gradient(90deg, rgba($surface-color-dark, 0.065) 0 1px, transparent 1px var(--space-9)),
-        repeating-linear-gradient(0deg, rgba($surface-color-dark, 0.045) 0 1px, transparent 1px var(--space-9)),
-        linear-gradient(180deg, rgba($white, 0.98) 0%, rgba($accent-color-soft, 0.82) 48%, rgba($surface-color-strong, 0.9) 100%);
+    background-color: $surface-color-dark;
+}
+
+.home-services__inner {
+    padding: var(--space-8);
+    border: 1px solid rgba($white, 0.18);
+    border-radius: $radius-bg;
+    background-color: $white;
+    box-shadow: $shadow-soft;
+}
+
+.home-services__head .section-heading {
+    margin-inline: auto;
+    text-align: center;
 }
 
 .home-services__grid {
     display: grid;
-    grid-template-columns: repeat(12, minmax(0, 1fr));
-    gap: var(--space-5);
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: var(--space-3);
 }
 
 .home-service-card {
-    grid-column: span 6;
     display: grid;
-    grid-template-columns: 48px minmax(0, 1fr);
-    gap: var(--space-5);
+    min-block-size: calc(var(--space-8) * 2);
+    gap: var(--space-4);
     align-content: start;
-    padding: var(--space-6);
-    border-top: var(--space-1) solid rgba($accent-color, 0.72);
-}
-
-.home-service-card--accent,
-.home-service-card--wide {
-    grid-column: span 6;
-}
-
-.home-service-card--accent {
-    background:
-        linear-gradient(180deg, rgba($surface-color-dark, 0.92), rgba($accent-color-strong, 0.82));
-    color: $white;
+    justify-items: center;
+    padding: var(--space-5);
+    border-color: rgba($accent-color-strong, 0.08);
+    background-color: rgba($bg-color, 0.68);
+    box-shadow: none;
+    text-align: center;
 }
 
 .home-service-card__number,
@@ -496,83 +488,11 @@ html {
     font-weight: $fw-bold;
 }
 
-.home-service-card__content {
-    display: grid;
-    gap: var(--space-3);
-}
-
-.home-service-card__label,
-.home-service-card__title,
-.home-service-card__text {
+.home-service-card__title {
     margin: 0;
-}
-
-.home-service-card__text {
-    color: $text-color-muted;
-    line-height: 1.65;
-}
-
-.home-service-card__list,
-.home-service-card__meta {
-    grid-column: 2;
-}
-
-.home-service-card__meta {
-    display: flex;
-    flex-wrap: wrap;
-    gap: var(--space-2);
-}
-
-.home-service-card__meta span {
-    display: inline-flex;
-    min-height: 32px;
-    align-items: center;
-    padding-inline: var(--space-3);
-    border: 1px solid rgba($accent-color, 0.18);
-    border-radius: $radius-md;
-    background-color: $accent-color-soft;
     color: $accent-color-strong;
-    font-size: 0.875rem;
-    font-weight: $fw-semibold;
-}
-
-.home-service-card--accent .home-service-card__label,
-.home-service-card--accent .home-service-card__title,
-.home-service-card--accent .home-service-card__number,
-.home-service-card--accent .home-service-card__meta span {
-    color: $white;
-}
-
-.home-service-card--accent .home-service-card__text,
-.home-service-card--accent .home-service-card__list {
-    color: rgba($white, 0.78);
-}
-
-.home-service-card--accent .home-service-card__number,
-.home-service-card--accent .home-service-card__meta span {
-    border-color: rgba($white, 0.16);
-    background-color: rgba($white, 0.1);
-}
-
-.home-services__result {
-    border-color: rgba($white, 0.16);
-    background-color: $surface-color-dark;
-    color: $white;
-}
-
-.home-services__result-label,
-.home-services__result-text {
-    color: $white;
-}
-
-.home-services__result-text {
-    color: rgba($white, 0.78);
-}
-
-.home-services__result .button--secondary {
-    border-color: rgba($white, 0.24);
-    background-color: transparent;
-    color: $white;
+    font-size: 1.05rem;
+    line-height: 1.28;
 }
 
 .section--home-journey {
@@ -1226,6 +1146,10 @@ html {
         grid-template-columns: repeat(4, minmax(0, 1fr));
     }
 
+    .home-services__grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
     .home-hero__stats,
     .about-intro__principles {
         grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -1288,7 +1212,6 @@ html {
     .home-marketplaces__note,
     .home-operations__grid,
     .home-services__grid,
-    .home-services__result,
     .home-benefits__grid,
     .home-clients__grid,
     .about-intro__principles,
@@ -1300,6 +1223,10 @@ html {
     .proof__grid,
     .cta-form__grid--primary {
         grid-template-columns: 1fr;
+    }
+
+    .home-services__inner {
+        padding: var(--space-5);
     }
 
     .home-clients__grid {
@@ -1315,23 +1242,9 @@ html {
         grid-area: auto;
     }
 
-    .home-service-card,
-    .home-service-card--accent,
-    .home-service-card--wide {
-        grid-column: auto;
-    }
-
     .home-marketplaces__note,
-    .home-services__result,
-    .home-service-card,
-    .home-service-card--accent,
-    .home-service-card--wide {
+    .home-service-card {
         grid-template-columns: 1fr;
-    }
-
-    .home-service-card__list,
-    .home-service-card__meta {
-        grid-column: auto;
     }
 
     .home-journey__step {
@@ -1375,7 +1288,7 @@ html {
     }
 
     .header__logo {
-        width: 108px;
+        width: 64px;
     }
 
     .header__controls {
@@ -1399,7 +1312,6 @@ html {
     .home-offer__aside,
     .home-operations__card,
     .home-service-card,
-    .home-services__result,
     .home-journey__step,
     .home-benefits__summary,
     .home-benefit-card,

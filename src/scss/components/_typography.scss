@@ -48,6 +48,13 @@ ol {
     padding-inline-start: 1.5rem;
 }
 
+@media (max-width: $tablet) {
+    ul,
+    ol {
+        padding-inline-start: 0;
+    }
+}
+
 li {
     margin-bottom: 0.75rem;
 }
