@@ -1,0 +1,70 @@
+.backer {
+    position: fixed;
+    right: var(--space-5);
+    bottom: var(--space-5);
+    z-index: $z-dropdown;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 52px;
+    height: 52px;
+    padding: 0;
+    border: 1px solid rgba($accent-color-strong, 0.18);
+    border-radius: $radius-md;
+    background-color: rgba($white, 0.94);
+    color: $accent-color-strong;
+    box-shadow: 0 14px 32px rgba($surface-color-dark, 0.16);
+    cursor: pointer;
+    opacity: 0;
+    pointer-events: none;
+    transform: translateY(var(--space-2));
+    transition:
+        opacity $transition-base,
+        transform $transition-base,
+        border-color $transition-base,
+        background-color $transition-base,
+        color $transition-base,
+        box-shadow $transition-base;
+}
+
+.backer.is-visible {
+    opacity: 1;
+    pointer-events: auto;
+    transform: translateY(0);
+}
+
+.backer:hover,
+.backer:focus {
+    border-color: rgba($accent-color, 0.46);
+    background-color: $white;
+    color: $accent-color;
+    box-shadow: $shadow-soft;
+}
+
+.backer:focus-visible {
+    outline: 2px solid rgba($accent-color, 0.42);
+    outline-offset: var(--space-1);
+}
+
+.backer__icon {
+    width: 22px;
+    height: 22px;
+    display: block;
+    fill: currentColor;
+}
+
+@media (max-width: $tablet) {
+    .backer {
+        right: var(--space-4);
+        bottom: var(--space-4);
+        width: 48px;
+        height: 48px;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .backer {
+        transition: none;
+        transform: none;
+    }
+}

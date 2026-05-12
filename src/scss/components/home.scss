@@ -323,8 +323,8 @@ html {
     gap: var(--space-5);
 }
 
-.home-offer__list,
-.home-offer__aside-list,
+// .home-offer__list,
+// .home-offer__aside-list,
 .model-card__list,
 .operations__panel-list,
 .process__card-list,
@@ -440,15 +440,23 @@ html {
 }
 
 .home-services {
-    background-color: $surface-color-dark;
+    @include section-background-image(
+        linear-gradient(90deg, rgba($surface-color-dark, 0.88), rgba($surface-color-dark, 0.7) 52%, rgba($surface-color-dark, 0.5)),
+        "../graphics/png/image7-warehouse-plan.png"
+    );
+    color: $white;
 }
 
 .home-services__inner {
     padding: var(--space-8);
-    border: 1px solid rgba($white, 0.18);
-    border-radius: $radius-bg;
-    background-color: $white;
-    box-shadow: $shadow-soft;
+    // border: 1px solid rgba($white, 0.2);
+    // border-radius: $radius-bg;
+    // background-color: rgba($white, 0.13);
+    // box-shadow:
+    //     inset 0 1px 0 rgba($white, 0.34),
+    //     $shadow-soft;
+    // backdrop-filter: blur(var(--space-4)) saturate(132%);
+    // -webkit-backdrop-filter: blur(var(--space-4)) saturate(132%);
 }
 
 .home-services__head .section-heading {
@@ -456,26 +464,64 @@ html {
     text-align: center;
 }
 
+.home-services .section-heading__eyebrow {
+    color: rgba($white, 0.82);
+}
+
+.home-services .section-heading__title {
+    color: $white;
+}
+
+.home-services .section-heading__text {
+    color: rgba($white, 0.78);
+}
+
+.home-services__body {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: var(--space-5);
+    min-width: 0;
+}
+
 .home-services__grid {
     display: grid;
     grid-template-columns: repeat(4, minmax(0, 1fr));
     gap: var(--space-3);
+    min-width: 0;
 }
 
 .home-service-card {
     display: grid;
     min-block-size: calc(var(--space-8) * 2);
     gap: var(--space-4);
-    align-content: start;
+    align-content: center;
     justify-items: center;
     padding: var(--space-5);
-    border-color: rgba($accent-color-strong, 0.08);
-    background-color: rgba($bg-color, 0.68);
+    border-color: rgba($white, 0.16);
+    background-color: rgba($white, 0.14);
     box-shadow: none;
     text-align: center;
+    backdrop-filter: blur(6px);
+    -webkit-backdrop-filter: blur(6px);
 }
 
-.home-service-card__number,
+.home-service-card:hover {
+    box-shadow: $shadow-soft;
+}
+
+.home-service-card__number {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 48px;
+    height: 48px;
+    border: 1px solid rgba($white, 0.18);
+    border-radius: $radius-md;
+    background-color: rgba($white, 0.14);
+    color: $white;
+    font-weight: $fw-bold;
+}
+
 .home-client-card__icon {
     display: inline-flex;
     align-items: center;
@@ -490,9 +536,15 @@ html {
 
 .home-service-card__title {
     margin: 0;
-    color: $accent-color-strong;
+    color: $white;
     font-size: 1.05rem;
     line-height: 1.28;
+}
+
+.home-service-card__text {
+    color: rgba($white, 0.76);
+    font-size: 0.9375rem;
+    line-height: 1.48;
 }
 
 .section--home-journey {
@@ -759,6 +811,82 @@ html {
     border-radius: $radius-bg;
     background-color: rgba($white, 0.62);
     backdrop-filter: blur(4px);
+}
+
+.cta-contact {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: var(--space-4);
+    padding: var(--space-5);
+    border: 1px solid rgba($accent-color-strong, 0.1);
+    border-radius: $radius-bg;
+    background-color: rgba($white, 0.72);
+    backdrop-filter: blur(4px);
+}
+
+.cta-contact__item {
+    display: grid;
+    gap: var(--space-1);
+    min-width: 0;
+    color: $text-color;
+}
+
+.cta-contact__item--messengers {
+    grid-column: 1 / -1;
+}
+
+.cta-contact__label {
+    color: $text-color-secondary;
+    font-size: 0.8125rem;
+    font-weight: $fw-semibold;
+    line-height: 1.4;
+    text-transform: uppercase;
+}
+
+.cta-contact__value,
+.cta-contact__messenger {
+    color: $accent-color-strong;
+    font-weight: $fw-semibold;
+    line-height: 1.4;
+    overflow-wrap: anywhere;
+}
+
+.cta-contact__messengers {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-2);
+}
+
+.cta-contact__messenger {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-height: calc(var(--space-4) + var(--space-5));
+    min-width: calc(var(--space-4) + var(--space-5));
+    padding-inline: var(--space-2);
+    border: 1px solid rgba($accent-color-strong, 0.12);
+    border-radius: $radius-md;
+    background-color: rgba($white, 0.74);
+    transition: border-color $transition-base, background-color $transition-base, color $transition-base;
+}
+
+.cta-contact__icon {
+    display: block;
+    width: var(--space-5);
+    height: var(--space-5);
+    fill: currentColor;
+}
+
+.cta-contact__item:hover .cta-contact__value,
+.cta-contact__item:focus .cta-contact__value {
+    color: $accent-color;
+}
+
+.cta-contact__messenger:hover,
+.cta-contact__messenger:focus {
+    border-color: rgba($accent-color, 0.34);
+    background-color: $white;
+    color: $accent-color;
 }
 
 .cta-support__group,
@@ -1221,8 +1349,16 @@ html {
     .problem__grid,
     .operations__grid,
     .proof__grid,
+    .cta-contact,
     .cta-form__grid--primary {
         grid-template-columns: 1fr;
+    }
+
+    .home-services {
+        @include section-background-image(
+            linear-gradient(180deg, rgba($surface-color-dark, 0.9), rgba($surface-color-dark, 0.76)),
+            "../graphics/png/image7-warehouse-plan.png"
+        );
     }
 
     .home-services__inner {
@@ -1317,6 +1453,7 @@ html {
     .home-benefit-card,
     .home-client-card,
     .cta-support,
+    .cta-contact,
     .home-cta__card,
     .about-intro__aside,
     .about-intro__principle,
