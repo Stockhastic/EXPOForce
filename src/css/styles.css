@@ -2015,13 +2015,13 @@ html {
 
 .home-cta__content,
 .cta__content {
-  align-content: center;
+  align-content: start;
   gap: var(--space-5);
-  padding-block: var(--space-4);
 }
 
 .cta-form.form-group {
   padding: 0;
+  min-height: 0;
 }
 
 .cta-support {
@@ -2143,7 +2143,7 @@ html {
 
 .cta__inner,
 .home-cta__inner {
-  align-items: center;
+  align-items: stretch;
 }
 
 .home-cta__inner {
@@ -2153,6 +2153,8 @@ html {
 
 .cta__panel,
 .home-cta__card {
+  grid-template-rows: auto minmax(0, 1fr);
+  align-content: stretch;
   gap: var(--space-5);
   border-color: rgba(1, 63, 40, 0.12);
   border-top: var(--space-1) solid rgba(25, 116, 55, 0.78);
