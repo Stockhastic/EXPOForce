@@ -80,6 +80,18 @@ See **AGENTS.md** for spacing and grid rules. Mobile behavior must follow the sa
 
 ---
 
+## Multi-column section focus
+
+For sections with **two or more columns**, **card grids**, or **asymmetric layouts**, use `section-visual-balance` skill before finalizing:
+
+- This skill validates grid structure, vertical alignment, and visual balance.
+- It audits spacing consistency and removes layout hacks.
+- It checks responsive behavior on mobile and tablet.
+
+Do not finalize any multi-column section without running the `section-visual-balance` checklist.
+
+---
+
 ## Anti-patterns to Fix
 
 Actively detect and fix these problems during code review:

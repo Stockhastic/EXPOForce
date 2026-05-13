@@ -526,7 +526,7 @@ strong {
 }
 
 .footer__inner {
-  width: min(100%, 1440px);
+  width: min(100%, 1200px);
   margin: 0 auto;
   padding-inline: 24px;
   display: grid;
@@ -535,9 +535,9 @@ strong {
 
 .footer__main {
   display: grid;
-  grid-template-columns: minmax(0, 1fr) minmax(230px, 0.34fr) minmax(320px, 0.44fr);
+  grid-template-columns: minmax(0, 1fr) minmax(230px, 0.36fr) minmax(220px, 0.28fr);
   gap: var(--space-4);
-  align-items: start;
+  align-items: stretch;
   padding: var(--space-6);
   border: 1px solid rgba(255, 255, 255, 0.12);
   border-radius: 14px;
@@ -607,7 +607,7 @@ strong {
 }
 
 .footer__nav {
-  justify-self: end;
+  justify-self: stretch;
   width: 100%;
 }
 
@@ -696,12 +696,15 @@ strong {
   display: grid;
   grid-template-columns: 1fr;
   gap: var(--space-1);
+  padding-inline-start: 0;
+}
+
+.footer__list-item {
+  margin-bottom: 0;
 }
 
 .footer__list--sections {
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  grid-template-rows: repeat(3, auto);
-  grid-auto-flow: column;
+  grid-template-columns: minmax(0, 1fr);
 }
 
 .footer__list--pages {
@@ -747,18 +750,17 @@ strong {
 
 @media (max-width: 1024px) {
   .footer__main {
-    grid-template-columns: minmax(0, 1fr);
+    grid-template-columns: minmax(0, 1fr) minmax(220px, 0.72fr);
     gap: var(--space-5);
   }
   .footer__brand {
+    grid-column: 1/-1;
     max-width: 720px;
   }
-  .footer__nav {
-    justify-self: start;
-    width: min(100%, 360px);
-  }
+  .footer__nav,
   .footer__contact {
-    width: min(100%, 360px);
+    justify-self: stretch;
+    width: 100%;
   }
 }
 @media (max-width: 768px) {
@@ -794,14 +796,17 @@ strong {
 }
 @media (max-width: 375px) {
   .footer__main {
+    grid-template-columns: minmax(0, 1fr);
     padding: var(--space-4);
+  }
+  .footer__brand {
+    grid-column: auto;
   }
   .footer__nav,
   .footer__contact {
     width: 100%;
   }
   .footer__list--sections {
-    gap: var(--space-1) var(--space-3);
     padding-inline-start: 0;
   }
 }
@@ -1863,12 +1868,22 @@ html {
 
 .home-benefits__inner {
   grid-template-columns: minmax(0, 0.86fr) minmax(0, 1.14fr);
-  align-items: start;
+  align-items: stretch;
 }
 
 .home-benefits__inner > .section-heading,
 .home-clients__inner > .section-heading {
   max-width: 640px;
+}
+
+.home-benefits__content {
+  align-content: space-between;
+  height: 100%;
+}
+
+.home-benefits__copy {
+  display: grid;
+  gap: var(--space-4);
 }
 
 .home-benefits__layout {
@@ -2664,4 +2679,6 @@ html {
   .home-hero__title {
     font-size: 2.25rem;
   }
-}/*# sourceMappingURL=styles.css.map */
+}
+
+/*# sourceMappingURL=styles.css.map */

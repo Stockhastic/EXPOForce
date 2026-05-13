@@ -650,12 +650,22 @@ html {
 
 .home-benefits__inner {
     grid-template-columns: minmax(0, 0.86fr) minmax(0, 1.14fr);
-    align-items: start;
+    align-items: stretch;
 }
 
 .home-benefits__inner > .section-heading,
 .home-clients__inner > .section-heading {
     max-width: 640px;
+}
+
+.home-benefits__content {
+    align-content: space-between;
+    height: 100%;
+}
+
+.home-benefits__copy {
+    display: grid;
+    gap: var(--space-4);
 }
 
 .home-benefits__layout {

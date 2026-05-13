@@ -35,6 +35,7 @@ Use the project skills together whenever a page needs both visual quality and fu
 
 - Start with `design-identity` for visual tone, composition, and brand-aligned page hierarchy.
 - Use `design-consistency` to keep new or edited sections aligned with existing layout patterns, spacing tokens, and site rhythm.
+- Use `section-visual-balance` when creating or editing multi-column sections, card layouts, or asymmetric compositions to ensure balanced alignment, proper grid structure, and removal of layout hacks.
 - Apply `seo-optimization` to verify page intent, semantic structure, heading hierarchy, metadata, internal links, images, and share preview readiness.
 - Use `translation-system` when any UI text is multilingual, to keep translation keys consistent and data-i18n markup correct.
 - Use `image-prompt-generator` when visual assets or imagery prompts are required, ensuring images match the page identity and SEO preview needs.
@@ -284,6 +285,8 @@ Before considering any section complete, check and fix:
 - excessive empty space above content
 - excessive empty space below content
 - excessive empty space between columns
+- one column ending early while the neighboring column or card grid continues lower
+- left/right column bottom edges that do not look intentionally related
 - cards that do not align with nearby cards
 - cards floating without grid logic
 - text blocks that feel disconnected from visuals
@@ -294,6 +297,17 @@ Before considering any section complete, check and fix:
 - unclear section rhythm on desktop, tablet, or mobile
 
 A section is not acceptable if it looks manually arranged rather than designed on a layout system.
+
+When auditing multi-column sections, do not rely only on CSS structure or overflow checks. Inspect the rendered section screenshot and verify that the visible top/bottom edges of columns, cards, and grids form an intentional composition. If one side ends early and leaves a large unexplained empty area, the section fails `section-visual-balance` even if it uses grid, gap, and responsive rules correctly.
+
+For each audited multi-column section, report one of:
+- balanced
+- balanced with intentional asymmetry
+- failed due to early column ending / unexplained empty area
+- failed due to manual layout hack
+- failed due to responsive collapse issue
+
+**See the `section-visual-balance` skill for detailed audit checklist and fix patterns.**
 
 ---
 
@@ -459,6 +473,7 @@ Responsive layout rules:
 - Do not use arbitrary margins, padding, transforms, or absolute positioning to fix normal layout problems
 - Do not create section layouts by visual guessing
 - Do not leave unexplained empty areas in sections
+- Do not accept valid grid/flex code as visually balanced until rendered column boundaries have been checked
 - Use parent grid/flex layout and `gap` as the main spacing system
 - Every section must look intentional, balanced, and based on a reusable composition system
 
@@ -546,6 +561,23 @@ Use the `design-identity` skill especially when:
 - validating desktop/tablet/mobile behavior
 
 The skill should guide section-level design thinking, but permanent project rules from this file must always take priority.
+
+Use the `section-visual-balance` skill for:
+- creating or heavily editing multi-column sections
+- card-based layouts and asymmetric compositions
+- fixing visual weight imbalances between columns
+- auditing grid and alignment issues
+- removing layout hacks (random margins, transforms, absolute positioning)
+- validating responsive grid behavior on tablet and mobile
+- before finalizing any section with two or more columns
+
+Use the `section-visual-balance` skill especially when:
+- a section feels visually off but the issue is unclear
+- left/right columns have uneven heights or misaligned content
+- cards are positioned manually instead of using grid
+- there are unexplained empty areas inside sections
+- desktop layout breaks awkwardly on mobile/tablet
+- spacing appears arbitrary rather than system-based
 
 ---
 

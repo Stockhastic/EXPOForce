@@ -9,16 +9,16 @@
 }
 
 .footer__inner {
-    @include container($container-wide);
+    @include container();
     display: grid;
     gap: var(--space-5);
 }
 
 .footer__main {
     display: grid;
-    grid-template-columns: minmax(0, 1fr) minmax(230px, 0.34fr) minmax(320px, 0.44fr);
+    grid-template-columns: minmax(0, 1fr) minmax(230px, 0.36fr) minmax(220px, 0.28fr);
     gap: var(--space-4);
-    align-items: start;
+    align-items: stretch;
     padding: var(--space-6);
     border: 1px solid rgba($white, 0.12);
     border-radius: $radius-bg;
@@ -90,7 +90,7 @@
 }
 
 .footer__nav {
-    justify-self: end;
+    justify-self: stretch;
     width: 100%;
 }
 
@@ -179,13 +179,15 @@
     display: grid;
     grid-template-columns: 1fr;
     gap: var(--space-1);
+    padding-inline-start: 0;
+}
+
+.footer__list-item {
+    margin-bottom: 0;
 }
 
 .footer__list--sections {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-    grid-template-rows: repeat(3, auto);
-    grid-auto-flow: column;
-    // gap: var(--space-1) var(--space-5);
+    grid-template-columns: minmax(0, 1fr);
 }
 
 .footer__list--pages {
@@ -231,21 +233,19 @@
 
 @media (max-width: $desktop) {
     .footer__main {
-        grid-template-columns: minmax(0, 1fr);
+        grid-template-columns: minmax(0, 1fr) minmax(220px, 0.72fr);
         gap: var(--space-5);
     }
 
     .footer__brand {
+        grid-column: 1 / -1;
         max-width: 720px;
     }
 
-    .footer__nav {
-        justify-self: start;
-        width: min(100%, 360px);
-    }
-
+    .footer__nav,
     .footer__contact {
-        width: min(100%, 360px);
+        justify-self: stretch;
+        width: 100%;
     }
 }
 
@@ -290,7 +290,12 @@
 
 @media (max-width: $mobile) {
     .footer__main {
+        grid-template-columns: minmax(0, 1fr);
         padding: var(--space-4);
+    }
+
+    .footer__brand {
+        grid-column: auto;
     }
 
     .footer__nav,
@@ -299,7 +304,6 @@
     }
 
     .footer__list--sections {
-        gap: var(--space-1) var(--space-3);
         padding-inline-start: 0;
     }
 }
