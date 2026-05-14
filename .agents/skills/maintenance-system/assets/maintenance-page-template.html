@@ -3,50 +3,112 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title data-i18n="[text]maintenance-meta-title">Site maintenance | EXPAFORCE</title>
-  <meta name="description" content="EXPAFORCE website is temporarily under maintenance. Contact us by email or phone while the site is unavailable." data-i18n="[content]maintenance-meta-description">
-  <meta name="robots" content="noindex, nofollow">
+  <meta name="robots" content="noindex,nofollow">
+  <title data-i18n="[text]maintenance-meta-title">EXPAFORCE | Site temporarily under maintenance</title>
+  <meta
+    name="description"
+    content="The EXPAFORCE site is temporarily closed for technical work. The team remains available by email and phone."
+    data-i18n="[content]maintenance-meta-description"
+  >
   <link rel="icon" href="/favicon.ico">
-  <link rel="stylesheet" href="/src/scss/css/index.css">
+  <link rel="stylesheet" href="/src/css/styles.css">
 </head>
-<body class="maintenance-page">
-  <header class="maintenance-page__header">
-    <a class="maintenance-page__brand" href="/index.html" aria-label="EXPAFORCE home" data-i18n="[aria-label]maintenance-brand-aria">
-      <img class="maintenance-page__logo" src="/src/graphics/png/logo-rast.png" alt="EXPAFORCE logo" data-i18n="[alt]maintenance-logo-alt">
-    </a>
 
-    <div class="maintenance-page__lang" aria-label="Language switcher" data-i18n="[aria-label]maintenance-lang-aria">
-      <button type="button" class="maintenance-page__lang-button" data-set-lang="ru">RU</button>
-      <button type="button" class="maintenance-page__lang-button" data-set-lang="en">EN</button>
-    </div>
-  </header>
-
-  <main class="maintenance-page__main">
-    <section class="section section--maintenance">
+<body class="page page--maintenance">
+  <main class="page-content">
+    <section class="section section--maintenance maintenance" aria-labelledby="maintenance-title">
       <div class="container">
-        <div class="section__inner maintenance-page__inner">
-          <div class="maintenance-page__content">
-            <p class="maintenance-page__eyebrow" data-i18n="[text]maintenance-eyebrow">Scheduled maintenance</p>
-            <h1 class="maintenance-page__title" data-i18n="[text]maintenance-title">The site is currently under maintenance</h1>
-            <p class="maintenance-page__text" data-i18n="[text]maintenance-text">We are updating the website. Please contact us directly while the site is unavailable.</p>
+        <div class="section__inner maintenance__inner">
+          <div class="maintenance__top">
+            <a class="maintenance__brand" href="/index.html" aria-label="EXPAFORCE home" data-i18n="[aria-label]header-brand-aria">
+              <img class="maintenance__logo" src="/src/graphics/png/logo-rast.png" alt="EXPAFORCE logo" data-i18n="[alt]header-logo-alt">
+            </a>
+
+            <div class="maintenance__controls">
+              <button class="button button--secondary button--small maintenance__admin-button" type="button" data-maintenance-auth-open aria-controls="maintenance-auth-panel" aria-expanded="false" data-i18n="[text]maintenance-auth-open">
+                Admin access
+              </button>
+              <div class="header__lang maintenance__lang" aria-label="Language switcher" data-i18n="[aria-label]header-lang-aria">
+                <button type="button" class="header__lang-button" data-set-lang="ru">RU</button>
+                <button type="button" class="header__lang-button" data-set-lang="en">EN</button>
+              </div>
+            </div>
           </div>
 
-          <address class="maintenance-page__contacts" aria-label="Contact details" data-i18n="[aria-label]maintenance-contacts-aria">
-            <p class="maintenance-page__contacts-title" data-i18n="[text]maintenance-contacts-title">Contact us</p>
-            <a class="maintenance-page__contact" href="mailto:info@expaforce.com">
-              <span data-i18n="[text]maintenance-email-label">Email</span>
-              <strong>info@expaforce.com</strong>
-            </a>
-            <a class="maintenance-page__contact" href="tel:88005553535">
-              <span data-i18n="[text]maintenance-phone-label">Phone</span>
-              <strong>8 800 5553535</strong>
-            </a>
-          </address>
+          <div class="maintenance__auth-backdrop" data-maintenance-auth-backdrop hidden></div>
+          <aside class="maintenance__auth-drawer" id="maintenance-auth-panel" data-maintenance-auth-drawer aria-hidden="true" aria-labelledby="maintenance-auth-title">
+            <div class="card maintenance__auth" data-maintenance-auth>
+              <div class="maintenance__auth-header">
+                <div class="maintenance__auth-heading">
+                  <p class="maintenance__card-label" data-i18n="[text]maintenance-auth-label">Admin access</p>
+                  <h2 class="maintenance__auth-title" id="maintenance-auth-title" data-i18n="[text]maintenance-auth-title">Maintenance page login</h2>
+                </div>
+                <button class="maintenance__auth-close" type="button" data-maintenance-auth-close aria-label="Close admin access panel" data-i18n="[aria-label]maintenance-auth-close-aria">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+
+              <p class="maintenance__auth-text" data-i18n="[text]maintenance-auth-text">Enter the admin credentials to open the site during maintenance.</p>
+
+              <form class="maintenance__auth-form" data-maintenance-auth-form novalidate>
+                <div class="form-field">
+                  <label class="form-label" for="maintenance-login" data-i18n="[text]maintenance-auth-login-label">Login</label>
+                  <input class="form-input" id="maintenance-login" name="login" type="text" autocomplete="username" required placeholder="admin" data-i18n="[placeholder]maintenance-auth-login-placeholder">
+                </div>
+
+                <div class="form-field">
+                  <label class="form-label" for="maintenance-password" data-i18n="[text]maintenance-auth-password-label">Password</label>
+                  <input class="form-input" id="maintenance-password" name="password" type="password" autocomplete="current-password" required placeholder="Password" data-i18n="[placeholder]maintenance-auth-password-placeholder">
+                </div>
+
+                <p class="maintenance__auth-error" data-maintenance-auth-error data-i18n="[text]maintenance-auth-error" aria-live="polite" hidden>Invalid login or password.</p>
+
+                <button class="button button--primary button--full" type="submit" data-i18n="[text]maintenance-auth-submit">Log in</button>
+              </form>
+            </div>
+          </aside>
+
+          <div class="maintenance__layout">
+            <div class="maintenance__content">
+              <p class="section-heading__eyebrow" data-i18n="[text]maintenance-eyebrow">Technical maintenance</p>
+              <h1 class="maintenance__title" id="maintenance-title" data-i18n="[text]maintenance-title">The EXPAFORCE site is temporarily under maintenance</h1>
+              <p class="maintenance__text" data-i18n="[text]maintenance-text">We are updating the site and will return it to normal mode soon. Fulfillment operations and working contacts remain available.</p>
+              <div class="maintenance__actions">
+                <a class="button button--primary" href="mailto:info@expaforce.com?subject=EXPAFORCE%20maintenance%20contact" data-i18n="[text]maintenance-primary">Email the team</a>
+                <a class="button button--secondary" href="tel:88005553535" data-i18n="[text]maintenance-secondary">Call us</a>
+              </div>
+            </div>
+
+            <aside class="maintenance__aside" aria-label="Maintenance status and contacts" data-i18n="[aria-label]maintenance-aside-aria">
+              <article class="card maintenance__card maintenance__card--status">
+                <p class="maintenance__card-label" data-i18n="[text]maintenance-status-label">Site status</p>
+                <h2 class="card__title maintenance__card-title" data-i18n="[text]maintenance-status-title">Temporary maintenance mode</h2>
+                <p class="card__text maintenance__card-text" data-i18n="[text]maintenance-status-text">Access to the main pages is limited so incomplete information is not shown during the update.</p>
+              </article>
+
+              <article class="card maintenance__card">
+                <p class="maintenance__card-label" data-i18n="[text]maintenance-contact-label">Contact the team</p>
+                <div class="maintenance__contact-list">
+                  <a class="maintenance__contact-item" href="mailto:info@expaforce.com">
+                    <span class="maintenance__contact-label" data-i18n="[text]cta-contact-email-label">Email</span>
+                    <span class="maintenance__contact-value">info@expaforce.com</span>
+                  </a>
+                  <a class="maintenance__contact-item" href="tel:88005553535">
+                    <span class="maintenance__contact-label" data-i18n="[text]cta-contact-phone-label">Phone</span>
+                    <span class="maintenance__contact-value">8 800 5553535</span>
+                  </a>
+                </div>
+              </article>
+            </aside>
+          </div>
+
+          <p class="maintenance__end" data-i18n="[text]maintenance-end">© 2026 EXPAFORCE. Fulfillment for marketplaces, D2C, and B2B.</p>
         </div>
       </div>
     </section>
   </main>
 
-  <script src="/scripts/translation.js" defer></script>
+  <script src="/scripts/translation.js"></script>
+  <script src="/scripts/maintenance-auth.js?v=YYYYMMDD-1"></script>
 </body>
 </html>

@@ -36,8 +36,127 @@
     height: auto;
 }
 
+.maintenance__controls {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    gap: var(--space-3);
+    flex-wrap: wrap;
+    min-width: 0;
+}
+
+.maintenance__admin-button,
 .maintenance__lang {
     flex-shrink: 0;
+}
+
+.maintenance__auth-backdrop {
+    position: fixed;
+    inset: 0;
+    z-index: $z-menu-backdrop;
+    background-color: rgba($surface-color-dark, 0.36);
+    backdrop-filter: blur(3px);
+    -webkit-backdrop-filter: blur(3px);
+}
+
+.maintenance__auth-backdrop[hidden] {
+    display: none;
+}
+
+.maintenance__auth-drawer {
+    position: fixed;
+    inset-block: 0;
+    inset-inline-end: 0;
+    z-index: $z-modal;
+    display: grid;
+    width: min(100%, 440px);
+    padding: var(--space-4);
+    pointer-events: none;
+    transform: translateX(100%);
+    visibility: hidden;
+    transition: transform $transition-base, visibility $transition-base;
+}
+
+.page--maintenance.is-auth-drawer-open .maintenance__auth-drawer {
+    pointer-events: auto;
+    transform: translateX(0);
+    visibility: visible;
+}
+
+.maintenance__auth {
+    width: 100%;
+    max-height: 100%;
+    gap: var(--space-5);
+    overflow: auto;
+    border-color: rgba($accent-color-strong, 0.12);
+    box-shadow: $shadow-soft;
+}
+
+.maintenance__auth-header {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: var(--space-4);
+}
+
+.maintenance__auth-heading,
+.maintenance__auth-form {
+    display: grid;
+}
+
+.maintenance__auth-heading {
+    gap: var(--space-2);
+}
+
+.maintenance__auth-form {
+    gap: var(--space-4);
+}
+
+.maintenance__auth-close {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: var(--space-6);
+    height: var(--space-6);
+    border: 1px solid $border-color;
+    border-radius: $radius-md;
+    background-color: $white;
+    color: $text-color;
+    font-size: 1.5rem;
+    line-height: 1;
+    cursor: pointer;
+    transition: border-color $transition-base, color $transition-base, box-shadow $transition-base;
+}
+
+.maintenance__auth-close:hover,
+.maintenance__auth-close:focus {
+    border-color: rgba($accent-color, 0.48);
+    color: $accent-color-strong;
+    box-shadow: $shadow-soft;
+}
+
+.maintenance__auth-title {
+    color: $text-color;
+    font-size: clamp(1.5rem, 3vw, 2rem);
+    font-weight: $fw-bold;
+    letter-spacing: 0;
+    line-height: 1.12;
+}
+
+.maintenance__auth-text {
+    color: $text-color-muted;
+    font-size: 1rem;
+    line-height: 1.65;
+}
+
+.maintenance__auth-error {
+    color: $danger-color;
+    font-size: 0.9375rem;
+    line-height: 1.45;
+}
+
+.maintenance__auth-error[hidden] {
+    display: none;
 }
 
 .maintenance__layout {
@@ -197,9 +316,21 @@
         flex-direction: column;
     }
 
-    .maintenance__lang {
+    .maintenance__controls {
         align-self: stretch;
+        justify-content: space-between;
+    }
+
+    .maintenance__lang {
         justify-content: flex-start;
+    }
+
+    .maintenance__auth-drawer {
+        padding: var(--space-4);
+    }
+
+    .maintenance__auth {
+        padding: var(--space-4);
     }
 
     .maintenance__card {

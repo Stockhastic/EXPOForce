@@ -1,133 +1,319 @@
-# Maintenance Page Format
+# Maintenance Page Final Format
 
-Use this reference whenever creating or updating the EXPAFORCE maintenance page.
+Use this reference when implementing the EXPOForce-style maintenance page with a temporary preview bypass.
 
-## Page Purpose
+## Required Outcome
 
-The page exists only to communicate temporary unavailability and keep contact channels open. It should feel calm, trustworthy, and operationally clear.
+- Public visitors see the branded maintenance page.
+- The main maintenance content is visible immediately.
+- `Admin access` is a secondary button in the top/right controls.
+- Clicking it opens a right-side drawer.
+- Successful login sets a cookie readable by Apache and redirects into the real site.
+- Apache bypasses maintenance mode only when that cookie is present.
 
-Avoid:
+This is a preview bypass, not real authentication.
 
-- full landing-page sections
-- marketplace/service proof blocks
-- large promotional hero imagery
-- long sales copy
-- decorative animations
-- full site navigation
+## Apache Gate
 
-## Required Content
+```apache
+RewriteEngine On
 
-Every maintenance page must include:
+RewriteCond %{DOCUMENT_ROOT}/maintenance.enable -f
+RewriteCond %{HTTP_COOKIE} !(^|;\s*)expaforceMaintenanceAuthorized=72a100f863e29954b6c05a7f1a48a12c7c497701333f87af89447113f52e3d26($|;) [NC]
+RewriteCond %{REQUEST_URI} !^/maintenance\.html$ [NC]
+RewriteCond %{REQUEST_URI} !^/src/ [NC]
+RewriteCond %{REQUEST_URI} !^/scripts/ [NC]
+RewriteCond %{REQUEST_URI} !^/scripts-js-php/ [NC]
+RewriteCond %{REQUEST_URI} !^/partials/ [NC]
+RewriteCond %{REQUEST_URI} !^/favicon\.ico$ [NC]
+RewriteCond %{REQUEST_URI} !^/faicon\.ico$ [NC]
+RewriteCond %{REQUEST_URI} !^/\.well-known/ [NC]
+RewriteRule ^ - [R=503,L]
 
-- Logo: use the existing EXPAFORCE logo asset from the project (`/src/graphics/png/logo-rast.png`, `/src/graphics/svg/logo.svg`, or `/src/graphics/svg/logo-white.svg`, depending on background).
-- Maintenance message: one `h1` that clearly says the site is currently under maintenance.
-- Short support text: one paragraph explaining that the site will be back after technical work is complete.
-- Contact block: email, phone, and messenger links when available. Reuse current contact values from `partials/footer.html` or another verified project source. Do not invent contact details.
-- Language switcher: buttons for every supported language from `scripts/lang.json`, using `data-set-lang`.
+ErrorDocument 503 /maintenance.html
 
-## Preferred Structure
+<IfModule mod_headers.c>
+    Header always set Retry-After "3600" "expr=%{REQUEST_STATUS} == 503"
+    Header always set Cache-Control "no-store, max-age=0" "expr=%{REQUEST_STATUS} == 503"
+</IfModule>
+```
 
-Use this standalone structure unless the existing implementation already has a better project-local pattern:
+Keep only allowlist entries the page actually needs, but include all CSS, JS, translation, favicon, and media paths used by `maintenance.html`.
+
+## HTML Shape
+
+Use the existing section/container/component system. This is the canonical structure:
 
 ```html
-<body class="maintenance-page">
-  <header class="maintenance-page__header">
-    <a class="maintenance-page__brand" href="/index.html" aria-label="EXPAFORCE home" data-i18n="[aria-label]maintenance-brand-aria">
-      <img class="maintenance-page__logo" src="/src/graphics/png/logo-rast.png" alt="EXPAFORCE logo" data-i18n="[alt]maintenance-logo-alt">
-    </a>
-
-    <div class="maintenance-page__lang" aria-label="Language switcher" data-i18n="[aria-label]maintenance-lang-aria">
-      <button type="button" class="maintenance-page__lang-button" data-set-lang="ru">RU</button>
-      <button type="button" class="maintenance-page__lang-button" data-set-lang="en">EN</button>
-    </div>
-  </header>
-
-  <main class="maintenance-page__main">
-    <section class="section section--maintenance">
+<body class="page page--maintenance">
+  <main class="page-content">
+    <section class="section section--maintenance maintenance" aria-labelledby="maintenance-title">
       <div class="container">
-        <div class="section__inner maintenance-page__inner">
-          <div class="maintenance-page__content">
-            <p class="maintenance-page__eyebrow" data-i18n="[text]maintenance-eyebrow">Scheduled maintenance</p>
-            <h1 class="maintenance-page__title" data-i18n="[text]maintenance-title">The site is currently under maintenance</h1>
-            <p class="maintenance-page__text" data-i18n="[text]maintenance-text">We are updating the website. Please contact us directly while the site is unavailable.</p>
+        <div class="section__inner maintenance__inner">
+          <div class="maintenance__top">
+            <a class="maintenance__brand" href="/index.html" data-i18n="[aria-label]header-brand-aria">
+              <img class="maintenance__logo" src="/src/graphics/png/logo-rast.png" alt="EXPOForce" data-i18n="[alt]header-logo-alt">
+            </a>
+
+            <div class="maintenance__controls">
+              <button
+                class="button button--secondary button--small maintenance__admin-button"
+                type="button"
+                data-maintenance-auth-open
+                aria-controls="maintenance-auth-panel"
+                aria-expanded="false"
+                data-i18n="[text]maintenance-auth-open"
+              >
+                Admin access
+              </button>
+
+              <div class="header__lang maintenance__lang" data-i18n="[aria-label]header-lang-aria">
+                <button type="button" class="header__lang-button" data-set-lang="ru">RU</button>
+                <button type="button" class="header__lang-button" data-set-lang="en">EN</button>
+              </div>
+            </div>
           </div>
 
-          <address class="maintenance-page__contacts" aria-label="Contact details" data-i18n="[aria-label]maintenance-contacts-aria">
-            <p class="maintenance-page__contacts-title" data-i18n="[text]maintenance-contacts-title">Contact us</p>
-            <a class="maintenance-page__contact" href="mailto:info@expaforce.com">
-              <span data-i18n="[text]maintenance-email-label">Email</span>
-              <strong>info@expaforce.com</strong>
-            </a>
-            <a class="maintenance-page__contact" href="tel:88005553535">
-              <span data-i18n="[text]maintenance-phone-label">Phone</span>
-              <strong>8 800 5553535</strong>
-            </a>
-          </address>
+          <div class="maintenance__auth-backdrop" data-maintenance-auth-backdrop hidden></div>
+
+          <aside
+            class="maintenance__auth-drawer"
+            id="maintenance-auth-panel"
+            data-maintenance-auth-drawer
+            aria-hidden="true"
+            aria-labelledby="maintenance-auth-title"
+          >
+            <div class="card maintenance__auth" data-maintenance-auth>
+              <div class="maintenance__auth-header">
+                <div class="maintenance__auth-heading">
+                  <p class="maintenance__card-label" data-i18n="[text]maintenance-auth-label">Admin access</p>
+                  <h2 class="maintenance__auth-title" id="maintenance-auth-title" data-i18n="[text]maintenance-auth-title">Maintenance page login</h2>
+                </div>
+                <button
+                  class="maintenance__auth-close"
+                  type="button"
+                  data-maintenance-auth-close
+                  aria-label="Close admin panel"
+                  data-i18n="[aria-label]maintenance-auth-close-aria"
+                >
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+
+              <p class="maintenance__auth-text" data-i18n="[text]maintenance-auth-text">
+                Enter the admin credentials to open the site during maintenance.
+              </p>
+
+              <form class="maintenance__auth-form" data-maintenance-auth-form novalidate>
+                <div class="form-field">
+                  <label class="form-label" for="maintenance-login" data-i18n="[text]maintenance-auth-login-label">Login</label>
+                  <input class="form-input" id="maintenance-login" name="login" type="text" autocomplete="username" required placeholder="admin" data-i18n="[placeholder]maintenance-auth-login-placeholder">
+                </div>
+
+                <div class="form-field">
+                  <label class="form-label" for="maintenance-password" data-i18n="[text]maintenance-auth-password-label">Password</label>
+                  <input class="form-input" id="maintenance-password" name="password" type="password" autocomplete="current-password" required placeholder="Password" data-i18n="[placeholder]maintenance-auth-password-placeholder">
+                </div>
+
+                <p class="maintenance__auth-error" data-maintenance-auth-error data-i18n="[text]maintenance-auth-error" aria-live="polite" hidden>
+                  Invalid login or password.
+                </p>
+
+                <button class="button button--primary button--full" type="submit" data-i18n="[text]maintenance-auth-submit">Log in</button>
+              </form>
+            </div>
+          </aside>
+
+          <div class="maintenance__layout">
+            <!-- Visible maintenance copy and contact/status cards. Do not add hidden here. -->
+          </div>
+
+          <p class="maintenance__end" data-i18n="[text]maintenance-end"></p>
         </div>
       </div>
     </section>
   </main>
 
-  <script src="/scripts/translation.js" defer></script>
+  <script src="/scripts/translation.js"></script>
+  <script src="/scripts/maintenance-auth.js?v=YYYYMMDD-1"></script>
 </body>
 ```
 
-## Translation Rules
+## Auth Script Contract
 
-Use `translation-system` for all copy changes.
+Create or update `/scripts/maintenance-auth.js`. Use the existing project implementation if present. The minimum behavior is:
 
-Required translation-key group:
+```js
+(() => {
+  const AUTH_STORAGE_KEY = "expaforceMaintenanceAuthorized";
+  const AUTH_COOKIE_NAME = "expaforceMaintenanceAuthorized";
+  const AUTH_COOKIE_MAX_AGE = 86400;
+  const AUTH_HASH = "72a100f863e29954b6c05a7f1a48a12c7c497701333f87af89447113f52e3d26";
 
-- `maintenance-meta-title`
-- `maintenance-meta-description`
-- `maintenance-brand-aria`
-- `maintenance-logo-alt`
-- `maintenance-lang-aria`
-- `maintenance-eyebrow`
-- `maintenance-title`
-- `maintenance-text`
-- `maintenance-contacts-aria`
-- `maintenance-contacts-title`
-- `maintenance-email-label`
-- `maintenance-phone-label`
-- `maintenance-messengers-label` if messenger links are present
-- `maintenance-telegram-aria` if Telegram is present
-- `maintenance-whatsapp-aria` if WhatsApp is present
+  function getAuthElements() {
+    return {
+      body: document.body,
+      form: document.querySelector("[data-maintenance-auth-form]"),
+      drawer: document.querySelector("[data-maintenance-auth-drawer]"),
+      backdrop: document.querySelector("[data-maintenance-auth-backdrop]"),
+      openButton: document.querySelector("[data-maintenance-auth-open]"),
+      closeButton: document.querySelector("[data-maintenance-auth-close]"),
+      error: document.querySelector("[data-maintenance-auth-error]"),
+      login: document.querySelector("#maintenance-login"),
+      password: document.querySelector("#maintenance-password"),
+    };
+  }
 
-Rules:
+  async function hashCredentials(login, password) {
+    const value = `${login}:${password}`;
 
-- Add every key to every language in `scripts/lang.json`.
-- Use `data-i18n` on all visible copy and accessibility labels.
-- Use `data-set-lang` for language buttons; do not create a separate language-switching script.
-- Match the supported language list to the top-level language keys in `scripts/lang.json`.
+    if (window.crypto && window.crypto.subtle && typeof TextEncoder !== "undefined") {
+      try {
+        const payload = new TextEncoder().encode(value);
+        const digest = await window.crypto.subtle.digest("SHA-256", payload);
+        return Array.from(new Uint8Array(digest)).map((byte) => byte.toString(16).padStart(2, "0")).join("");
+      } catch (error) {
+        console.warn("[maintenance-auth] Web Crypto failed, use fallback hash.", error);
+      }
+    }
 
-## Layout Rules
+    // Include a SHA-256 fallback or use the existing project helper.
+    return sha256Fallback(value);
+  }
 
-- Use a single focused page, not multiple business sections.
-- Use `section > container > section__inner` for the main content area.
-- Keep layout grid/flex controlled by parent wrappers and `gap`.
-- Use spacing tokens from the project design system.
-- Do not use arbitrary offsets, hardcoded heights, negative margins, or transforms for normal layout.
-- On mobile, stack logo/language controls and content/contact blocks cleanly.
-- If the content/contact area becomes two-column on desktop, run the `section-visual-balance` checklist.
+  function setAuthCookie() {
+    const secureFlag = window.location.protocol === "https:" ? "; Secure" : "";
+    document.cookie = `${AUTH_COOKIE_NAME}=${encodeURIComponent(AUTH_HASH)}; Path=/; Max-Age=${AUTH_COOKIE_MAX_AGE}; SameSite=Lax${secureFlag}`;
+  }
 
-## Contact Rules
+  function getRedirectTarget() {
+    const path = window.location.pathname || "/";
+    if (path === "/maintenance.html" || path.endsWith("/maintenance.html")) return "/index.html";
+    return `${path}${window.location.search || ""}${window.location.hash || ""}`;
+  }
 
-- Reuse verified project contacts from `partials/footer.html`, contact sections, or existing translation keys.
-- Keep contact links functional: `mailto:`, `tel:`, and real messenger URLs when available.
-- If a messenger URL is still `#`, either replace it with a verified URL or omit that messenger from the maintenance page.
-- The contact block must remain visible without scrolling on common desktop viewports when practical.
+  function openDrawer(elements) {
+    elements.body.classList.add("is-auth-drawer-open");
+    elements.drawer?.setAttribute("aria-hidden", "false");
+    elements.openButton?.setAttribute("aria-expanded", "true");
+    if (elements.backdrop) elements.backdrop.hidden = false;
+    window.setTimeout(() => elements.login?.focus(), 180);
+  }
 
-## Metadata Rules
+  function closeDrawer(elements) {
+    elements.body.classList.remove("is-auth-drawer-open");
+    elements.drawer?.setAttribute("aria-hidden", "true");
+    elements.openButton?.setAttribute("aria-expanded", "false");
+    if (elements.backdrop) elements.backdrop.hidden = true;
+  }
 
-For a temporary maintenance page:
+  function init() {
+    const elements = getAuthElements();
+    if (!elements.form || !elements.drawer || !elements.openButton) return;
 
-```html
-<title data-i18n="[text]maintenance-meta-title">Site maintenance | EXPAFORCE</title>
-<meta name="description" content="EXPAFORCE website is temporarily under maintenance. Contact us by email or phone while the site is unavailable." data-i18n="[content]maintenance-meta-description">
-<meta name="robots" content="noindex, nofollow">
+    closeDrawer(elements);
+
+    elements.openButton.addEventListener("click", () => openDrawer(elements));
+    elements.closeButton?.addEventListener("click", () => closeDrawer(elements));
+    elements.backdrop?.addEventListener("click", () => closeDrawer(elements));
+    document.addEventListener("keydown", (event) => {
+      if (event.key === "Escape") closeDrawer(elements);
+    });
+
+    elements.form.addEventListener("submit", async (event) => {
+      event.preventDefault();
+      if (elements.error) elements.error.hidden = true;
+
+      const formData = new FormData(elements.form);
+      const login = String(formData.get("login") || "").trim();
+      const password = String(formData.get("password") || "");
+
+      if ((await hashCredentials(login, password)) === AUTH_HASH) {
+        sessionStorage.setItem(AUTH_STORAGE_KEY, "true");
+        setAuthCookie();
+        window.location.assign(getRedirectTarget());
+        return;
+      }
+
+      sessionStorage.removeItem(AUTH_STORAGE_KEY);
+      if (elements.error) elements.error.hidden = false;
+      elements.password?.focus();
+    });
+  }
+
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", init);
+  } else {
+    init();
+  }
+})();
 ```
 
-If the server can be configured, serve maintenance responses with HTTP `503 Service Unavailable` and a `Retry-After` header.
+Important: the snippet references `sha256Fallback(value)`. Either include the full fallback helper from the existing project implementation or use another deterministic SHA-256 fallback. Do not leave correct credentials dependent only on `crypto.subtle`.
 
-Do not add normal landing-page schema to the maintenance page.
+## SCSS Shape
+
+Use the project tokens. The drawer must be fixed to the right and opened by a body class:
+
+```scss
+.maintenance__auth-backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: $z-menu-backdrop;
+  background-color: rgba($surface-color-dark, 0.36);
+  backdrop-filter: blur(3px);
+}
+
+.maintenance__auth-backdrop[hidden] {
+  display: none;
+}
+
+.maintenance__auth-drawer {
+  position: fixed;
+  inset-block: 0;
+  inset-inline-end: 0;
+  z-index: $z-modal;
+  display: grid;
+  width: min(100%, 440px);
+  padding: var(--space-4);
+  pointer-events: none;
+  transform: translateX(100%);
+  visibility: hidden;
+  transition: transform $transition-base, visibility $transition-base;
+}
+
+.page--maintenance.is-auth-drawer-open .maintenance__auth-drawer {
+  pointer-events: auto;
+  transform: translateX(0);
+  visibility: visible;
+}
+```
+
+Add project-consistent styles for `.maintenance__controls`, `.maintenance__auth`, `.maintenance__auth-header`, `.maintenance__auth-close`, `.maintenance__auth-form`, and `.maintenance__auth-error`. Reuse `.button`, `.card`, `.form-field`, and `.form-input`.
+
+## Translation Keys
+
+Use these key names in every supported language:
+
+```json
+"maintenance-auth-label": "Admin access",
+"maintenance-auth-title": "Maintenance page login",
+"maintenance-auth-text": "Enter the admin credentials to open the site during maintenance.",
+"maintenance-auth-open": "Admin access",
+"maintenance-auth-close-aria": "Close admin access panel",
+"maintenance-auth-login-label": "Login",
+"maintenance-auth-login-placeholder": "admin",
+"maintenance-auth-password-label": "Password",
+"maintenance-auth-password-placeholder": "Password",
+"maintenance-auth-error": "Invalid login or password.",
+"maintenance-auth-submit": "Log in"
+```
+
+## Validation Focus
+
+- `maintenance__layout` is not hidden.
+- `Admin access` opens a right-side drawer.
+- Wrong credentials show error and no redirect.
+- `admin` / `bababiboba` sets the cookie and redirects to the site.
+- `.htaccess` allows requests when that cookie is present.
+- Script URL has a cache-busting query after auth script changes.

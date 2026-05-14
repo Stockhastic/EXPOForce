@@ -1,156 +1,173 @@
 ---
 name: maintenance-system
-description: Implement a production-ready website maintenance mode from scratch, based on the Armbiz static-site pattern. Use when Codex is asked to add, recreate, repair, or document a maintenance/technical works/under construction system for a website, especially Apache or .htaccess based static sites that need a toggle file, HTTP 503 responses, a branded maintenance page, i18n text, static asset allowlists, and deployment-safe validation.
+description: Implement or update the EXPOForce-style maintenance system for static/Apache websites: marker-file controlled HTTP 503 maintenance mode, branded maintenance.html, asset allowlist, multilingual copy, right-edge admin access drawer, and a temporary cookie-based preview bypass that opens the real site after login. Use when Codex is asked to create, repair, review, enable, disable, or document maintenance/technical works/under-construction behavior.
 ---
 
 # Maintenance System
 
-## Overview
+## Goal
 
-Build maintenance mode as a server-side gate, not as a client-side redirect. The working pattern is: Apache returns HTTP 503 when a marker file exists, serves `maintenance.html` as the error document, and allowlists only the maintenance page plus assets/scripts required to render it.
+Build maintenance mode as a server-side gate with a preview bypass:
+
+1. A zero-byte `maintenance.enable` file turns maintenance mode on.
+2. Apache returns `503 Service Unavailable` for normal pages and serves `/maintenance.html` as `ErrorDocument 503`.
+3. `/maintenance.html` stays visible as a real maintenance page for visitors.
+4. An `Admin access` button opens a drawer from the right edge of the screen.
+5. Correct credentials set a temporary preview cookie and redirect the user back to the site.
+6. `.htaccess` lets requests with that cookie bypass maintenance mode.
+
+This is a temporary preview gate, not real security. If the site contains sensitive data, recommend Basic Auth, `.htpasswd`, Cloudflare Access, hosting-level password protection, or backend authentication.
 
 ## Core Contract
 
-- Use a zero-byte marker file named `maintenance.enable` in the web root as the on/off switch.
-- Do not rely on `maintenance.disable`; in the Armbiz pattern it is only a harmless file unless rewrite rules explicitly check it.
-- Return `503 Service Unavailable` for blocked pages so search engines and monitors understand the outage is temporary.
-- Serve `/maintenance.html` as `ErrorDocument 503`.
-- Set `Retry-After`, usually `3600`, through `mod_headers` when available.
-- Allow static paths needed by the maintenance page: `/src/`, `/scripts-js-php/`, `/partials/`, `/favicon.ico`, and `/.well-known/`.
-- Keep the maintenance page independent enough to render when normal navigation, forms, or dynamic content are unavailable.
+- Use `maintenance.enable` in the web root as the on/off marker.
+- Do not use JavaScript redirects as the maintenance gate.
+- Return HTTP `503` for blocked public pages.
+- Serve `/maintenance.html` as the `ErrorDocument 503`.
+- Keep `/maintenance.html`, required CSS/JS/assets, favicon, and well-known files reachable.
+- Add a cookie bypass condition before URI allowlist checks.
+- Keep the maintenance content visible; do not hide it behind the access form.
+- The access form must be in a right-side drawer opened by a button.
+- On successful access, set the preview cookie and redirect to the requested page; if already on `/maintenance.html`, redirect to `/index.html`.
+- Add or update i18n keys for every supported language when the project uses `data-i18n`.
+- Rebuild compiled CSS when the repo commits built CSS.
 
-## Implementation Workflow
+## Default Preview Credentials
 
-1. Inspect the stack and document root.
-   - For Apache/static sites, edit root `.htaccess`.
-   - For another server, implement the same semantics in that server: marker-controlled gate, 503 status, maintenance page, static asset allowlist, `Retry-After`.
-2. Add or update the server gate before unrelated rewrite rules that could swallow the request.
-3. Create `maintenance.html` at the web root.
-4. Reuse the site's global CSS, fonts, favicon, cursor/page-fade elements, language switcher, and contact patterns when they exist.
-5. Add i18n keys to the existing translation source if the site uses `data-i18n`.
-6. Add scoped `.maintenance` styles in the source stylesheet; rebuild or update compiled CSS according to the repo's existing workflow.
-7. Validate both disabled and enabled states before finishing.
+Use these defaults for this project unless the user provides different temporary credentials:
+
+```txt
+login: admin
+password: bababiboba
+sha256("admin:bababiboba"): 72a100f863e29954b6c05a7f1a48a12c7c497701333f87af89447113f52e3d26
+cookie: expaforceMaintenanceAuthorized
+```
+
+Use the hash as both the comparison target and the cookie value. Do not present this as secure authentication; the frontend code and cookie value are inspectable.
 
 ## Apache Pattern
 
-Use this `.htaccess` block as the default shape. Preserve existing canonical-host redirects above it when they must run before maintenance mode.
+Preserve canonical host/HTTPS redirects above this block if the site needs them before maintenance mode.
 
 ```apache
 RewriteEngine On
 
-# Toggle maintenance mode by creating/removing /maintenance.enable
+# Enable maintenance mode by creating /maintenance.enable in the web root.
 RewriteCond %{DOCUMENT_ROOT}/maintenance.enable -f
+RewriteCond %{HTTP_COOKIE} !(^|;\s*)expaforceMaintenanceAuthorized=72a100f863e29954b6c05a7f1a48a12c7c497701333f87af89447113f52e3d26($|;) [NC]
 RewriteCond %{REQUEST_URI} !^/maintenance\.html$ [NC]
 RewriteCond %{REQUEST_URI} !^/src/ [NC]
+RewriteCond %{REQUEST_URI} !^/scripts/ [NC]
 RewriteCond %{REQUEST_URI} !^/scripts-js-php/ [NC]
 RewriteCond %{REQUEST_URI} !^/partials/ [NC]
 RewriteCond %{REQUEST_URI} !^/favicon\.ico$ [NC]
+RewriteCond %{REQUEST_URI} !^/faicon\.ico$ [NC]
 RewriteCond %{REQUEST_URI} !^/\.well-known/ [NC]
 RewriteRule ^ - [R=503,L]
 
 ErrorDocument 503 /maintenance.html
 
 <IfModule mod_headers.c>
-    Header always set Retry-After "3600"
+    Header always set Retry-After "3600" "expr=%{REQUEST_STATUS} == 503"
+    Header always set Cache-Control "no-store, max-age=0" "expr=%{REQUEST_STATUS} == 503"
 </IfModule>
 ```
 
-Adjust the allowlist if the maintenance page uses different asset directories, analytics scripts, CDN paths, or API endpoints. Keep the allowlist minimal.
+Adjust the asset allowlist to the actual repo. Keep it minimal, but do not block CSS, JS, fonts, images, translation JSON, favicons, or scripts required by `maintenance.html`.
 
-## Maintenance Page
+## Page Structure
 
-Use a standalone `maintenance.html` that follows the site's existing HTML conventions:
+Use the site's normal section/container/card/button/form classes when available. The maintenance page should have:
 
-- Include the global stylesheet with absolute paths, for example `/src/css/styles.css`.
-- Preload site fonts when other pages do.
-- Include favicon links and manifest when the site already has them.
-- Include `#cursor`, `#aura`, and `.page-fade` if the global script expects them.
-- Add language buttons with `.header__lang-switcher-item` and `data-lang` so the existing language handler can work.
-- Mark text nodes with `data-i18n` keys.
-- Include direct emergency contact links in the page or a non-empty `#contact-us-short.contact` block. In Armbiz, `includes.js` only replaces this partial when it is empty, so inline contact content remains stable during maintenance.
-- Load shared scripts at the end only if they are allowlisted and tolerate missing normal-page elements.
-- Keep third-party analytics/widgets optional. Reuse them only if already present in the site and they do not block rendering.
+- `section.section--maintenance.maintenance`
+- a top row with logo, language switcher, and secondary `Admin access` button
+- visible maintenance copy and contact/status cards
+- `.maintenance__auth-backdrop`
+- right-edge `.maintenance__auth-drawer`
+- `.maintenance__auth` card containing the form
+- `/scripts/translation.js` before `/scripts/maintenance-auth.js`
 
-Recommended page sections:
+Do not add `hidden` to the main maintenance layout. Do not make the form the first or only visible page content.
 
-- background decoration: `.maintenance__bg-design`
-- language switcher: `.maintenance__lang-switcher`
-- centered logo: `.maintenance__logo`
-- message block: `.maintenance__title`, `.maintenance__subtitle`
-- contact block: emails, phones, addresses, messengers
-- footer/legal line: `.maintenance__end`
+For the canonical markup and JS shape, read `references/maintenance-page-format.md`.
+If creating a new page from scratch, use `assets/maintenance-page-template.html` as the starting HTML and adapt paths/copy to the repo.
 
-## I18n Contract
+## Drawer Behavior
 
-When the project has a JSON dictionary and a generic `data-i18n` applier, add the same keys to every supported language:
+The access drawer must:
+
+- open from the right when `[data-maintenance-auth-open]` is clicked
+- set `aria-expanded="true"` on the open button
+- set `aria-hidden="false"` on the drawer
+- reveal a backdrop
+- focus the login field after opening
+- close on close button, backdrop click, and `Escape`
+- show an `aria-live="polite"` error on invalid credentials
+- keep the page in maintenance state when credentials are wrong
+
+On valid credentials:
+
+- set `sessionStorage["expaforceMaintenanceAuthorized"] = "true"` as a tab/session convenience flag
+- set cookie `expaforceMaintenanceAuthorized=<hash>; Path=/; Max-Age=86400; SameSite=Lax`
+- add `Secure` only when `window.location.protocol === "https:"`
+- redirect to the current requested path, or `/index.html` when the current path is `/maintenance.html`
+
+Include a Web Crypto fallback or avoid relying solely on `crypto.subtle`; otherwise correct credentials can fail on non-secure origins or older browsers.
+
+## Styling Rules
+
+Scope styles under `.maintenance` / `.page--maintenance` and reuse project tokens:
+
+- existing colors, radius, shadows, transitions, z-index variables
+- existing `.button`, `.card`, `.form-field`, `.form-input`
+- tokenized gaps and padding
+- no arbitrary offsets to position normal content
+
+Drawer essentials:
+
+- `position: fixed`
+- `inset-block: 0`
+- `inset-inline-end: 0`
+- `width: min(100%, 440px)` or the closest project-appropriate drawer width
+- start at `transform: translateX(100%)`
+- open via `.page--maintenance.is-auth-drawer-open .maintenance__auth-drawer { transform: translateX(0); }`
+- use backdrop under the drawer
+- keep mobile width at `100%` and tokenized padding
+
+## I18n Keys
+
+When the repo uses `scripts/lang.json` and `data-i18n`, add the access keys to every supported language:
 
 ```json
-"maintenance-title": "Right now we are under <span class=\"special-text\">maintenance</span>",
-"maintenance-subtitle1": "We are doing our best to complete the technical work as quickly as possible.",
-"maintenance-subtitle2": "In case of emergency, contact us by messenger, email, or phone on weekdays from 10:00 to 18:00 Armenian time.",
-"maintenance-address-title": "Our offices",
-"maintenance-address-subtitle1": "Armenia, Yerevan, Arabkir, Vagharsh Vagharshyan 12/1",
-"maintenance-address-subtitle2": "Russia, Moscow, Sibirski Proezd 2b2",
-"maintenance-end-title": "&copy; 2026 Armbiz Consulting - Your success is Our mission"
+"maintenance-auth-label": "Admin access",
+"maintenance-auth-title": "Maintenance page login",
+"maintenance-auth-text": "Enter the admin credentials to open the site during maintenance.",
+"maintenance-auth-open": "Admin access",
+"maintenance-auth-close-aria": "Close admin access panel",
+"maintenance-auth-login-label": "Login",
+"maintenance-auth-login-placeholder": "admin",
+"maintenance-auth-password-label": "Password",
+"maintenance-auth-password-placeholder": "Password",
+"maintenance-auth-error": "Invalid login or password.",
+"maintenance-auth-submit": "Log in"
 ```
 
-If the dictionary is strict JSON, preserve commas and escaping. If the project stores non-ASCII text, keep the file's existing encoding and line endings.
-
-## Styling Pattern
-
-Scope styles under `.maintenance` and reuse existing variables/mixins. In the Armbiz SCSS structure, maintenance styles live in `src/scss/styles.scss` after the shared background animation styles.
-
-```scss
-.maintenance {
-    &-container {
-        height: 100vh;
-        display: flex;
-        flex-direction: column;
-        justify-content: space-between;
-    }
-
-    &__logo {
-        align-self: flex-start;
-        margin-top: 2rem;
-        width: 200px;
-        display: flex;
-        margin-inline: auto;
-    }
-
-    &__title,
-    &__subtitle,
-    &__end {
-        text-align: center;
-    }
-
-    &__bg-design {
-        position: absolute;
-        z-index: -100;
-        height: 100vh;
-        width: 100vw;
-        overflow: hidden;
-    }
-
-    &__lang-switcher {
-        right: 0;
-        position: absolute;
-        display: flex;
-        justify-content: center;
-    }
-}
-```
-
-Also include responsive adjustments through the project's existing mixins. After editing SCSS, run the repo's build command if one exists. If the repo commits compiled CSS and has no build tooling, update compiled CSS only in the style expected by that repo.
+Localize values for non-English languages. Keep key names identical across languages.
 
 ## Validation
 
-Always test the behavior, not just file presence.
+Always validate behavior, not just file presence:
 
-- With no `maintenance.enable`, normal pages should load normally.
-- After creating `maintenance.enable`, `/`, `/index.html`, and nested pages should return 503.
-- `/maintenance.html` should return 200 and render with CSS, fonts, icons, i18n, and contact links.
-- `/src/...`, `/scripts-js-php/...`, `/partials/...`, `/favicon.ico`, and `/.well-known/...` should remain reachable if used.
-- Confirm the 503 response includes `Retry-After` when `mod_headers` is available.
+- With no `maintenance.enable`, normal pages load normally.
+- With `maintenance.enable` and no cookie, `/`, `/index.html`, and nested pages return `503`.
+- With `maintenance.enable` and no cookie, `/maintenance.html` returns `200` and renders CSS, JS, language switching, contacts, and the drawer button.
+- Asset paths used by the page remain reachable.
+- Drawer opens from the right, focuses login, closes via close/backdrop/Escape, and does not hide maintenance content.
+- Wrong credentials show an error and do not redirect.
+- Correct credentials set the cookie and redirect to `/index.html` from `/maintenance.html`.
+- Correct credentials from a nested blocked URL redirect back to that URL when Apache serves `maintenance.html` as `ErrorDocument 503`.
+- A request with the preview cookie bypasses the `.htaccess` maintenance rule.
+- `Retry-After` and no-store cache headers are present on `503` responses when `mod_headers` is available.
 - Remove `maintenance.enable` after testing unless the user explicitly wants maintenance mode active.
 
 Useful local toggle commands on Windows:
@@ -162,8 +179,11 @@ Remove-Item -LiteralPath .\maintenance.enable
 
 ## Common Pitfalls
 
-- Do not redirect all requests to `maintenance.html` with JavaScript; crawlers and monitors need HTTP 503.
-- Do not block the assets needed by the maintenance page.
+- Do not use a frontend-only overlay when Apache maintenance mode is required.
+- Do not hide all maintenance copy until login.
+- Do not set only `sessionStorage`; Apache cannot read it. Use the preview cookie.
+- Do not forget the cookie bypass condition in `.htaccess`.
+- Do not block `/scripts/`, `/scripts-js-php/`, translation JSON, or CSS needed by `maintenance.html`.
 - Do not let `ErrorDocument 503` itself trigger the maintenance rule.
-- Do not expose normal dynamic forms unless the user confirms they should work during maintenance.
+- Do not call this real authentication or promise security.
 - Do not deploy `maintenance.enable` unintentionally.

@@ -2,6 +2,7 @@ RewriteEngine On
 
 # Enable maintenance mode by creating /maintenance.enable in the web root.
 RewriteCond %{DOCUMENT_ROOT}/maintenance.enable -f
+RewriteCond %{HTTP_COOKIE} !(^|;\s*)expaforceMaintenanceAuthorized=72a100f863e29954b6c05a7f1a48a12c7c497701333f87af89447113f52e3d26($|;) [NC]
 RewriteCond %{REQUEST_URI} !^/maintenance\.html$ [NC]
 RewriteCond %{REQUEST_URI} !^/src/ [NC]
 RewriteCond %{REQUEST_URI} !^/scripts/ [NC]

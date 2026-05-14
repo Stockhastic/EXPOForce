@@ -40,11 +40,47 @@
                         <a class="maintenance__brand" href="/index.html" aria-label="EXPAFORCE главная" data-i18n="[aria-label]header-brand-aria">
                             <img class="maintenance__logo" src="/src/graphics/png/logo-rast.png" alt="Логотип EXPAFORCE" data-i18n="[alt]header-logo-alt">
                         </a>
-                        <div class="header__lang maintenance__lang" aria-label="Переключение языка" data-i18n="[aria-label]header-lang-aria">
-                            <button type="button" class="header__lang-button" data-set-lang="ru">RU</button>
-                            <button type="button" class="header__lang-button" data-set-lang="en">EN</button>
+                        <div class="maintenance__controls">
+                            <button class="button button--secondary button--small maintenance__admin-button" type="button" data-maintenance-auth-open aria-controls="maintenance-auth-panel" aria-expanded="false" data-i18n="[text]maintenance-auth-open">Admin access</button>
+                            <div class="header__lang maintenance__lang" aria-label="Переключение языка" data-i18n="[aria-label]header-lang-aria">
+                                <button type="button" class="header__lang-button" data-set-lang="ru">RU</button>
+                                <button type="button" class="header__lang-button" data-set-lang="en">EN</button>
+                            </div>
                         </div>
                     </div>
+
+                    <div class="maintenance__auth-backdrop" data-maintenance-auth-backdrop hidden></div>
+                    <aside class="maintenance__auth-drawer" id="maintenance-auth-panel" data-maintenance-auth-drawer aria-hidden="true" aria-labelledby="maintenance-auth-title">
+                        <div class="card maintenance__auth" data-maintenance-auth>
+                            <div class="maintenance__auth-header">
+                                <div class="maintenance__auth-heading">
+                                    <p class="maintenance__card-label" data-i18n="[text]maintenance-auth-label">Admin access</p>
+                                    <h2 class="maintenance__auth-title" id="maintenance-auth-title" data-i18n="[text]maintenance-auth-title">Maintenance page login</h2>
+                                </div>
+                                <button class="maintenance__auth-close" type="button" data-maintenance-auth-close aria-label="Close admin panel" data-i18n="[aria-label]maintenance-auth-close-aria">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+
+                            <p class="maintenance__auth-text" data-i18n="[text]maintenance-auth-text">Enter the admin credentials to open the site during maintenance.</p>
+
+                            <form class="maintenance__auth-form" data-maintenance-auth-form novalidate>
+                                <div class="form-field">
+                                    <label class="form-label" for="maintenance-login" data-i18n="[text]maintenance-auth-login-label">Login</label>
+                                    <input class="form-input" id="maintenance-login" name="login" type="text" autocomplete="username" required placeholder="admin" data-i18n="[placeholder]maintenance-auth-login-placeholder">
+                                </div>
+
+                                <div class="form-field">
+                                    <label class="form-label" for="maintenance-password" data-i18n="[text]maintenance-auth-password-label">Password</label>
+                                    <input class="form-input" id="maintenance-password" name="password" type="password" autocomplete="current-password" required placeholder="Password" data-i18n="[placeholder]maintenance-auth-password-placeholder">
+                                </div>
+
+                                <p class="maintenance__auth-error" data-maintenance-auth-error data-i18n="[text]maintenance-auth-error" aria-live="polite" hidden>Invalid login or password.</p>
+
+                                <button class="button button--primary button--full" type="submit" data-i18n="[text]maintenance-auth-submit">Log in</button>
+                            </form>
+                        </div>
+                    </aside>
 
                     <div class="maintenance__layout">
                         <div class="maintenance__content">
@@ -92,5 +128,6 @@
     </main>
 
     <script src="/scripts/translation.js"></script>
+    <script src="/scripts/maintenance-auth.js?v=20260514-2"></script>
 </body>
 </html>

@@ -550,7 +550,18 @@
         "maintenance-contact-label": "Связаться с командой",
         "maintenance-note-label": "Для клиентов",
         "maintenance-note-text": "Если вопрос связан с текущими поставками, заказами или возвратами, используйте прямые рабочие контакты. Мы обработаем обращение вне сайта.",
-        "maintenance-end": "© 2026 EXPAFORCE. Фулфилмент для маркетплейсов, D2C и B2B."
+        "maintenance-end": "© 2026 EXPAFORCE. Фулфилмент для маркетплейсов, D2C и B2B.",
+        "maintenance-auth-label": "Административный доступ",
+        "maintenance-auth-title": "Вход на maintenance-страницу",
+        "maintenance-auth-text": "Введите учетные данные администратора, чтобы открыть сайт во время профилактики.",
+        "maintenance-auth-open": "Админ-доступ",
+        "maintenance-auth-close-aria": "Закрыть панель административного доступа",
+        "maintenance-auth-login-label": "Логин",
+        "maintenance-auth-login-placeholder": "admin",
+        "maintenance-auth-password-label": "Пароль",
+        "maintenance-auth-password-placeholder": "Пароль",
+        "maintenance-auth-error": "Неверный логин или пароль.",
+        "maintenance-auth-submit": "Войти"
     },
     "en": {
         "meta-description": "EXPAFORCE provides fulfillment for marketplace and D2C brands: inbound, storage, pick and pack, marketplace prep, shipping, and returns.",
@@ -1103,6 +1114,17 @@
         "maintenance-contact-label": "Contact the team",
         "maintenance-note-label": "For clients",
         "maintenance-note-text": "If your question is related to current shipments, orders, or returns, use the direct working contacts. We will handle the request outside the site.",
-        "maintenance-end": "© 2026 EXPAFORCE. Fulfillment for marketplaces, D2C, and B2B."
+        "maintenance-end": "© 2026 EXPAFORCE. Fulfillment for marketplaces, D2C, and B2B.",
+        "maintenance-auth-label": "Admin access",
+        "maintenance-auth-title": "Maintenance page login",
+        "maintenance-auth-text": "Enter the admin credentials to open the site during maintenance.",
+        "maintenance-auth-open": "Admin access",
+        "maintenance-auth-close-aria": "Close admin access panel",
+        "maintenance-auth-login-label": "Login",
+        "maintenance-auth-login-placeholder": "admin",
+        "maintenance-auth-password-label": "Password",
+        "maintenance-auth-password-placeholder": "Password",
+        "maintenance-auth-error": "Invalid login or password.",
+        "maintenance-auth-submit": "Log in"
     }
 }
