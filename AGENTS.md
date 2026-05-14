@@ -39,6 +39,7 @@ Use the project skills together whenever a page needs both visual quality and fu
 - Apply `seo-optimization` to verify page intent, semantic structure, heading hierarchy, metadata, internal links, images, and share preview readiness.
 - Use `translation-system` when any UI text is multilingual, to keep translation keys consistent and data-i18n markup correct.
 - Use `image-prompt-generator` when visual assets or imagery prompts are required, ensuring images match the page identity and SEO preview needs.
+- Use `maintenance-system` when creating, updating, enabling, disabling, or reviewing a maintenance page or temporary maintenance-mode fallback. Combine it with `translation-system`, `seo-optimization`, `design-consistency`, and `performance` whenever the maintenance page touches multilingual copy, indexation, layout, or loading behavior.
 
 This workflow is not linear; use the relevant skill at each stage and revisit others as the page evolves.
 
@@ -592,6 +593,20 @@ Use the `scroll-reveal-animations` skill especially when:
 - designing pages where staggered timing improves visual narrative
 - needing GPU-accelerated, jank-free scroll animations
 - working with asymmetric layouts where animation direction matters
+
+Use the `maintenance-system` skill for:
+- creating or updating a maintenance page
+- enabling or disabling a temporary maintenance-mode fallback
+- adding maintenance-page logo, unavailable-site message, contact block, or language switcher
+- validating maintenance-specific metadata, `noindex`, `503`/`Retry-After` guidance, and fallback behavior
+- keeping the page lightweight, contactable, multilingual, and aligned with the project design system
+
+Use the `maintenance-system` skill together with:
+- `translation-system` when the page has multilingual copy or language buttons
+- `seo-optimization` when metadata, canonical/indexation, or public maintenance responses are changed
+- `design-consistency` when adding page layout or SCSS
+- `section-visual-balance` when the maintenance layout uses multiple columns or contact cards
+- `performance` when adding assets, scripts, fonts, or deployment rules
 
 ---
 

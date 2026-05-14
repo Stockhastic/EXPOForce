@@ -1,0 +1,18 @@
+RewriteEngine On
+
+# Enable maintenance mode by creating /maintenance.enable in the web root.
+RewriteCond %{DOCUMENT_ROOT}/maintenance.enable -f
+RewriteCond %{REQUEST_URI} !^/maintenance\.html$ [NC]
+RewriteCond %{REQUEST_URI} !^/src/ [NC]
+RewriteCond %{REQUEST_URI} !^/scripts/ [NC]
+RewriteCond %{REQUEST_URI} !^/favicon\.ico$ [NC]
+RewriteCond %{REQUEST_URI} !^/faicon\.ico$ [NC]
+RewriteCond %{REQUEST_URI} !^/\.well-known/ [NC]
+RewriteRule ^ - [R=503,L]
+
+ErrorDocument 503 /maintenance.html
+
+<IfModule mod_headers.c>
+    Header always set Retry-After "3600" "expr=%{REQUEST_STATUS} == 503"
+    Header always set Cache-Control "no-store, max-age=0" "expr=%{REQUEST_STATUS} == 503"
+</IfModule>

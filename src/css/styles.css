@@ -627,6 +627,205 @@ strong {
     transform: none !important;
   }
 }
+.page--maintenance {
+  min-height: 100vh;
+  background-color: #f7faf3;
+}
+
+.section--maintenance {
+  min-height: 100svh;
+  display: grid;
+  align-items: center;
+  padding-block: var(--space-5);
+  background: linear-gradient(180deg, rgba(238, 246, 234, 0.96), rgba(247, 250, 243, 0.98)), linear-gradient(135deg, rgba(255, 255, 255, 0.84), rgba(231, 244, 223, 0.58));
+}
+
+.maintenance__inner {
+  gap: var(--space-6);
+}
+
+.maintenance__top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-4);
+}
+
+.maintenance__brand {
+  display: inline-flex;
+  align-items: center;
+  flex-shrink: 0;
+}
+
+.maintenance__logo {
+  display: block;
+  width: 104px;
+  height: auto;
+}
+
+.maintenance__lang {
+  flex-shrink: 0;
+}
+
+.maintenance__layout {
+  display: grid;
+  grid-template-columns: minmax(0, 0.98fr) minmax(320px, 0.72fr);
+  gap: var(--space-7);
+  align-items: center;
+}
+
+.maintenance__content {
+  display: grid;
+  gap: var(--space-5);
+  min-width: 0;
+}
+
+.maintenance__title {
+  max-width: 820px;
+  color: #06291c;
+  font-size: clamp(2.5rem, 4.6vw, 4rem);
+  font-weight: 700;
+  letter-spacing: 0;
+  line-height: 1.04;
+}
+
+.maintenance__text {
+  max-width: 680px;
+  color: rgba(6, 41, 28, 0.76);
+  font-size: 1.0625rem;
+  line-height: 1.7;
+}
+
+.maintenance__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-3);
+}
+
+.maintenance__aside {
+  display: grid;
+  gap: var(--space-4);
+  min-width: 0;
+}
+
+.maintenance__card {
+  gap: var(--space-4);
+  border-color: rgba(1, 63, 40, 0.12);
+  box-shadow: 0 18px 40px rgba(1, 63, 40, 0.09);
+}
+
+.maintenance__card--status {
+  border-top: var(--space-1) solid rgba(25, 116, 55, 0.78);
+}
+
+.maintenance__card--accent {
+  background-color: #013f28;
+  color: #fff;
+}
+
+.maintenance__card--accent .maintenance__card-label,
+.maintenance__card--accent .maintenance__card-note {
+  color: rgba(255, 255, 255, 0.82);
+}
+
+.maintenance__card-label,
+.maintenance__contact-label {
+  color: #197437;
+  font-size: 0.8125rem;
+  font-weight: 700;
+  line-height: 1.35;
+  text-transform: uppercase;
+}
+
+.maintenance__card-title {
+  font-size: 1.25rem;
+  line-height: 1.28;
+}
+
+.maintenance__card-text,
+.maintenance__card-note {
+  color: rgba(6, 41, 28, 0.76);
+  line-height: 1.65;
+}
+
+.maintenance__contact-list {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: var(--space-4);
+}
+
+.maintenance__contact-item {
+  display: grid;
+  gap: var(--space-1);
+  min-width: 0;
+  color: #06291c;
+}
+
+.maintenance__contact-value {
+  color: #013f28;
+  font-weight: 600;
+  line-height: 1.45;
+  overflow-wrap: anywhere;
+  transition: color 0.2s ease;
+}
+
+.maintenance__contact-item:hover .maintenance__contact-value,
+.maintenance__contact-item:focus .maintenance__contact-value {
+  color: #197437;
+}
+
+.maintenance__end {
+  color: rgba(6, 41, 28, 0.64);
+  font-size: 0.875rem;
+  line-height: 1.45;
+}
+
+@media (max-width: 1024px) {
+  .maintenance__layout {
+    grid-template-columns: 1fr;
+    gap: var(--space-6);
+  }
+  .maintenance__title {
+    max-width: 760px;
+    font-size: clamp(2.25rem, 7vw, 4rem);
+  }
+}
+@media (max-width: 768px) {
+  .section--maintenance {
+    align-items: start;
+  }
+  .maintenance__inner {
+    gap: var(--space-6);
+  }
+  .maintenance__top {
+    align-items: flex-start;
+  }
+  .maintenance__logo {
+    width: 96px;
+  }
+  .maintenance__contact-list {
+    grid-template-columns: 1fr;
+  }
+  .maintenance__actions {
+    flex-direction: column;
+    align-items: stretch;
+  }
+}
+@media (max-width: 375px) {
+  .maintenance__top {
+    flex-direction: column;
+  }
+  .maintenance__lang {
+    align-self: stretch;
+    justify-content: flex-start;
+  }
+  .maintenance__card {
+    padding: var(--space-4);
+  }
+  .maintenance__title {
+    font-size: 2.25rem;
+  }
+}
 .footer {
   background: radial-gradient(circle at 16% 0%, rgba(104, 182, 72, 0.16), rgba(104, 182, 72, 0) 34%), linear-gradient(180deg, rgba(25, 116, 55, 0.12) 0%, rgba(1, 63, 40, 0) 48%), #013f28;
   color: #fff;
@@ -2790,4 +2989,6 @@ html {
   .home-hero__title {
     font-size: 2.25rem;
   }
-}/*# sourceMappingURL=styles.css.map */
+}
+
+/*# sourceMappingURL=styles.css.map */

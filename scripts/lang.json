@@ -535,7 +535,22 @@
         "about-intro-image-alt": "Проход между складскими стеллажами EXPAFORCE с коробами и техникой",
         "home-offer-image-alt": "Команда EXPAFORCE на складе и в операционной зоне",
         "home-hero-stats-aria": "Операционные преимущества",
-        "home-marketplaces-list-aria": "Каналы и маркетплейсы EXPAFORCE"
+        "home-marketplaces-list-aria": "Каналы и маркетплейсы EXPAFORCE",
+        "maintenance-meta-title": "EXPAFORCE | Сайт временно на обслуживании",
+        "maintenance-meta-description": "Сайт EXPAFORCE временно закрыт на технические работы. Команда остается на связи по почте и телефону.",
+        "maintenance-eyebrow": "Технические работы",
+        "maintenance-title": "Сайт EXPAFORCE временно на обслуживании",
+        "maintenance-text": "Мы обновляем сайт и скоро вернем его в обычный режим. Фулфилмент-операции и рабочие контакты остаются доступными.",
+        "maintenance-primary": "Написать на почту",
+        "maintenance-secondary": "Позвонить",
+        "maintenance-aside-aria": "Контакты и статус обслуживания",
+        "maintenance-status-label": "Статус сайта",
+        "maintenance-status-title": "Временный режим обслуживания",
+        "maintenance-status-text": "Доступ к основным страницам ограничен, чтобы во время обновления не показывать неполную информацию.",
+        "maintenance-contact-label": "Связаться с командой",
+        "maintenance-note-label": "Для клиентов",
+        "maintenance-note-text": "Если вопрос связан с текущими поставками, заказами или возвратами, используйте прямые рабочие контакты. Мы обработаем обращение вне сайта.",
+        "maintenance-end": "© 2026 EXPAFORCE. Фулфилмент для маркетплейсов, D2C и B2B."
     },
     "en": {
         "meta-description": "EXPAFORCE provides fulfillment for marketplace and D2C brands: inbound, storage, pick and pack, marketplace prep, shipping, and returns.",
@@ -1073,6 +1088,21 @@
         "about-intro-image-alt": "EXPAFORCE warehouse aisle with stocked racks and handling equipment",
         "home-offer-image-alt": "EXPAFORCE team in the warehouse and operations area",
         "home-hero-stats-aria": "Operating advantages",
-        "home-marketplaces-list-aria": "EXPAFORCE marketplace and sales channels"
+        "home-marketplaces-list-aria": "EXPAFORCE marketplace and sales channels",
+        "maintenance-meta-title": "EXPAFORCE | Site temporarily under maintenance",
+        "maintenance-meta-description": "The EXPAFORCE site is temporarily closed for technical work. The team remains available by email and phone.",
+        "maintenance-eyebrow": "Technical maintenance",
+        "maintenance-title": "The EXPAFORCE site is temporarily under maintenance",
+        "maintenance-text": "We are updating the site and will return it to normal mode soon. Fulfillment operations and working contacts remain available.",
+        "maintenance-primary": "Email the team",
+        "maintenance-secondary": "Call us",
+        "maintenance-aside-aria": "Maintenance status and contacts",
+        "maintenance-status-label": "Site status",
+        "maintenance-status-title": "Temporary maintenance mode",
+        "maintenance-status-text": "Access to the main pages is limited so incomplete information is not shown during the update.",
+        "maintenance-contact-label": "Contact the team",
+        "maintenance-note-label": "For clients",
+        "maintenance-note-text": "If your question is related to current shipments, orders, or returns, use the direct working contacts. We will handle the request outside the site.",
+        "maintenance-end": "© 2026 EXPAFORCE. Fulfillment for marketplaces, D2C, and B2B."
     }
 }
