@@ -22,7 +22,7 @@
 .maintenance__top {
     display: flex;
     align-items: center;
-    justify-content: space-between;
+    justify-content: flex-start;
     gap: var(--space-4);
     flex-wrap: wrap;
 }
@@ -52,6 +52,14 @@
 .maintenance__admin-button,
 .maintenance__lang {
     flex-shrink: 0;
+}
+
+.maintenance__admin-button{
+    position: absolute;
+    right: 0;
+    padding: 1rem;
+    margin: 5rem;
+    background-color: #ffffffcb;
 }
 
 .maintenance__auth-backdrop {
