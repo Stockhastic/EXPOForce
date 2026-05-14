@@ -23,6 +23,19 @@ class ScrollRevealAnimations {
    */
   init() {
     if (this.initialized) return;
+
+    const elements = document.querySelectorAll('[data-reveal]');
+    if (!elements.length) {
+      this.initialized = true;
+      return;
+    }
+
+    if (!('IntersectionObserver' in window)) {
+      elements.forEach((el) => el.classList.add('reveal-active'));
+      this.initialized = true;
+      return;
+    }
+
     if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
       // Skip initialization if user prefers reduced motion
       return;
@@ -49,20 +62,33 @@ class ScrollRevealAnimations {
    */
   setupRevealElements() {
     const elements = document.querySelectorAll('[data-reveal]');
-    elements.forEach((el, index) => {
+    const groupIndexes = new Map();
+
+    elements.forEach((el) => {
       // If data-reveal is empty or "auto", detect animation type
       if (!el.getAttribute('data-reveal') || el.getAttribute('data-reveal') === 'auto') {
         const animationType = this.detectAnimationType(el);
         el.setAttribute('data-reveal', animationType);
       }
 
-      // Set stagger index for sequential animations
+      if (el.getAttribute('data-reveal') === 'none') {
+        el.classList.add('reveal-active');
+        return;
+      }
+
+      // Set stagger index for sequential animations within each section
       if (this.options.enableStagger) {
-        el.setAttribute('data-reveal-index', index + 1);
+        const group = el.closest('[data-reveal-group], section') || document.body;
+        const nextIndex = (groupIndexes.get(group) || 0) + 1;
+
+        groupIndexes.set(group, nextIndex);
+        el.setAttribute('data-reveal-index', Math.min(nextIndex, 20));
       }
 
       // Start observing
-      this.observer.observe(el);
+      if (!el.classList.contains('reveal-active')) {
+        this.observer.observe(el);
+      }
     });
   }
 

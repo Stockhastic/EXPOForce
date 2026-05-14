@@ -547,6 +547,12 @@ strong {
   transform: translateX(-40px);
 }
 
+@media (max-width: 768px) {
+  [data-reveal=fade-left],
+  [data-reveal=fade-right] {
+    transform: translateY(40px);
+  }
+}
 [data-reveal].reveal-active {
   opacity: 1;
   transform: translateY(0) translateX(0);

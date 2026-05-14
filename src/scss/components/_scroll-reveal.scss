@@ -36,6 +36,13 @@
   transform: translateX(-$reveal-offset);
 }
 
+@media (max-width: $tablet) {
+  [data-reveal="fade-left"],
+  [data-reveal="fade-right"] {
+    transform: translateY($reveal-offset);
+  }
+}
+
 // ---- Active State (Animation Triggered) ----
 [data-reveal].reveal-active {
   opacity: 1;
