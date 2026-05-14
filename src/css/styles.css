@@ -2452,8 +2452,7 @@ html {
 .home-cta,
 .cta {
   border-block: 1px solid rgba(1, 63, 40, 0.08);
-  background: linear-gradient(90deg, rgba(247, 250, 243, 0.94), rgba(247, 250, 243, 0.82) 54%, rgba(247, 250, 243, 0.72)), radial-gradient(circle at 82% 18%, rgba(255, 255, 255, 0.84), rgba(255, 255, 255, 0) 38%), url("../graphics/feedback-form-background.webp") center/cover no-repeat;
-  background-color: #eef6ea;
+  background: url("../graphics/feedback-form-background.webp") center/cover no-repeat;
 }
 
 .home-cta__content,

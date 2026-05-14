@@ -784,11 +784,7 @@ html {
 .home-cta,
 .cta {
     border-block: 1px solid rgba($accent-color-strong, 0.08);
-    background:
-        linear-gradient(90deg, rgba($bg-color, 0.94), rgba($bg-color, 0.82) 54%, rgba($bg-color, 0.72)),
-        radial-gradient(circle at 82% 18%, rgba($white, 0.84), rgba($white, 0) 38%),
-        url("../graphics/feedback-form-background.webp") center / cover no-repeat;
-    background-color: $surface-color;
+    background: url("../graphics/feedback-form-background.webp") center / cover no-repeat;
 }
 
 .home-cta__content,
