@@ -579,6 +579,20 @@ Use the `section-visual-balance` skill especially when:
 - desktop layout breaks awkwardly on mobile/tablet
 - spacing appears arbitrary rather than system-based
 
+Use the `scroll-reveal-animations` skill for:
+- implementing scroll-triggered entrance animations on page elements
+- staggered reveal timing across card grids, hero sections, or multi-element layouts
+- directional fade animations (up, down, left, right) based on element position
+- performance-optimized IntersectionObserver implementation
+- accessibility-aware animations that respect `prefers-reduced-motion` settings
+
+Use the `scroll-reveal-animations` skill especially when:
+- creating hero or service sections with multiple content blocks
+- building card grids that benefit from progressive reveal
+- designing pages where staggered timing improves visual narrative
+- needing GPU-accelerated, jank-free scroll animations
+- working with asymmetric layouts where animation direction matters
+
 ---
 
 ## Frontend conventions

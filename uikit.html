@@ -234,10 +234,60 @@
                 </div>
             </div>
         </section>
+        <!-- Scroll Reveal Animations Examples -->
+        <section class="section">
+            <div class="container">
+                <div class="section__inner">
+                    <div class="section-heading">
+                        <p class="section-heading__eyebrow">Scroll Reveal Animations</p>
+                        <h2 class="section-heading__title">Scroll Reveal Animation Types</h2>
+                    </div>
+
+                    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: var(--space-5); margin-top: var(--space-5);">
+                        <div class="card card--surface" data-reveal="fade-up">
+                            <h3 class="card__title">Fade Up</h3>
+                            <p class="card__text">Element enters from bottom with upward motion and opacity fade.</p>
+                            <p class="text-muted" style="font-size: 12px; margin-top: var(--space-3);">Use for: Bottom-aligned cards, footer content, closing CTAs</p>
+                        </div>
+
+                        <div class="card card--surface" data-reveal="fade-down">
+                            <h3 class="card__title">Fade Down</h3>
+                            <p class="card__text">Element enters from top with downward motion and opacity fade.</p>
+                            <p class="text-muted" style="font-size: 12px; margin-top: var(--space-3);">Use for: Hero text, top-aligned cards, section headers</p>
+                        </div>
+
+                        <div class="card card--surface" data-reveal="fade-left">
+                            <h3 class="card__title">Fade Left</h3>
+                            <p class="card__text">Element enters from right with leftward motion and opacity fade.</p>
+                            <p class="text-muted" style="font-size: 12px; margin-top: var(--space-3);">Use for: Right-column content, right-aligned cards, secondary visuals</p>
+                        </div>
+
+                        <div class="card card--surface" data-reveal="fade-right">
+                            <h3 class="card__title">Fade Right</h3>
+                            <p class="card__text">Element enters from left with rightward motion and opacity fade.</p>
+                            <p class="text-muted" style="font-size: 12px; margin-top: var(--space-3);">Use for: Left-column content, left-aligned cards, primary visuals</p>
+                        </div>
+                    </div>
+
+                    <h3 style="margin-top: var(--space-5); margin-bottom: var(--space-3);">Auto-Detection Example</h3>
+                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: var(--space-5); margin-top: var(--space-3);">
+                        <p class="card card--accent" style="padding: var(--space-4); border-radius: var(--radius-md);" data-reveal>
+                            <strong>Left column text</strong><br>
+                            Should animate with fade-right (enters from left)
+                        </p>
+                        <p class="card card--accent" style="padding: var(--space-4); border-radius: var(--radius-md);" data-reveal>
+                            <strong>Right column text</strong><br>
+                            Should animate with fade-left (enters from right)
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
     </main>
 
     <div id="footer"></div>
 
     <script src="scripts/partials.js"></script>
+    <script src="scripts/scroll-reveal.js"></script>
 </body>
 </html>
