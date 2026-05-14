@@ -637,7 +637,11 @@ strong {
   display: grid;
   align-items: center;
   padding-block: var(--space-5);
-  background: linear-gradient(180deg, rgba(238, 246, 234, 0.96), rgba(247, 250, 243, 0.98)), linear-gradient(135deg, rgba(255, 255, 255, 0.84), rgba(231, 244, 223, 0.58));
+  background-color: #f7faf3;
+  background-image: url("../graphics/png/expo-force-server-maintenance-background.png");
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
 }
 
 .maintenance__inner {
@@ -649,6 +653,7 @@ strong {
   align-items: center;
   justify-content: space-between;
   gap: var(--space-4);
+  flex-wrap: wrap;
 }
 
 .maintenance__brand {
@@ -669,6 +674,7 @@ strong {
   justify-content: flex-end;
   gap: var(--space-3);
   flex-wrap: wrap;
+  flex-shrink: 0;
   min-width: 0;
 }
 
@@ -912,6 +918,8 @@ strong {
 @media (max-width: 768px) {
   .section--maintenance {
     align-items: start;
+    background-image: linear-gradient(180deg, rgba(247, 250, 243, 0.98), rgba(247, 250, 243, 0.94)), url("../graphics/png/expo-force-server-maintenance-background.png");
+    background-position: 64% center;
   }
   .maintenance__inner {
     gap: var(--space-6);
@@ -3117,6 +3125,4 @@ html {
   .home-hero__title {
     font-size: 2.25rem;
   }
-}
-
-/*# sourceMappingURL=styles.css.map */
+}/*# sourceMappingURL=styles.css.map */
