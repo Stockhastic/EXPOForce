@@ -972,11 +972,7 @@ html {
 }
 
 .cta-form__grid--primary {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-}
-
-.cta-form__grid--primary .cta-form__field:last-child {
-    grid-column: 1 / -1;
+    grid-template-columns: minmax(0, 1fr);
 }
 
 .cta-form__field,
@@ -1044,15 +1040,19 @@ html {
 
 .cta-form__consent {
     display: grid;
-    grid-template-columns: auto minmax(0, 1fr);
+    grid-template-columns: max-content minmax(0, 1fr);
     gap: var(--space-2);
+    align-items: start;
     color: $text-color-muted;
     font-size: 0.875rem;
     line-height: 1.5;
 }
 
 .cta-form__consent input {
-    margin-block-start: var(--space-1);
+    inline-size: 1rem;
+    block-size: 1rem;
+    margin: 0;
+    margin-block-start: 0.2em;
     accent-color: $accent-color;
 }
 

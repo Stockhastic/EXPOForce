@@ -518,6 +518,68 @@ strong {
   flex-wrap: wrap;
 }
 
+.form-field[data-form-honeypot] {
+  position: absolute;
+  inline-size: 1px;
+  block-size: 1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+}
+
+.form-error {
+  display: block;
+  min-height: 20px;
+  margin-top: var(--space-1);
+  color: #f56565;
+  font-size: 0.875rem;
+  line-height: 1.25;
+}
+.form-error:empty {
+  display: none;
+}
+
+.form-input.has-error,
+.form-textarea.has-error,
+.form-field.is-invalid input[type=checkbox] {
+  border-color: #f56565;
+  background-color: #fff5f5;
+}
+
+.form-input.has-error:focus,
+.form-textarea.has-error:focus {
+  box-shadow: 0 0 0 3px rgba(245, 101, 101, 0.1);
+}
+
+.form-status {
+  display: block;
+  min-height: 24px;
+  margin-top: var(--space-4);
+  padding: var(--space-3);
+  border-radius: 4px;
+  font-size: 0.9375rem;
+  line-height: 1.5;
+  opacity: 0;
+  transition: opacity 0.2s ease;
+}
+.form-status:empty {
+  display: none;
+}
+.form-status--success {
+  display: block;
+  opacity: 1;
+  background-color: #c6f6d5;
+  color: #22543d;
+  border: 1px solid #9ae6b4;
+}
+.form-status--error {
+  display: block;
+  opacity: 1;
+  background-color: #fed7d7;
+  color: #742a2a;
+  border: 1px solid #fc8181;
+}
+
 [data-reveal] {
   opacity: 0;
   transform: translateY(0) translateX(0);
@@ -2640,11 +2702,7 @@ html {
 }
 
 .cta-form__grid--primary {
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-}
-
-.cta-form__grid--primary .cta-form__field:last-child {
-  grid-column: 1/-1;
+  grid-template-columns: minmax(0, 1fr);
 }
 
 .cta-form__field,
@@ -2712,15 +2770,19 @@ html {
 
 .cta-form__consent {
   display: grid;
-  grid-template-columns: auto minmax(0, 1fr);
+  grid-template-columns: max-content minmax(0, 1fr);
   gap: var(--space-2);
+  align-items: start;
   color: rgba(6, 41, 28, 0.76);
   font-size: 0.875rem;
   line-height: 1.5;
 }
 
 .cta-form__consent input {
-  margin-block-start: var(--space-1);
+  inline-size: 1rem;
+  block-size: 1rem;
+  margin: 0;
+  margin-block-start: 0.2em;
   accent-color: #197437;
 }
 
@@ -3133,4 +3195,6 @@ html {
   .home-hero__title {
     font-size: 2.25rem;
   }
-}/*# sourceMappingURL=styles.css.map */
+}
+
+/*# sourceMappingURL=styles.css.map */

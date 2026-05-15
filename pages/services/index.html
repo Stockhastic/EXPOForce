@@ -361,32 +361,33 @@
 
                     <form
                         class="form-group cta-form"
-                        action="mailto:info@expaforce.com?subject=Fulfillment%20brief%20request"
+                        action="/form-handler.php"
                         method="post"
-                        enctype="text/plain"
+                        data-form-handler="/form-handler.php"
                         accept-charset="UTF-8"
+                        novalidate
                     >
+                        <div class="form-field cta-form__honeypot" data-form-honeypot aria-hidden="true">
+                            <label>Website</label>
+                            <input type="text" name="website" tabindex="-1" autocomplete="off">
+                        </div>
+
                         <div class="cta-form__grid cta-form__grid--primary">
                             <label class="form-field cta-form__field">
                                 <span class="cta-form__label-line">
                                     <span class="form-label cta-form__label" data-i18n="[text]cta-form-name-label">Имя</span>
                                     <span class="cta-form__required" aria-hidden="true">*</span>
                                 </span>
-                                <input class="form-input cta-form__input" type="text" name="full_name" autocomplete="name" required placeholder="Введите имя" data-i18n="[placeholder]cta-form-name-placeholder">
-                            </label>
-                            <label class="form-field cta-form__field">
-                                <span class="cta-form__label-line">
-                                    <span class="form-label cta-form__label" data-i18n="[text]cta-form-company-label">Компания или бренд</span>
-                                    <span class="cta-form__required" aria-hidden="true">*</span>
-                                </span>
-                                <input class="form-input cta-form__input" type="text" name="company" autocomplete="organization" required placeholder="Введите название компании или бренда" data-i18n="[placeholder]cta-form-company-placeholder">
+                                <input class="form-input cta-form__input" type="text" name="full_name" autocomplete="name" required minlength="2" maxlength="120" placeholder="Введите имя" data-i18n="[placeholder]cta-form-name-placeholder">
+                                <span class="form-error" role="alert"></span>
                             </label>
                             <label class="form-field cta-form__field">
                                 <span class="cta-form__label-line">
                                     <span class="form-label cta-form__label" data-i18n="[text]cta-form-phone-label">Телефон или email</span>
                                     <span class="cta-form__required" aria-hidden="true">*</span>
                                 </span>
-                                <input class="form-input cta-form__input" type="text" name="phone" autocomplete="tel" required placeholder="+374 ... или email@example.com" data-i18n="[placeholder]cta-form-phone-placeholder">
+                                <input class="form-input cta-form__input" type="text" name="phone" autocomplete="tel" required maxlength="120" data-validate="phone-or-email" placeholder="+374 ... или email@example.com" data-i18n="[placeholder]cta-form-phone-placeholder">
+                                <span class="form-error" role="alert"></span>
                             </label>
                         </div>
 
@@ -395,18 +396,23 @@
                                 <span class="form-label cta-form__label" data-i18n="[text]cta-form-product-label">Что нужно обрабатывать?</span>
                                 <span class="cta-form__required" aria-hidden="true">*</span>
                             </span>
-                            <textarea class="form-textarea cta-form__textarea" name="product_context" rows="3" required placeholder="Например: косметика, 300 заказов в месяц, нужна упаковка, маркировка и обработка возвратов." data-i18n="[placeholder]cta-form-product-placeholder"></textarea>
+                            <textarea class="form-textarea cta-form__textarea" name="product_context" rows="3" required minlength="10" maxlength="2000" placeholder="Например: косметика, 300 заказов в месяц, нужна упаковка, маркировка и обработка возвратов." data-i18n="[placeholder]cta-form-product-placeholder"></textarea>
+                            <span class="form-error" role="alert"></span>
                         </label>
 
-                        <label class="cta-form__consent">
-                            <input type="checkbox" name="consent" required>
-                            <span data-i18n="[text]cta-form-consent">Согласен(-на) на обработку персональных данных.</span>
-                        </label>
+                        <div class="form-field cta-form__field-consent">
+                            <label class="cta-form__consent">
+                                <input type="checkbox" name="consent" required>
+                                <span data-i18n="[text]cta-form-consent">Согласен(-на) на обработку персональных данных.</span>
+                            </label>
+                            <span class="form-error" role="alert"></span>
+                        </div>
 
                         <div class="form-actions cta-form__actions">
                             <button class="button button--primary button--full" type="submit" data-i18n="[text]cta-primary">Получить предварительный расчёт</button>
-                            <p class="card__text cta-form__note" data-i18n="[html]cta-form-note">Также можно написать на <a href="mailto:info@expaforce.com">info@expaforce.com</a>.</p>
+                            <p class="card__text cta-form__note" data-i18n="[html]cta-form-note">Также можно написать на <a href="mailto:it@armbiz.am">it@armbiz.am</a>.</p>
                         </div>
+                        <span class="form-status" role="alert"></span>
                     </form>
                 </aside>
             </div>
@@ -418,6 +424,7 @@
 
     <script src="../../scripts/partials.js"></script>
     <script src="../../scripts/translation.js"></script>
+    <script src="../../scripts/form-validator.js"></script>
     <script src="../../scripts/script.js"></script>
 </body>
 </html>
