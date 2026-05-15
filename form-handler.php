@@ -19,7 +19,7 @@ if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
     respond(405, false, 'form-error-method');
 }
 
-$recipientEmail = 'it@armbiz.am';
+$recipientEmail = 'info@expaforce.com';
 $maxAttempts = 5;
 $timeWindow = 3600;
 
@@ -199,11 +199,13 @@ function sendSubmissionEmail(string $recipientEmail, array $submission): void
     }
 
     $host = getMailHost();
-    $subject = 'New fulfillment request from EXPAFORCE';
-    $body = buildEmailBody($submission);
+    $subject = encodeMailHeader('Новая заявка на фулфилмент EXPAFORCE');
+    $boundary = 'expaforce-' . bin2hex(random_bytes(16));
+    $body = buildMultipartEmailBody($submission, $boundary);
     $headers = [
-        'From: EXPAFORCE Website <noreply@' . $host . '>',
-        'Content-Type: text/plain; charset=UTF-8',
+        'From: EXPAFORCE <noreply@' . $host . '>',
+        'MIME-Version: 1.0',
+        'Content-Type: multipart/alternative; boundary="' . $boundary . '"',
         'X-Mailer: PHP/' . phpversion(),
     ];
 
@@ -216,26 +218,151 @@ function sendSubmissionEmail(string $recipientEmail, array $submission): void
     }
 }
 
-function buildEmailBody(array $submission): string
+function buildMultipartEmailBody(array $submission, string $boundary): string
+{
+    $plainTextBody = buildPlainTextEmailBody($submission);
+    $htmlBody = buildHtmlEmailBody($submission);
+
+    return implode("\r\n", [
+        '--' . $boundary,
+        'Content-Type: text/plain; charset=UTF-8',
+        'Content-Transfer-Encoding: 8bit',
+        '',
+        $plainTextBody,
+        '',
+        '--' . $boundary,
+        'Content-Type: text/html; charset=UTF-8',
+        'Content-Transfer-Encoding: 8bit',
+        '',
+        $htmlBody,
+        '',
+        '--' . $boundary . '--',
+        '',
+    ]);
+}
+
+function buildPlainTextEmailBody(array $submission): string
 {
     $lines = [
-        'New fulfillment request',
+        'Новая заявка на фулфилмент',
         '',
-        'Name: ' . $submission['full_name'],
-        'Contact: ' . $submission['phone'],
+        'Имя: ' . $submission['full_name'],
+        'Контакт: ' . $submission['phone'],
         '',
-        'What needs to be handled:',
+        'Что нужно обработать:',
         $submission['product_context'],
         '',
-        'Metadata:',
-        'Page: ' . ($submission['page_title'] ?: 'unknown'),
-        'URL: ' . ($submission['page_url'] ?: 'unknown'),
-        'Submitted at: ' . ($submission['submitted_at'] ?: gmdate('c')),
-        'IP: ' . ($_SERVER['REMOTE_ADDR'] ?? 'unknown'),
-        'User agent: ' . cleanText($_SERVER['HTTP_USER_AGENT'] ?? 'unknown', 300),
+        'Данные отправки:',
+        'Страница: ' . ($submission['page_title'] ?: 'неизвестно'),
+        'URL: ' . ($submission['page_url'] ?: 'неизвестно'),
+        'Дата отправки: ' . ($submission['submitted_at'] ?: gmdate('c')),
+        'IP: ' . ($_SERVER['REMOTE_ADDR'] ?? 'неизвестно'),
+        'Браузер: ' . cleanText($_SERVER['HTTP_USER_AGENT'] ?? 'неизвестно', 300),
     ];
 
     return implode("\n", $lines);
+}
+
+function buildHtmlEmailBody(array $submission): string
+{
+    $baseUrl = getBaseUrl();
+    $logoUrl = $baseUrl . '/src/graphics/svg/logo-white.svg';
+    $pageTitle = $submission['page_title'] ?: 'Неизвестная страница';
+    $pageUrl = $submission['page_url'] ?: '';
+    $submittedAt = $submission['submitted_at'] ?: gmdate('c');
+    $userAgent = cleanText($_SERVER['HTTP_USER_AGENT'] ?? 'неизвестно', 300);
+    $ipAddress = $_SERVER['REMOTE_ADDR'] ?? 'неизвестно';
+
+    $pageLink = $pageUrl !== ''
+        ? '<a href="' . escapeHtml($pageUrl) . '" style="color:#197437;text-decoration:none;">' . escapeHtml($pageTitle) . '</a>'
+        : escapeHtml($pageTitle);
+
+    return '<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Новая заявка на фулфилмент</title>
+</head>
+<body style="margin:0;padding:0;background:#f7faf3;color:#06291c;font-family:Segoe UI,Arial,sans-serif;">
+  <table role="presentation" cellpadding="0" cellspacing="0" width="100%" style="width:100%;background:#f7faf3;margin:0;padding:32px 16px;">
+    <tr>
+      <td align="center">
+        <table role="presentation" cellpadding="0" cellspacing="0" width="100%" style="width:100%;max-width:680px;background:#ffffff;border:1px solid rgba(1,63,40,0.14);border-radius:18px;overflow:hidden;box-shadow:0 18px 40px rgba(1,63,40,0.09);">
+          <tr>
+            <td style="background:#013f28;padding:28px 32px;">
+              <table role="presentation" cellpadding="0" cellspacing="0" width="100%">
+                <tr>
+                  <td style="vertical-align:middle;">
+                    <img src="' . escapeHtml($logoUrl) . '" width="152" alt="EXPAFORCE" style="display:block;width:152px;max-width:100%;height:auto;border:0;">
+                  </td>
+                  <td align="right" style="vertical-align:middle;color:#dbeed2;font-size:13px;font-weight:600;letter-spacing:0;text-transform:uppercase;">
+                    Заявка с сайта
+                  </td>
+                </tr>
+              </table>
+              <h1 style="margin:26px 0 10px;color:#ffffff;font-size:28px;line-height:1.2;font-weight:700;">Новая заявка на фулфилмент</h1>
+              <p style="margin:0;color:#dbeed2;font-size:15px;line-height:1.6;">Посетитель отправил форму EXPAFORCE. Проверьте детали ниже и свяжитесь с клиентом по указанному контакту.</p>
+            </td>
+          </tr>
+          <tr>
+            <td style="padding:30px 32px 12px;">
+              <table role="presentation" cellpadding="0" cellspacing="0" width="100%" style="width:100%;border-collapse:separate;border-spacing:0 12px;">
+                ' . buildEmailFieldRow('Имя', $submission['full_name']) . '
+                ' . buildEmailFieldRow('Контакт', $submission['phone']) . '
+              </table>
+            </td>
+          </tr>
+          <tr>
+            <td style="padding:0 32px 28px;">
+              <div style="background:#eef6ea;border:1px solid rgba(1,63,40,0.14);border-radius:14px;padding:22px 24px;">
+                <p style="margin:0 0 10px;color:#197437;font-size:13px;font-weight:700;text-transform:uppercase;">Что нужно обработать</p>
+                <p style="margin:0;color:#06291c;font-size:16px;line-height:1.65;">' . nl2br(escapeHtml($submission['product_context'])) . '</p>
+              </div>
+            </td>
+          </tr>
+          <tr>
+            <td style="padding:0 32px 32px;">
+              <table role="presentation" cellpadding="0" cellspacing="0" width="100%" style="width:100%;background:#f7faf3;border:1px solid rgba(1,63,40,0.10);border-radius:14px;padding:18px 20px;">
+                <tr>
+                  <td colspan="2" style="padding:0 0 12px;color:#013f28;font-size:14px;font-weight:700;">Данные отправки</td>
+                </tr>
+                ' . buildEmailMetaRow('Страница', $pageLink, true) . '
+                ' . buildEmailMetaRow('Дата отправки', escapeHtml($submittedAt), true) . '
+                ' . buildEmailMetaRow('IP', escapeHtml($ipAddress), true) . '
+                ' . buildEmailMetaRow('Браузер', escapeHtml($userAgent), true) . '
+              </table>
+            </td>
+          </tr>
+          <tr>
+            <td style="background:#e7f4df;padding:18px 32px;color:#06291c;font-size:13px;line-height:1.5;">
+              Отправлено с формы сайта <strong style="color:#013f28;">EXPAFORCE</strong>.
+            </td>
+          </tr>
+        </table>
+      </td>
+    </tr>
+  </table>
+</body>
+</html>';
+}
+
+function buildEmailFieldRow(string $label, string $value): string
+{
+    return '<tr>
+      <td style="width:150px;padding:15px 18px;background:#f7faf3;border:1px solid rgba(1,63,40,0.10);border-right:0;border-radius:12px 0 0 12px;color:#197437;font-size:13px;font-weight:700;text-transform:uppercase;vertical-align:top;">' . escapeHtml($label) . '</td>
+      <td style="padding:15px 18px;background:#f7faf3;border:1px solid rgba(1,63,40,0.10);border-left:0;border-radius:0 12px 12px 0;color:#06291c;font-size:16px;line-height:1.5;font-weight:600;vertical-align:top;">' . escapeHtml($value) . '</td>
+    </tr>';
+}
+
+function buildEmailMetaRow(string $label, string $value, bool $valueContainsHtml = false): string
+{
+    $safeValue = $valueContainsHtml ? $value : escapeHtml($value);
+
+    return '<tr>
+      <td style="width:130px;padding:6px 0;color:rgba(6,41,28,0.64);font-size:13px;line-height:1.5;vertical-align:top;">' . escapeHtml($label) . '</td>
+      <td style="padding:6px 0;color:#06291c;font-size:13px;line-height:1.5;vertical-align:top;">' . $safeValue . '</td>
+    </tr>';
 }
 
 function getMailHost(): string
@@ -246,6 +373,31 @@ function getMailHost(): string
     $host = preg_replace('/[^a-z0-9.-]/', '', $host) ?? 'expaforce.com';
 
     return $host ?: 'expaforce.com';
+}
+
+function getBaseUrl(): string
+{
+    $host = getMailHost();
+    $scheme = 'http';
+
+    if (
+        (!empty($_SERVER['HTTPS']) && strtolower((string)$_SERVER['HTTPS']) !== 'off')
+        || (($_SERVER['HTTP_X_FORWARDED_PROTO'] ?? '') === 'https')
+    ) {
+        $scheme = 'https';
+    }
+
+    return $scheme . '://' . $host;
+}
+
+function escapeHtml(string $value): string
+{
+    return htmlspecialchars($value, ENT_QUOTES | ENT_SUBSTITUTE, 'UTF-8');
+}
+
+function encodeMailHeader(string $value): string
+{
+    return '=?UTF-8?B?' . base64_encode($value) . '?=';
 }
 
 function checkRateLimit(int $maxAttempts, int $timeWindow): bool
