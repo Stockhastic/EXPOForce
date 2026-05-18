@@ -19,7 +19,8 @@ if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
     respond(405, false, 'form-error-method');
 }
 
-$recipientEmail = 'info@expaforce.com';
+$recipientEmail = 'perturbator1488@gmail.com';
+$rateLimitEnabled = false;
 $maxAttempts = 5;
 $timeWindow = 3600;
 
@@ -30,7 +31,7 @@ try {
         respond(200, true, 'form-success-submit');
     }
 
-    if (!checkRateLimit($maxAttempts, $timeWindow)) {
+     if ($rateLimitEnabled && !checkRateLimit($maxAttempts, $timeWindow)) {
         respond(429, false, 'form-error-rate-limit');
     }
 
