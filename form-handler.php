@@ -19,7 +19,7 @@ if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
     respond(405, false, 'form-error-method');
 }
 
-$recipientEmail = 'perturbator1488@gmail.com';
+$recipientEmail = 'forwexpa@gmail.com';
 $rateLimitEnabled = false;
 $maxAttempts = 5;
 $timeWindow = 3600;
